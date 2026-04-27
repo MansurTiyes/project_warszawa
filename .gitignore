@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environment
+backend/.venv/
+
+# Environment variables 
+.env
+.env.*
+!.env.example
+
+# STARS PDF uploads — student PII
+*.pdf
+backend/uploads/
+backend/tmp/
+
+# ChromaDB local data
+backend/chroma_db/
+backend/data/
+
+# PyMuPDF cache
+*.fitz
+
+# Next.js
+frontend/.next/
+frontend/out/
+frontend/node_modules/
+frontend/.env.local
+frontend/.env.production
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Pytest / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Jupyter (if used for evals)
+.ipynb_checkpoints/
+
+# docs and CLAUDE
+docs/
+CLAUDE.md 
