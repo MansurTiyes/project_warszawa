@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Scrapes the USC course catalogue and returns a normalized dict keyed by
 course ID (e.g. "CSCI-103").
