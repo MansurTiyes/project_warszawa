@@ -34,14 +34,72 @@ _UNITS_RE = re.compile(
 
 _LABELED_FIELDS: dict[str, str] = {
     "terms offered:": "terms_offered",
+    "prerequisite:": "prereqs",
+    "prerequisites:": "prereqs",
+    "recommended preparation:": "recommended_preparation",
     "notes:": "notes",
     "instruction mode:": "instruction_mode",
     "grading option:": "grading_option",
 }
 
+# Lines that start with these prefixes are dropped — they're metadata noise, not description.
+_DISCARD_PREFIXES: frozenset[str] = frozenset([
+    "registration restriction:",
+    "duplicates credit",
+    "back to top",
+])
+
 
 def _normalize_code(dept: str, num: str) -> str:
+    # Strip suffix letters after the digits, keeping only 'a'/'b' which
+    # genuinely distinguish separate courses (e.g. 490a / 490b sequences).
+    # Flags like 'L' (lab), 'x' (variable topics), 'g' (GE designation)
+    # have no semantic meaning for planning and cause false mismatches in RAG.
+    m = re.match(r"(\d+)([a-zA-Z]*)", num)
+    if m:
+        digits, suffix = m.group(1), m.group(2).lower()
+        clean_suffix = "".join(c for c in suffix if c in ("a", "b"))
+        num = digits + clean_suffix
     return f"{dept}-{num}"
+
+
+# Matches any inline course code like "CSCI 103L", "ACCT 551T" within prose text
+_INLINE_CODE_RE = re.compile(r"\b([A-Z]{2,})\s+(\d+\w*)\b")
+
+
+def _extract_course_codes(text: str) -> list[str]:
+    """Flat list of all course codes in text. Used for advisory fields
+    (recommended_preparation) where AND/OR structure is not needed."""
+    return [_normalize_code(m.group(1), m.group(2)) for m in _INLINE_CODE_RE.finditer(text)]
+
+
+def _extract_prereq_groups(text: str) -> list[list[str]]:
+    """Parse a prereq string into AND-of-OR groups.
+
+    Outer list = AND  (student must satisfy every group).
+    Inner list = OR   (student needs at least one course from the group).
+
+    Parsing rule: split on 'and' first to get AND groups, then split each
+    group on 'or' to get OR alternatives, then extract course codes from
+    each alternative. Groups with no recognizable codes are dropped.
+
+    Examples:
+      "CSCI 102"                           → [["CSCI-102"]]
+      "CSCI 102 or CSCI 103L"             → [["CSCI-102", "CSCI-103L"]]
+      "CSCI 103L and CSCI 170"            → [["CSCI-103L"], ["CSCI-170"]]
+      "CSCI 102 or CSCI 103L and CSCI 170"→ [["CSCI-102", "CSCI-103L"], ["CSCI-170"]]
+    """
+    and_groups = re.split(r"\band\b", text, flags=re.IGNORECASE)
+    result: list[list[str]] = []
+    for and_group in and_groups:
+        or_parts = re.split(r"\bor\b", and_group, flags=re.IGNORECASE)
+        codes: list[str] = []
+        for part in or_parts:
+            for m in _INLINE_CODE_RE.finditer(part):
+                codes.append(_normalize_code(m.group(1), m.group(2)))
+        if codes:
+            result.append(codes)
+    return result
 
 
 def _detect_total_pages(session: requests.Session) -> int:
@@ -91,28 +149,94 @@ def _get_listing_page(session: requests.Session, page: int) -> list[dict[str, st
     return courses
 
 
+# Pure punctuation to skip — does NOT include "and"/"or" so connectors are
+# preserved in the collected text and _extract_prereq_groups can split on them.
+_PUNCT_TOKENS = frozenset({".", ",", ";", ":", ""})
+
+
 def _get_raw_detail(session: requests.Session, coid: str) -> str | None:
     url = f"{BASE}/preview_course_nopop.php?catoid={CATOID}&coid={coid}"
     resp = session.get(url, timeout=15)
     resp.raise_for_status()
     soup = BeautifulSoup(resp.text, "lxml")
 
-    # Content lives in td.block_content; h1#course_preview_title is the start marker.
-    # We collect from the h1 onwards to skip the toolbar ("HELP / Print-Friendly / ...").
+    # Content lives under h1#course_preview_title.
+    # "Prerequisite:" appears as <em> with the course codes in following <a> tags —
+    # we must walk siblings manually to stitch that into one line.
     h1 = soup.find("h1", {"id": "course_preview_title"})
     if not h1:
         return None
 
-    parts: list[str] = [h1.get_text(strip=True)]
-    for sibling in h1.next_siblings:
-        if hasattr(sibling, "get_text"):
-            t = sibling.get_text(separator="\n", strip=True)
-            if t:
-                parts.append(t)
-        elif isinstance(sibling, str) and sibling.strip():
-            parts.append(sibling.strip())
+    lines: list[str] = [h1.get_text(strip=True)]
+    siblings = list(h1.next_siblings)
+    i = 0
 
-    return "\n".join(parts)
+    while i < len(siblings):
+        sib = siblings[i]
+
+        if isinstance(sib, str):
+            text = sib.strip()
+            if text and text not in _PUNCT_TOKENS:
+                lines.append(text)
+            i += 1
+
+        elif sib.name == "div":
+            break  # "Back to Top / Print-Friendly" footer — nothing useful after this
+
+        elif sib.name == "em":
+            # Labeled field: <em>Prerequisite:</em> followed by <a> course links,
+            # hidden <span> spacers, NavigableString connectors ("and"/"or"), and
+            # finally a <br/> or the next labeled field.
+            label = sib.get_text(strip=True)
+            values: list[str] = []
+            j = i + 1
+            while j < len(siblings):
+                nxt = siblings[j]
+                if isinstance(nxt, str):
+                    t = nxt.strip()
+                    # Stop if this NavigableString starts a new labeled field
+                    t_lower = t.lower()
+                    if t and not (
+                        t_lower in _PUNCT_TOKENS
+                        or any(t_lower.startswith(p) for p in _LABELED_FIELDS)
+                        or t_lower.startswith("max units:")
+                        or any(t_lower.startswith(p) for p in _DISCARD_PREFIXES)
+                    ):
+                        # Prose value (e.g. "CSCI 103L and CSCI 170" as plain text)
+                        values.append(t)
+                    elif t and any(t_lower.startswith(p) for p in _LABELED_FIELDS):
+                        break
+                    j += 1
+                elif hasattr(nxt, "name"):
+                    if nxt.name == "br":
+                        j += 1
+                        break  # <br/> is the definitive end of this field
+                    elif nxt.name in ("hr", "div", "em"):
+                        break
+                    elif nxt.name == "span":
+                        j += 1  # hidden decorative spacer — skip
+                    elif nxt.name == "a":
+                        t = nxt.get_text(strip=True)
+                        if t:
+                            values.append(t)
+                        j += 1
+                    else:
+                        t = nxt.get_text(strip=True)
+                        if t:
+                            values.append(t)
+                        j += 1
+                else:
+                    j += 1
+            lines.append(f"{label} {' '.join(values)}".strip())
+            i = j
+
+        else:
+            text = sib.get_text(strip=True)
+            if text:
+                lines.append(text)
+            i += 1
+
+    return "\n".join(lines)
 
 
 def _parse_detail(name: str, text: str) -> dict[str, Any]:
@@ -123,6 +247,8 @@ def _parse_detail(name: str, text: str) -> dict[str, Any]:
         "units": None,
         "max_units": None,
         "terms_offered": None,
+        "prereqs": None,           # None = field not seen; converted to list at end
+        "recommended_preparation": None,
         "description": None,
         "notes": None,
         "instruction_mode": None,
@@ -148,12 +274,25 @@ def _parse_detail(name: str, text: str) -> dict[str, Any]:
                 units_found = True
                 continue
 
+        # Silently discard metadata noise lines
+        if any(lower.startswith(p) for p in _DISCARD_PREFIXES):
+            continue
+
+        # Max Units: — updates max_units (separate numeric field, not a string field)
+        if lower.startswith("max units:"):
+            val = line.split(":", 1)[1].strip()
+            try:
+                out["max_units"] = float(val)
+            except ValueError:
+                pass
+            continue
+
         # Labeled fields
         matched = False
         for prefix, field in _LABELED_FIELDS.items():
             if lower.startswith(prefix):
                 value = line.split(":", 1)[1].strip()
-                out[field] = value or None
+                out[field] = value          # empty string is fine; converted below
                 matched = True
                 break
         if matched:
@@ -164,12 +303,17 @@ def _parse_detail(name: str, text: str) -> dict[str, Any]:
             desc_parts.append(line)
 
     out["description"] = " ".join(desc_parts).strip() or None
+    # prereqs → nested list[list[str]] preserving AND/OR structure
+    out["prereqs"] = _extract_prereq_groups(out["prereqs"]) if out["prereqs"] else []
+    # recommended_preparation → flat list[str]; it's advisory/display-only, structure not needed
+    out["recommended_preparation"] = _extract_course_codes(out["recommended_preparation"]) if out["recommended_preparation"] else []
     return out
 
 
 def ingest_usc_course_catalog(
     delay: float = 0.3,
     max_pages: int | None = None,
+    page: int | None = None,
     dry_run: bool = False,
 ) -> dict[str, dict[str, Any]]:
     """
@@ -178,6 +322,7 @@ def ingest_usc_course_catalog(
     Args:
         delay:     Seconds to sleep between HTTP requests.
         max_pages: Override auto-detected page count (useful for testing).
+        page:      Scrape exactly this one listing page (overrides max_pages).
         dry_run:   If True, collect stubs only — skip detail fetches.
 
     Returns:
@@ -188,17 +333,21 @@ def ingest_usc_course_catalog(
     session = requests.Session()
     session.headers["User-Agent"] = "project-warszawa-research-bot/1.0 (academic advising tool)"
 
-    total_pages = max_pages or _detect_total_pages(session)
+    if page is not None:
+        page_range = range(page, page + 1)
+    else:
+        total_pages = max_pages or _detect_total_pages(session)
+        page_range = range(1, total_pages + 1)
 
     # Phase 1 — collect all course stubs from listing pages
     stubs: list[dict[str, str]] = []
-    for page in range(1, total_pages + 1):
+    for p in page_range:
         try:
-            page_courses = _get_listing_page(session, page)
+            page_courses = _get_listing_page(session, p)
             stubs.extend(page_courses)
-            logger.debug("Page %d/%d — %d stubs so far", page, total_pages, len(stubs))
+            logger.debug("Page %d — %d stubs so far", p, len(stubs))
         except Exception as exc:
-            logger.warning("Failed to fetch listing page %d: %s", page, exc)
+            logger.warning("Failed to fetch listing page %d: %s", p, exc)
         time.sleep(delay)
 
     logger.info("Phase 1 complete: %d course stubs collected.", len(stubs))
@@ -234,7 +383,8 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Scrape USC course catalogue")
     parser.add_argument("--dry-run", action="store_true", help="Listing pages only, no detail fetches")
-    parser.add_argument("--max-pages", type=int, default=None, help="Limit listing pages (for testing)")
+    parser.add_argument("--page", type=int, default=None, help="Scrape exactly this one listing page")
+    parser.add_argument("--max-pages", type=int, default=None, help="Scrape pages 1..N (ignored if --page is set)")
     parser.add_argument("--delay", type=float, default=0.3, help="Seconds between requests")
     parser.add_argument("--output", type=Path, default=Path(__file__).parent / "usc_courses.json")
     args = parser.parse_args()
@@ -244,6 +394,7 @@ if __name__ == "__main__":
     catalog = ingest_usc_course_catalog(
         delay=args.delay,
         max_pages=args.max_pages,
+        page=args.page,
         dry_run=args.dry_run,
     )
 
