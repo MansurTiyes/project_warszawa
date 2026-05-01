@@ -1,0 +1,276 @@
+{
+  "dataset_id": "retrieval_v1",
+  "version": "1.0",
+  "description": "ChromaDB retrieval quality evaluation dataset for the USC course catalogue. Covers semantic search, career-goal queries, metadata-filter lookups, and edge cases.",
+  "default_top_k": 5,
+  "sets": {
+    "1": "Known course lookups — specific natural-language queries that should reliably surface a single target course in top-k results.",
+    "2": "Career goal queries — open-ended queries reflecting real student use cases. No ground-truth output yet; scores will be assigned by an LLM evaluator.",
+    "3": "Elective pool metadata lookups — direct class_code filter via ChromaDB where clause to verify ingestion completeness for known elective candidates.",
+    "4": "Edge cases — probes department coverage, category diversity, and ingestion quality for courses that are commonly mis-indexed or missing."
+  },
+  "items": [
+    {
+      "id": "ret_s1_001",
+      "set": 1,
+      "set_label": "Known course lookups",
+      "input": {
+        "query": "CSCI 467 machine learning",
+        "filters": null
+      },
+      "expected_output": {
+        "top_k_contains": ["CSCI-467"]
+      },
+      "note": "Query includes both course code and name — strongest signal; should be rank 1."
+    },
+    {
+      "id": "ret_s1_002",
+      "set": 1,
+      "set_label": "Known course lookups",
+      "input": {
+        "query": "operating systems",
+        "filters": null
+      },
+      "expected_output": {
+        "top_k_contains": ["CSCI-350"]
+      },
+      "note": "Generic term — tests that canonical CS core courses surface without a course code hint."
+    },
+    {
+      "id": "ret_s1_003",
+      "set": 1,
+      "set_label": "Known course lookups",
+      "input": {
+        "query": "algorithms",
+        "filters": null
+      },
+      "expected_output": {
+        "top_k_contains": ["CSCI-270"]
+      },
+      "note": "Single-word query — broad term shared across many courses; CSCI-270 must outrank generic mentions."
+    },
+    {
+      "id": "ret_s1_004",
+      "set": 1,
+      "set_label": "Known course lookups",
+      "input": {
+        "query": "iOS app development",
+        "filters": null
+      },
+      "expected_output": {
+        "top_k_contains": ["ITP-342"]
+      },
+      "note": "Cross-department query (ITP, not CSCI) — tests that non-CSCI relevant courses are indexed and retrieved."
+    },
+
+    {
+      "id": "ret_s2_001",
+      "set": 2,
+      "set_label": "Career goal queries",
+      "input": {
+        "query": "machine learning engineer internship",
+        "filters": null
+      },
+      "expected_output": null,
+      "note": "Should surface ML/AI courses (CSCI-467, CSCI-499, CSCI-445, EE-451). LLM evaluator to score relevance."
+    },
+    {
+      "id": "ret_s2_002",
+      "set": 2,
+      "set_label": "Career goal queries",
+      "input": {
+        "query": "backend systems software engineer",
+        "filters": null
+      },
+      "expected_output": null,
+      "note": "Should surface systems/OS/networking courses. LLM evaluator to score relevance."
+    },
+    {
+      "id": "ret_s2_003",
+      "set": 2,
+      "set_label": "Career goal queries",
+      "input": {
+        "query": "quant finance programming",
+        "filters": null
+      },
+      "expected_output": null,
+      "note": "Cross-domain query — should surface MATH-458 and finance/probability courses alongside CS. Tests cross-dept retrieval."
+    },
+    {
+      "id": "ret_s2_004",
+      "set": 2,
+      "set_label": "Career goal queries",
+      "input": {
+        "query": "computer vision deep learning",
+        "filters": null
+      },
+      "expected_output": null,
+      "note": "Should surface CSCI-420, CSCI-445, CSCI-467. LLM evaluator to score relevance."
+    },
+    {
+      "id": "ret_s2_005",
+      "set": 2,
+      "set_label": "Career goal queries",
+      "input": {
+        "query": "distributed systems infrastructure",
+        "filters": null
+      },
+      "expected_output": null,
+      "note": "Should surface networking, OS, and systems-level courses. LLM evaluator to score relevance."
+    },
+    {
+      "id": "ret_s2_006",
+      "set": 2,
+      "set_label": "Career goal queries",
+      "input": {
+        "query": "full stack web development",
+        "filters": null
+      },
+      "expected_output": null,
+      "note": "Should surface ITP and CSCI web/software engineering courses. LLM evaluator to score relevance."
+    },
+    {
+      "id": "ret_s2_007",
+      "set": 2,
+      "set_label": "Career goal queries",
+      "input": {
+        "query": "natural language processing",
+        "filters": null
+      },
+      "expected_output": null,
+      "note": "Should surface CSCI-467, CSCI-544, and related AI courses. LLM evaluator to score relevance."
+    },
+
+    {
+      "id": "ret_s3_001",
+      "set": 3,
+      "set_label": "Elective pool metadata lookups",
+      "input": {
+        "query": "CSCI-467",
+        "filters": { "class_code": "CSCI-467" }
+      },
+      "expected_output": {
+        "top_k_contains": ["CSCI-467"]
+      },
+      "note": "Exact metadata match — verifies CSCI-467 was ingested with correct class_code field."
+    },
+    {
+      "id": "ret_s3_002",
+      "set": 3,
+      "set_label": "Elective pool metadata lookups",
+      "input": {
+        "query": "CSCI-445",
+        "filters": { "class_code": "CSCI-445" }
+      },
+      "expected_output": {
+        "top_k_contains": ["CSCI-445"]
+      },
+      "note": "Exact metadata match — verifies CSCI-445 ingestion."
+    },
+    {
+      "id": "ret_s3_003",
+      "set": 3,
+      "set_label": "Elective pool metadata lookups",
+      "input": {
+        "query": "CSCI-420",
+        "filters": { "class_code": "CSCI-420" }
+      },
+      "expected_output": {
+        "top_k_contains": ["CSCI-420"]
+      },
+      "note": "Exact metadata match — verifies CSCI-420 ingestion."
+    },
+    {
+      "id": "ret_s3_004",
+      "set": 3,
+      "set_label": "Elective pool metadata lookups",
+      "input": {
+        "query": "TAC-368",
+        "filters": { "class_code": "TAC-368" }
+      },
+      "expected_output": {
+        "top_k_contains": ["TAC-368"]
+      },
+      "note": "Cross-dept check — TAC courses are less common in CS planning contexts; verifies they were scraped and stored."
+    },
+    {
+      "id": "ret_s3_005",
+      "set": 3,
+      "set_label": "Elective pool metadata lookups",
+      "input": {
+        "query": "EE-451",
+        "filters": { "class_code": "EE-451" }
+      },
+      "expected_output": {
+        "top_k_contains": ["EE-451"]
+      },
+      "note": "EE dept cross-check — verifies electrical engineering courses are in the catalogue."
+    },
+    {
+      "id": "ret_s3_006",
+      "set": 3,
+      "set_label": "Elective pool metadata lookups",
+      "input": {
+        "query": "MATH-458",
+        "filters": { "class_code": "MATH-458" }
+      },
+      "expected_output": {
+        "top_k_contains": ["MATH-458"]
+      },
+      "note": "MATH dept cross-check — verifies math electives relevant to quant/ML tracks are present."
+    },
+
+    {
+      "id": "ret_s4_001",
+      "set": 4,
+      "set_label": "Edge cases",
+      "input": {
+        "query": "probability statistics",
+        "filters": null
+      },
+      "expected_output": {
+        "top_k_contains": ["MATH-407"]
+      },
+      "note": "Tests MATH dept coverage in semantic search — a common omission if scraping skipped math pages."
+    },
+    {
+      "id": "ret_s4_002",
+      "set": 4,
+      "set_label": "Edge cases",
+      "input": {
+        "query": "TAC",
+        "filters": null
+      },
+      "expected_output": {
+        "top_k_department": "TAC"
+      },
+      "note": "Single-token dept code — should surface TAC courses. Verifies short department codes are queryable semantically."
+    },
+    {
+      "id": "ret_s4_003",
+      "set": 4,
+      "set_label": "Edge cases",
+      "input": {
+        "query": "cooperative education",
+        "filters": null
+      },
+      "expected_output": {
+        "top_k_contains": ["ENGR-395"]
+      },
+      "note": "ENGR-395 has multiple variants (a, b, etc. suffixes stripped during ingestion). Evaluator should check that at least one ENGR-395 variant is in results."
+    },
+    {
+      "id": "ret_s4_004",
+      "set": 4,
+      "set_label": "Edge cases",
+      "input": {
+        "query": "research",
+        "filters": null
+      },
+      "expected_output": {
+        "top_k_contains": ["CSCI-499"]
+      },
+      "note": "Broad term shared across many courses — CSCI-499 (Directed Research) must appear. Also validates that other research-type courses (490, 495 variants) are present in broader results."
+    }
+  ]
+}
