@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import json
 import logging
+import threading
 from typing import Any
 
 import chromadb
@@ -23,13 +24,16 @@ logger = logging.getLogger(__name__)
 _BATCH_SIZE = 500
 
 _client: chromadb.PersistentClient | None = None
+_client_lock = threading.Lock()
 
 
 def get_client() -> chromadb.PersistentClient:
     global _client
     if _client is None:
-        from config import settings
-        _client = chromadb.PersistentClient(path=settings.chroma_db_path)
+        with _client_lock:
+            if _client is None:  # double-checked locking — safe under parallel node execution
+                from config import settings
+                _client = chromadb.PersistentClient(path=settings.chroma_db_path)
     return _client
 
 

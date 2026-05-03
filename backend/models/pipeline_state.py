@@ -2,21 +2,22 @@
 LangGraph state TypedDicts and intermediate Pydantic models for all graphs.
 
 State hierarchy:
-  StarsParserState   — standalone STARS parser graph (POST /api/stars)
-  AdvisorState       — shared parent state for the full pipeline graph
-  HardRequirementsState — AdvisorState + private intermediate keys internal
-                          to the hard_requirements subgraph only
+  StarsParserState        — standalone STARS parser graph (POST /api/stars)
+  AdvisorState            — shared parent state for the full pipeline graph
+  HardRequirementsState   — AdvisorState + private stubs (hard_requirements subgraph)
+  SoftRequirementsState   — AdvisorState subtype; documents soft_requirements I/O contract
+  EnrichmentState         — SoftRequirementsState + private intermediates (enrichment_subgraph)
 
 Pydantic models defined here are intermediate pipeline data structures
 ("all intermediate structures" per CLAUDE.md). Domain models (StudentState,
 RequirementsMap, PlanJSON) live in their own model files.
 
-LangGraph subgraph state pattern used here:
-  HardRequirementsState extends AdvisorState with two private keys
-  (hard_courses_stub, elective_courses_stub). When the compiled subgraph is
-  added as a node to the pipeline graph, LangGraph maps shared key names
-  automatically. The private keys exist only inside the subgraph's supersteps
-  and are never written back to the parent pipeline state.
+LangGraph subgraph state pattern:
+  Subgraph states extend AdvisorState (or a subtype) with total=False and add
+  private intermediate keys. When a compiled subgraph is added as a node to the
+  pipeline graph, LangGraph maps shared key names automatically. Private keys
+  exist only inside the subgraph's supersteps and are never written back to the
+  parent pipeline state.
   Ref: https://docs.langchain.com/oss/python/langgraph/graph-api#multiple-schemas
 """
 
@@ -77,6 +78,21 @@ class CourseNode(BaseModel):
     description: str | None = None                          # from ChromaDB; None if not found
 
 
+class ScoredCourse(BaseModel):
+    """
+    A course paired with a career-goal alignment score.
+
+    Score is a property of (course × career_goal), not of the course alone —
+    the same CourseNode can have different scores for different career goals.
+
+    For electives: score derived from ChromaDB L2 distance via 1/(1+distance).
+    For enrichment: score assigned by enrichment_rerank_node (Gemini Flash, 0.0–1.0).
+    For enrichment prereq chains: score inherited from the primary dependent course.
+    """
+    course: CourseNode
+    score: float  # 0.0–1.0
+
+
 # ---------------------------------------------------------------------------
 # LangGraph state TypedDicts
 # ---------------------------------------------------------------------------
@@ -93,20 +109,26 @@ class AdvisorState(TypedDict):
     Shared state for the full pipeline graph (POST /api/pipeline).
 
     Fields are populated incrementally as subgraphs complete:
-      - student_state, requirements_map: present at pipeline start (from STARS parser)
+      - student_state, requirements_map, career_goal: present at pipeline start
       - hard_courses … ge_placeholders_remaining: written by hard_requirements subgraph
-      (future soft requirements, scheduler, validator fields added as implemented)
+      - scored_electives, scored_enrichment: written by soft_requirements subgraph
+      (scheduler, validator fields added as implemented)
     """
-    # ---- Pipeline inputs (from STARS parser, sent by frontend) ----
+    # ---- Pipeline inputs (from STARS parser + Step 2 chip, sent by frontend) ----
     stars_pdf_text: str
     student_state: StudentState
     requirements_map: RequirementsMap
+    career_goal: str                             # Step 2 chip — e.g. "machine learning engineer"
 
     # ---- Hard requirements subgraph outputs ----
     hard_courses: list[CourseNode]               # remaining required courses, RAG-enriched
     elective_courses: list[CourseNode]           # approved elective pool, RAG-enriched
     other_must_reqs: OtherRequirements           # unit/residency/writing/GE-seminar flags
     ge_placeholders_remaining: list[str]         # GE category codes still needed e.g. ["GE-C", "GE-G"]
+
+    # ---- Soft requirements subgraph outputs ----
+    scored_electives: list[ScoredCourse]         # elective pool ranked by career alignment, desc
+    scored_enrichment: list[list[ScoredCourse]]  # prereq chains ranked by primary course score, desc
 
 
 class HardRequirementsState(AdvisorState, total=False):
@@ -132,3 +154,80 @@ class HardRequirementsState(AdvisorState, total=False):
     """
     hard_courses_stub: list[CourseNode]     # written by hard_courses_node
     elective_courses_stub: list[CourseNode] # written by elective_courses_node
+
+
+class SoftRequirementsState(AdvisorState, total=False):
+    """
+    State for the soft_requirements_subgraph.
+
+    Reads from AdvisorState:  elective_courses, career_goal, student_state
+    Writes to AdvisorState:   scored_electives, scored_enrichment
+
+    No private intermediate keys at this level — all intermediates live inside
+    EnrichmentState (the enrichment_subgraph's internal state). This class exists
+    to document the subgraph's I/O contract and for LangGraph state type annotation.
+
+    Two sub-subgraphs run as parallel nodes inside soft_requirements_subgraph:
+      elective_ranking_subgraph  → uses SoftRequirementsState directly (single node, no privates)
+      enrichment_subgraph        → uses EnrichmentState (4 nodes, 3 private intermediates)
+    """
+
+
+class EnrichmentState(TypedDict, total=False):
+    """
+    Internal state for the enrichment_subgraph.
+
+    Standalone TypedDict — does NOT extend AdvisorState or SoftRequirementsState.
+    Intentionally excludes scored_electives: the enrichment subgraph never reads
+    or writes that key. If EnrichmentState inherited AdvisorState, the compiled
+    subgraph would write scored_electives: [] back to the parent in the same
+    superstep as score_electives_node, causing a LangGraph parallel-write conflict.
+    Keeping it standalone eliminates the conflict without needing a wrapper node.
+
+    LangGraph maps shared keys by name automatically when the compiled subgraph is
+    added via add_node — inheritance is not required for key mapping to work.
+
+    Inputs (populated at invocation, shared with SoftRequirementsState):
+      stars_pdf_text, student_state, requirements_map, career_goal,
+      hard_courses, elective_courses, other_must_reqs, ge_placeholders_remaining
+
+    Output (written back to SoftRequirementsState / AdvisorState):
+      scored_enrichment
+
+    Private intermediates (never written back to parent):
+      temp_retrieved_enrichment, retrieved_enrichment, scored_enrichment_flat
+
+    Flow:
+      enrichment_courses_retrieval_node
+          reads  career_goal
+          writes temp_retrieved_enrichment   (top 50 from ChromaDB, unfiltered)
+          ↓
+      remove_taken_courses_node
+          reads  temp_retrieved_enrichment, student_state, elective_courses
+          writes retrieved_enrichment        (taken courses, elective dupes removed)
+          ↓
+      enrichment_rerank_node
+          reads  retrieved_enrichment, career_goal
+          writes scored_enrichment_flat      (top 10, sorted desc, no chains yet)
+          ↓
+      find_missing_prereqs_node
+          reads  scored_enrichment_flat, student_state
+          writes scored_enrichment           (grouped prereq chains)
+    """
+    # ---- inputs (shared keys — populated at invocation) ----
+    stars_pdf_text: str
+    student_state: StudentState
+    requirements_map: RequirementsMap
+    career_goal: str
+    hard_courses: list[CourseNode]
+    elective_courses: list[CourseNode]
+    other_must_reqs: OtherRequirements
+    ge_placeholders_remaining: list[str]
+
+    # ---- output (written back to parent) ----
+    scored_enrichment: list[list[ScoredCourse]]
+
+    # ---- private intermediates (never written back to parent) ----
+    temp_retrieved_enrichment: list[CourseNode]   # top-50 ChromaDB results, pre-dedup
+    retrieved_enrichment: list[CourseNode]         # post-dedup, ready for LLM rerank
+    scored_enrichment_flat: list[ScoredCourse]     # top-10 scored, pre-prereq-chain grouping
