@@ -26,7 +26,7 @@ def extract_stars_text(pdf_bytes: bytes) -> str:
     Extract the full text of a STARS PDF and return it as a single string.
 
     Pages are joined with a double newline. Course codes are normalized from
-    "DEPT NNN" to "DEPTNNN" at extraction time so both LLM calls see consistent
+    "DEPT NNN" to "DEPT-NNN" at extraction time so both LLM calls see consistent
     codes without prompt gymnastics.
 
     Raises ValueError for an invalid or empty PDF.
