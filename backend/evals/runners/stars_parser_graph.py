@@ -54,11 +54,12 @@ def run(output: Path | None = None) -> Path:
     student_state    = result["student_state"]
     requirements_map = result["requirements_map"]
     logger.info(
-        "Graph complete — StudentState: %s (%d courses), RequirementsMap: %s (%d groups).",
+        "Graph complete — StudentState: %s (%d courses), RequirementsMap: %s (%d cs_core slots, %d electives).",
         student_state.name,
         len(student_state.courses_taken),
         requirements_map.major,
-        len(requirements_map.requirement_groups),
+        len(requirements_map.major_cs_core),
+        len(requirements_map.electives_options),
     )
 
     # --- serialize — mirrors what the frontend stores after POST /api/stars ---

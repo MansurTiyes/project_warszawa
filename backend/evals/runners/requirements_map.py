@@ -1,8 +1,9 @@
 """
-Eval runner for requirements_map_node (STARS Parser Call 2).
+Eval runner for requirements_map_node.
 
-Reads the STARS PDF fixture, runs the extraction node, and writes the raw
-result JSON to evals/results/ for manual inspection.
+For MVP the node returns the hardcoded CSCI_BS_REQUIREMENTS constant,
+so no PDF fixture is needed. This runner serializes the constant to JSON
+for inspection and writes it to evals/results/.
 
 Run from backend/:
     python -m evals.runners.requirements_map
@@ -18,12 +19,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from nodes.stars_parser_nodes import requirements_map_node
-from services.pdf_parser import extract_stars_text
 
 logger = logging.getLogger(__name__)
 
-_BACKEND_DIR = Path(__file__).parent.parent.parent   # backend/
-_FIXTURE     = _BACKEND_DIR / "evals" / "fixtures" / "stars.pdf"
 _RESULTS_DIR = Path(__file__).parent.parent / "results"
 
 
@@ -33,39 +31,31 @@ def run(output: Path | None = None) -> Path:
         format="%(asctime)s %(levelname)s %(message)s",
     )
 
-    # --- extract PDF text ---
-    if not _FIXTURE.exists():
-        raise FileNotFoundError(f"STARS fixture not found: {_FIXTURE}")
-
-    logger.info("Reading STARS PDF: %s", _FIXTURE)
-    stars_text = extract_stars_text(_FIXTURE.read_bytes())
-    logger.info("Extracted %d chars from PDF.", len(stars_text))
-
-    # --- run node ---
-    logger.info("Running requirements_map_node...")
-    node_output = requirements_map_node({"stars_pdf_text": stars_text, "requirements_map": None})
+    logger.info("Running requirements_map_node (hardcoded constant)...")
+    node_output = requirements_map_node({"stars_pdf_text": "", "requirements_map": None, "student_state": None})
     requirements_map = node_output["requirements_map"]
     actual = json.loads(requirements_map.model_dump_json())
     logger.info(
-        "RequirementsMap extracted: %s, %d requirement group(s).",
+        "RequirementsMap: %s %s, %d writing slots, %d GE slots, %d cs_core slots, %d elective options.",
         requirements_map.major,
-        len(requirements_map.requirement_groups),
+        requirements_map.degree,
+        len(requirements_map.writing),
+        len(requirements_map.general_education),
+        len(requirements_map.major_cs_core),
+        len(requirements_map.electives_options),
     )
 
-    # --- write results ---
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
     _RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     out_path = output or _RESULTS_DIR / f"requirements_map_{timestamp}.json"
 
-    out_path.write_text(
-        json.dumps(actual, indent=2, ensure_ascii=False)
-    )
+    out_path.write_text(json.dumps(actual, indent=2, ensure_ascii=False))
     logger.info("Results → %s", out_path)
     return out_path
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Run requirements_map extraction eval")
+    parser = argparse.ArgumentParser(description="Dump hardcoded RequirementsMap constant to JSON")
     parser.add_argument("--output", type=Path, default=None, help="Override results output path")
     args = parser.parse_args()
     run(output=args.output)
