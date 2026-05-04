@@ -115,7 +115,9 @@ def _detect_total_pages(session: requests.Session) -> int:
         m = re.search(r"cpage=(\d+)", a["href"])
         if m:
             pages.append(int(m.group(1)))
-    total = max(pages) if pages else 130
+    # USC catalog pagination doesn't always emit nav links on page 1 — fallback
+    # to 200 so we always overshoot. The Phase 1 loop stops early on empty pages.
+    total = max(pages) if pages else 200
     logger.info("Detected %d listing pages.", total)
     return total
 
@@ -340,10 +342,14 @@ def ingest_usc_course_catalog(
         page_range = range(1, total_pages + 1)
 
     # Phase 1 — collect all course stubs from listing pages
+    stop_on_empty = page is None  # only auto-terminate when ranging; not for single-page runs
     stubs: list[dict[str, str]] = []
     for p in page_range:
         try:
             page_courses = _get_listing_page(session, p)
+            if stop_on_empty and not page_courses:
+                logger.info("Page %d returned no courses — end of catalog.", p)
+                break
             stubs.extend(page_courses)
             logger.debug("Page %d — %d stubs so far", p, len(stubs))
         except Exception as exc:

@@ -23,12 +23,20 @@ LangGraph subgraph state pattern:
 
 from __future__ import annotations
 
-from typing import TypedDict, Union
+from typing import TYPE_CHECKING, TypedDict, Union
 
 from pydantic import BaseModel, Field
 
 from models.requirements_map import RequirementsMap
 from models.student_state import StudentState
+
+if TYPE_CHECKING:
+    from models.plan import (
+        CompletedSemester,
+        DraftSchedule,
+        PlanJSON,
+        ValidationResult,
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -129,6 +137,13 @@ class AdvisorState(TypedDict):
     # ---- Soft requirements subgraph outputs ----
     scored_electives: list[ScoredCourse]         # elective pool ranked by career alignment, desc
     scored_enrichment: list[list[ScoredCourse]]  # prereq chains ranked by primary course score, desc
+
+    # ---- Scheduler subgraph inputs (chat-driven) ----
+    additional_requirements: str                 # free-form change instruction from chat; "" on initial run
+
+    # ---- Scheduler subgraph outputs ----
+    current_plan: PlanJSON | None                # None until scheduler runs; updated on every loop pass
+    remarks: list[str]                           # inline remarks from schedule_construction_node
 
 
 class HardRequirementsState(AdvisorState, total=False):
@@ -231,3 +246,56 @@ class EnrichmentState(TypedDict, total=False):
     temp_retrieved_enrichment: list[CourseNode]   # top-50 ChromaDB results, pre-dedup
     retrieved_enrichment: list[CourseNode]         # post-dedup, ready for LLM rerank
     scored_enrichment_flat: list[ScoredCourse]     # top-10 scored, pre-prereq-chain grouping
+
+
+class SchedulerState(AdvisorState, total=False):
+    """
+    Internal state for the schedule_validator_loop subgraph.
+
+    Extends AdvisorState with private intermediate keys that are never
+    written back to the parent pipeline state.
+
+    Public keys read from AdvisorState:
+      hard_courses, ge_placeholders_remaining, scored_electives,
+      scored_enrichment, career_goal, additional_requirements,
+      student_state, current_plan
+
+    Public keys written back to AdvisorState:
+      current_plan   (updated on every merge_schedule_node pass)
+      remarks        (overwritten on every merge_schedule_node pass;
+                      only the final iteration's remarks reach the user)
+
+    Private intermediates (never written back):
+      completed_timeline  — from reconstruct_timeline_node
+      draft_schedule      — from schedule_construction_node
+      validation_result   — from validator_node
+      iteration_count     — incremented by validator_node; drives MAX_ITERATIONS check
+
+    Loop flow:
+      reconstruct_timeline_node
+          reads  student_state
+          writes completed_timeline
+          ↓
+      schedule_construction_node
+          reads  completed_timeline, hard_courses, ge_placeholders_remaining,
+                 scored_electives, scored_enrichment, career_goal,
+                 additional_requirements, current_plan, validation_result
+          writes draft_schedule
+          ↓
+      merge_schedule_node
+          reads  completed_timeline, draft_schedule, hard_courses,
+                 scored_electives, scored_enrichment, ge_placeholders_remaining
+          writes current_plan (PlanJSON), remarks
+          ↓
+      validator_node
+          reads  current_plan, other_must_reqs, ge_placeholders_remaining,
+                 hard_courses, iteration_count
+          writes validation_result, iteration_count
+          ↓ (conditional edge)
+      if valid or MAX_ITERATIONS → END
+      else → schedule_construction_node  (skips reconstruct_timeline_node)
+    """
+    completed_timeline: list[CompletedSemester]  # from reconstruct_timeline_node
+    draft_schedule: DraftSchedule                # from schedule_construction_node
+    validation_result: ValidationResult          # from validator_node
+    iteration_count: int                         # incremented by validator_node
