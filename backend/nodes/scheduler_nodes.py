@@ -525,6 +525,8 @@ Each future semester has `label` (calendar string, e.g. `"Fall 2026"`), `total_u
 
 Your output must cover ALL future semesters — changed and unchanged alike. Use the existing calendar label for any semester you preserve unchanged. If you must add a new semester beyond the current plan, derive the next calendar label chronologically (next Fall or Spring after the last existing label).
 
+**GE double-dip codes:** If a `course_code` in `current_plan` contains ` / ` (e.g. `"GE-C / GE-G"`), it is a double-dipped placeholder — one 4-unit slot satisfying two GE categories at once. When reproducing that semester, output the combined code as a single entry. Never split a double-dipped slot into two separate entries. Splitting loses the double-dip and wastes 4 units.
+
 ---
 
 ## Reading violations
@@ -554,11 +556,13 @@ If present, `additional_requirements` is a free-form instruction from the studen
 - If it conflicts with fixing a violation, fix the violation first and note the tension in remarks
 - If it conflicts with a hard rule, satisfy the hard rule first and note the conflict in remarks
 
+**If the instruction requests an extra semester:** Add EXACTLY ONE new semester beyond the current final semester. Do not add two or three. Do not interpret the request as license to fill existing semesters with new courses — existing future semesters must remain unchanged (except where violations require adjustment). Count the future semesters in `current_plan` and produce exactly that count plus one.
+
 ---
 
 ## Revision rules
 
-1. **Minimum changes** — do not modify semesters not directly affected by a violation or change instruction. Reproduce them exactly in your output.
+1. **Minimum changes** — do not modify semesters not directly affected by a violation or change instruction. Reproduce them exactly in your output — same courses, same order, same codes. Do not add, remove, or move any course in an unchanged semester. When in doubt, leave it alone.
 
 2. **Prereq ordering** — any course you move must still appear in a strictly later semester than all its unsatisfied prereqs. Check this for every moved course.
 

@@ -111,6 +111,12 @@ def check_prereq_ordering(plan: PlanJSON) -> list[Violation]:
         for course in semester.courses:
             if course.is_placeholder:
                 continue
+            if course.prereqs_satisfied:
+                # All prereqs confirmed satisfied by student history (courses_taken,
+                # waivers, transfers). Trust the upstream computation — no ordering
+                # check needed. Without this, CW-waived prereqs trigger false violations
+                # because waived courses are not in courses_taken.
+                continue
             for group in course.prereqs:
                 if isinstance(group, str):
                     if group not in satisfied:

@@ -266,6 +266,43 @@ def test_and_of_or_mixed_prereqs():
     assert check_prereq_ordering(plan) == []
 
 
+def test_prereqs_satisfied_flag_skips_check():
+    """prereqs_satisfied=True on a future course skips its prereq check entirely.
+
+    Covers courses whose prereqs were satisfied via waivers (CW exception codes),
+    transfers, or in-progress — none of which appear in courses_taken / completed
+    semesters, so the validator's satisfied set would miss them.
+    EE-109 / CSCI-102 waiver is the real-world trigger for this case.
+    """
+    # prereq EE-155 is NOT in plan or completed history, but prereqs_satisfied=True
+    # (e.g. CSCI-102 was waived, satisfying the OR group [EE-155, CSCI-102, CSCI-113])
+    plan = _plan(
+        _semester("Fall 2026", [
+            PlannedCourse(
+                course_code="EE-109",
+                name="Introduction to Embedded Systems",
+                units=4.0,
+                prereqs=[["EE-155", "CSCI-102", "CSCI-113"]],
+                prereqs_satisfied=True,   # waiver confirmed upstream
+            ),
+        ], index=0),
+    )
+    assert check_prereq_ordering(plan) == []
+
+
+def test_prereqs_satisfied_false_still_checked():
+    """prereqs_satisfied=False means at least one prereq is unconfirmed — check runs."""
+    plan = _plan(
+        _semester("Fall 2026", [
+            _course("CSCI-360", prereqs=["CSCI-270"]),  # prereqs_satisfied defaults False
+        ], index=0),
+        # CSCI-270 absent from plan and history → should still violate
+    )
+    violations = check_prereq_ordering(plan)
+    assert len(violations) == 1
+    assert violations[0].course_code == "CSCI-360"
+
+
 def test_and_of_or_one_group_unsatisfied():
     """AND-of-OR: str prereq satisfied, OR-group unsatisfied → one violation."""
     plan = _plan(
