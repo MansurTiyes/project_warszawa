@@ -17,7 +17,7 @@ from __future__ import annotations
 
 from pydantic import BaseModel, Field
 
-from models.pipeline_state import CourseNode
+from models.course_nodes import CourseNode
 from models.student_state import CourseRecord
 
 
@@ -56,6 +56,7 @@ class DraftSchedule(BaseModel):
     """
     future_semesters: list[SemesterSlot]
     remarks: list[str]
+    omitted_hard_courses: list[str] = Field(default_factory=list)
 
 
 # ---------------------------------------------------------------------------
