@@ -1357,6 +1357,42 @@ adal = ["adal (>=1.0.2)"]
 google-auth = ["google-auth (>=1.0.1)"]
 
 [[package]]
+name = "langchain"
+version = "1.2.17"
+description = "Building applications with LLMs through composability"
+optional = false
+python-versions = "<4.0.0,>=3.10.0"
+groups = ["main"]
+files = [
+    {file = "langchain-1.2.17-py3-none-any.whl", hash = "sha256:ff881cdfbe90e0b6afac42eea7999657c282cc73db059c910d803f4e9f8ff305"},
+    {file = "langchain-1.2.17.tar.gz", hash = "sha256:c30b578c0eebbde8bec9247dbbbae1a791128557b99b65c8be1e007040975d09"},
+]
+
+[package.dependencies]
+langchain-core = ">=1.3.2,<2.0.0"
+langgraph = ">=1.1.10,<1.2.0"
+pydantic = ">=2.7.4,<3.0.0"
+
+[package.extras]
+anthropic = ["langchain-anthropic"]
+aws = ["langchain-aws"]
+azure-ai = ["langchain-azure-ai"]
+baseten = ["langchain-baseten (>=0.2.0)"]
+community = ["langchain-community"]
+deepseek = ["langchain-deepseek"]
+fireworks = ["langchain-fireworks"]
+google-genai = ["langchain-google-genai"]
+google-vertexai = ["langchain-google-vertexai"]
+groq = ["langchain-groq"]
+huggingface = ["langchain-huggingface"]
+mistralai = ["langchain-mistralai"]
+ollama = ["langchain-ollama"]
+openai = ["langchain-openai"]
+perplexity = ["langchain-perplexity"]
+together = ["langchain-together"]
+xai = ["langchain-xai"]
+
+[[package]]
 name = "langchain-anthropic"
 version = "1.4.1"
 description = "Integration package connecting Claude (Anthropic) APIs and LangChain"
@@ -1465,20 +1501,20 @@ typing-extensions = ">=4.7.0,<5.0.0"
 
 [[package]]
 name = "langgraph"
-version = "1.1.9"
+version = "1.1.10"
 description = "Building stateful, multi-actor applications with LLMs"
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "langgraph-1.1.9-py3-none-any.whl", hash = "sha256:7db13ceecde4ea643df6c097dcc9e534895dcd9fcc6500eeff2f2cde0fab16b2"},
-    {file = "langgraph-1.1.9.tar.gz", hash = "sha256:bc5a49d5a5e71fda1f9c53c06c62f4caec9a95545b739d130a58b6ab3269e274"},
+    {file = "langgraph-1.1.10-py3-none-any.whl", hash = "sha256:8a4f163f72f4401648d0c11b48ee906947d938ba8cf1f474540fe591534f0d17"},
+    {file = "langgraph-1.1.10.tar.gz", hash = "sha256:3115beb58203283c98d8752a90c034f3432177d2979a1fe205f76e5f1b744500"},
 ]
 
 [package.dependencies]
 langchain-core = ">=1.3.0,<2"
 langgraph-checkpoint = ">=2.1.0,<5.0.0"
-langgraph-prebuilt = ">=1.0.9,<1.1.0"
+langgraph-prebuilt = ">=1.0.12,<1.1.0"
 langgraph-sdk = ">=0.3.0,<0.4.0"
 pydantic = ">=2.7.4"
 xxhash = ">=3.5.0"
@@ -1501,14 +1537,14 @@ ormsgpack = ">=1.12.0"
 
 [[package]]
 name = "langgraph-prebuilt"
-version = "1.0.11"
+version = "1.0.13"
 description = "Library with high-level APIs for creating and executing LangGraph agents and tools."
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "langgraph_prebuilt-1.0.11-py3-none-any.whl", hash = "sha256:7afbaf5d64959e452976664c75bb8ec24098d3510cf9c205919baf443e7342ec"},
-    {file = "langgraph_prebuilt-1.0.11.tar.gz", hash = "sha256:0e71545f706a134b6a80a2a56916562797b499e3e4ab6eed5ce89396ac03d322"},
+    {file = "langgraph_prebuilt-1.0.13-py3-none-any.whl", hash = "sha256:7055e9fad41fbd3593800aed0aea0a6e974b17f33ed51b80d3d3a031212dd7c0"},
+    {file = "langgraph_prebuilt-1.0.13.tar.gz", hash = "sha256:ad219782a80e1718e7e7794de49e0ae307111d45cbcffab9a52725a66a609456"},
 ]
 
 [package.dependencies]
@@ -4295,4 +4331,4 @@ cffi = ["cffi (>=1.17,<2.0) ; platform_python_implementation != \"PyPy\" and pyt
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13,<4.0.0"
-content-hash = "886cb0be4ea307e49b3a7d370e6041d38092b50ec8fdb3992d7d7e3ebd78defd"
+content-hash = "647c7c5263d6a8d5bd82f34d07878247a1634f7f61b716e0c0006b3a1574ea97"
