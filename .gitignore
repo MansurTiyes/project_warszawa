@@ -28,10 +28,9 @@ backend/data/
 # PyMuPDF cache
 *.fitz
 
-# Next.js
-frontend/.next/
-frontend/out/
+# Frontend (Vite + React)
 frontend/node_modules/
+frontend/dist/
 frontend/.env.local
 frontend/.env.production
 
@@ -48,6 +47,7 @@ htmlcov/
 
 # Eval run artifacts
 backend/evals/results/
+backend/evals/fixtures/
 
 # Eval datasets containing student PII
 backend/evals/datasets/student_state.json

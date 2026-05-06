@@ -1,0 +1,165 @@
+/* ==========================================================
+   USC CS Advisor — Design Tokens
+   Warm Claude-inspired dark theme with USC cardinal accents
+   (Verbatim port of mockup styles.css.)
+   ========================================================== */
+
+:root {
+  /* Backgrounds — warm near-black, paper-warm */
+  --bg-0: #1a1714;          /* deepest */
+  --bg-1: #221e1a;          /* surface */
+  --bg-2: #2a251f;          /* elevated card */
+  --bg-3: #332d26;          /* hover / input */
+  --bg-4: #3d362e;          /* border-strong */
+
+  /* Foregrounds */
+  --ink-0: #f5efe6;         /* primary text — warm white */
+  --ink-1: #d8cfc1;         /* body */
+  --ink-2: #a59a8a;         /* secondary */
+  --ink-3: #6e6557;         /* tertiary / placeholder */
+  --ink-4: #4a4339;         /* faint */
+
+  /* Borders */
+  --line-1: #3a342c;
+  --line-2: #4a4339;
+
+  /* USC palette */
+  --cardinal: #990000;
+  --cardinal-bright: #c8102e;
+  --cardinal-glow: oklch(45% 0.18 25);
+  --gold: #ffcc00;
+  --gold-soft: #d4a017;
+
+  /* Semantic / category colors (bold blocks) */
+  --cat-core: #c8102e;          /* cardinal — core */
+  --cat-core-bg: oklch(38% 0.12 22);
+  --cat-additional: #d4661a;    /* warm orange */
+  --cat-additional-bg: oklch(42% 0.10 50);
+  --cat-capstone: #ffcc00;      /* gold */
+  --cat-capstone-bg: oklch(48% 0.13 85);
+  --cat-math: #b48c4f;          /* warm tan */
+  --cat-math-bg: oklch(40% 0.06 70);
+  --cat-elective: #6b8caf;      /* cool blue */
+  --cat-elective-bg: oklch(42% 0.07 240);
+  --cat-enrichment: #7a9a6b;    /* sage */
+  --cat-enrichment-bg: oklch(42% 0.06 145);
+  --cat-ge: #8b7aa0;            /* muted plum */
+  --cat-ge-bg: oklch(42% 0.06 305);
+  --cat-writing: #a08470;       /* warm taupe */
+  --cat-writing-bg: oklch(40% 0.04 50);
+  --cat-completed: #4a4339;     /* faint warm gray */
+  --cat-completed-bg: oklch(28% 0.01 60);
+
+  /* Type — Claude marketing: Copernicus-style serif + Inter */
+  --font-serif: "Fraunces", "Tiempos Headline", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Inter", "Söhne", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Radii */
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-xl: 16px;
+
+  /* Shadows */
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-2: 0 8px 24px rgba(0,0,0,0.4), 0 2px 4px rgba(0,0,0,0.3);
+  --shadow-glow-cardinal: 0 0 32px rgba(200, 16, 46, 0.25);
+}
+
+* { box-sizing: border-box; }
+
+body, html {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-0);
+  color: var(--ink-0);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================================
+   Buttons
+   ========================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--line-2);
+  background: var(--bg-2);
+  color: var(--ink-0);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 120ms, border-color 120ms;
+}
+.btn:hover { background: var(--bg-3); }
+
+.btn--primary {
+  background: var(--cardinal-bright);
+  border-color: var(--cardinal-bright);
+  color: white;
+}
+.btn--primary:hover { background: #d61735; }
+
+.btn--ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--ink-2);
+}
+.btn--ghost:hover { background: var(--bg-2); color: var(--ink-0); }
+
+.btn--lg {
+  padding: 14px 24px;
+  font-size: 15px;
+}
+
+.btn__arrow {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 16px;
+  margin-left: 2px;
+}
+
+/* ==========================================================
+   Eyebrow / kicker
+   ========================================================== */
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.h-display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--ink-0);
+}
+
+.h-display em {
+  font-style: italic;
+  color: var(--gold-soft);
+}
+
+/* ==========================================================
+   Card primitive
+   ========================================================== */
+.card {
+  background: var(--bg-1);
+  border: 1px solid var(--line-1);
+  border-radius: var(--r-lg);
+  padding: 20px;
+}
+.card--quiet {
+  background: transparent;
+  border-color: var(--line-1);
+}
