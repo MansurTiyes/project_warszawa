@@ -256,20 +256,43 @@ printed as a NOTE line in the document.
 
 --- 2K. COURSES TAKEN ---
 
+The top-level `courses_taken` field represents real USC semester enrollments —
+each entry will be grouped by `semester_label` to reconstruct the student's
+calendar timeline. Anything that does not correspond to a real semester of
+USC coursework MUST be excluded, even if it appears under a requirement
+section. Transfer/test credit satisfaction is already tracked in
+`units_transfer`, in per-requirement `courses_taken` lists (under
+`major_requirements_status` and `ge_completion`), and in `exception_codes` —
+no information is lost by excluding these rows from the top-level list.
+
 INCLUDE in courses_taken:
-  - All completed courses (letter grades)
-  - All in-progress courses (grade = RG with >IP suffix)
-  - All courses from "Other courses in your academic account" section
-    (e.g. MPGU120A, TAC116 — include even if not degree-applicable)
+  - All completed courses with a real semester code and a real DEPT-NNN code
+    (e.g. `20243 CSCI103 L 4.0 A- Introduction to Programming`)
+  - All in-progress courses (grade = RG with >IP suffix) with a real
+    DEPT-NNN code
+  - All courses from "Other courses in your academic account" section that
+    have a real DEPT-NNN code (e.g. MPGU120A, TAC116 — include even if not
+    degree-applicable)
 
-EXCLUDE from courses_taken:
-  - The "TRNSFR WORK" aggregate line (captured in units_transfer only)
-  - IB/AP placeholder lines where the code is not a real course code
-    (e.g. "COMPSCI 6.0 TR IBTEST: COMPUTER SCIENCE", "DIPLOMA+2 2.0 TR DIPLOMA 2 IB UNITS")
+EXCLUDE from courses_taken (these are NEVER real semester enrollments):
+  - The "TRNSFR WORK" aggregate line (captured in units_transfer only).
+  - Any IB / AP / test-credit row. Recognize these by ANY of:
+      * `name` field starts with "IBTEST:", "APTEST:", "AP " (AP credit), or
+        contains "IB UNITS" / "DIPLOMA"
+      * `course_code` is a bare department word with NO numeric portion
+        (e.g. "PHYSICS", "COMPSCI", "MATH", "DIPLOMA+2")
+      * grade is `TR` with no associated semester code, OR the row appears
+        without a leading 5-digit semester code
+    Examples to EXCLUDE:
+      - `COMPSCI 6.0 TR IBTEST: COMPUTER SCIENCE`
+      - `PHYSICS 6.0 TR IBTEST: PHYSICS`         ← exclude even if it
+        appears under the science requirement section
+      - `DIPLOMA+2 2.0 TR DIPLOMA 2 IB UNITS`
+      - `MATH 4.0 TR APTEST: CALCULUS BC`
 
-INCLUDE transfer credits that appear under specific requirement sections with
-real-looking codes (e.g. "PHYSICS 6.0 TR" under the science requirement) —
-these satisfy real requirements and belong in the record.
+If you find yourself about to assign a `semester_label` to a row that has no
+5-digit STARS semester code, stop — that row belongs in `units_transfer` /
+per-requirement `courses_taken` only, not in the top-level `courses_taken`.
 
 DE-DUPLICATION: If a course appears in both the main course list and the
 "Other courses in your academic account" section, include it ONCE.
@@ -422,6 +445,56 @@ def _normalize_all_codes(ss: StudentState) -> StudentState:
     })
 
 
+# A real USC course code is always DEPT-NNN[suffix] after normalization.
+# IB/AP placeholder rows the LLM occasionally emits ("PHYSICS", "COMPSCI",
+# "DIPLOMA+2") have no digits and never match this pattern.
+_REAL_COURSE_CODE_RE = re.compile(r"^[A-Z]{2,6}-\d{3}[A-Z]{0,2}$")
+
+# Markers in the `name` field that identify test-credit / non-semester rows
+# regardless of how the LLM coded them.
+_TEST_CREDIT_NAME_RE = re.compile(
+    r"\b(IBTEST|APTEST|IB UNITS|IB DIPLOMA|DIPLOMA \d|AP TEST|AP CREDIT)\b",
+    re.IGNORECASE,
+)
+
+
+def _drop_test_credit_courses(ss: StudentState) -> StudentState:
+    """Deterministic guardrail: drop test-credit / non-semester rows from
+    top-level `courses_taken`.
+
+    The STARS extraction prompt already instructs the LLM to exclude these,
+    but the model occasionally still includes IB/AP rows under requirement
+    sections (e.g. PHYSICS 6.0 TR IBTEST: PHYSICS) and even fabricates a
+    `semester_label` for them. That inflates the reconstructed timeline
+    with phantom semesters.
+
+    Drop a row when EITHER:
+      - `course_code` does not match DEPT-NNN (no digits / not a real code), OR
+      - `name` carries an IBTEST/APTEST/DIPLOMA marker.
+
+    Lossless for downstream planning:
+      - units_transfer already accounts for the units
+      - per-requirement courses_taken (major_requirements_status, ge_completion)
+        retains the placeholder code for satisfaction tracking
+      - exception_codes (CW/RE) drives science/req exchange via _build_satisfied_set
+    """
+    kept: list = []
+    dropped: list[str] = []
+    for r in ss.courses_taken:
+        bad_code = not _REAL_COURSE_CODE_RE.match(r.course_code)
+        is_test = bool(_TEST_CREDIT_NAME_RE.search(r.name or ""))
+        if bad_code or is_test:
+            dropped.append(f"{r.course_code!r} ({r.name!r}, {r.semester_label!r})")
+            continue
+        kept.append(r)
+    if dropped:
+        logger.info(
+            "Dropped %d non-semester row(s) from courses_taken: %s",
+            len(dropped), dropped,
+        )
+    return ss.model_copy(update={"courses_taken": kept})
+
+
 # ---------------------------------------------------------------------------
 # LLM invocation — tenacity for API failures, one schema correction retry
 # ---------------------------------------------------------------------------
@@ -463,6 +536,7 @@ def student_state_node(state: StarsParserState) -> dict:
     stars_text = state["stars_pdf_text"]
     student_state = _extract_student_state(stars_text)
     student_state = _normalize_all_codes(student_state)
+    student_state = _drop_test_credit_courses(student_state)
     logger.info(
         "StudentState extracted: %s, %d courses taken.",
         student_state.name,
