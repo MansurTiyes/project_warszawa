@@ -1,16 +1,28 @@
-import { useState } from "react";
-import { ApiError, postStars } from "@/lib/api";
-import { loadAdvisorState, saveAfterStars } from "@/lib/localStorage";
+import { useEffect, useState } from "react";
+import { ApiError, postStars, streamPipeline } from "@/lib/api";
+import {
+  loadAdvisorState,
+  saveAfterPipeline,
+  saveAfterStars,
+  setCareerGoal,
+  setCurrentIndex,
+} from "@/lib/localStorage";
 import { stepFor } from "@/lib/router";
 import type { AdvisorState, Step } from "@/types";
 import { ScreenUpload } from "@/components/ScreenUpload";
 import { ScreenParsing } from "@/components/ScreenParsing";
 import { ScreenStudentState } from "@/components/ScreenStudentState";
+import { ScreenGoal } from "@/components/ScreenGoal";
+import { ScreenGenerating } from "@/components/ScreenGenerating";
+import { ScreenSchedule } from "@/components/ScreenSchedule";
 
 export default function App() {
   const [state, setState] = useState<AdvisorState>(loadAdvisorState);
   const [step, setStep] = useState<Step>(() => stepFor(state));
   const [error, setError] = useState<string | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [pipelineError, setPipelineError] = useState<string | null>(null);
+  const [runId, setRunId] = useState(0);
 
   async function handleUpload(file: File) {
     setError(null);
@@ -25,16 +37,87 @@ export default function App() {
       setState(next);
       setStep("breakdown");
     } catch (err) {
-      const message =
-        err instanceof ApiError
-          ? `Couldn't read that PDF (${err.status}). ${err.message}`
-          : err instanceof Error
-            ? `Couldn't reach the advisor: ${err.message}`
-            : "Something went wrong.";
-      setError(message);
+      setError(formatApiError(err, "Couldn't read that PDF"));
       setStep("upload");
     }
   }
+
+  function handleGoalSubmit(goal: string) {
+    const next = setCareerGoal(goal);
+    setState(next);
+    setActiveIndex(0);
+    setPipelineError(null);
+    setStep("generating");
+  }
+
+  function handleRetryPipeline() {
+    setActiveIndex(0);
+    setPipelineError(null);
+    setRunId((id) => id + 1);
+  }
+
+  function handleSelectVersion(idx: number) {
+    const next = setCurrentIndex(idx);
+    setState(next);
+  }
+
+  // Pipeline driver. Lives here (not in ScreenGenerating) so the AbortController
+  // is owned by App and gets cancelled on step change / unmount.
+  useEffect(() => {
+    if (step !== "generating") return;
+    const partial = state.partial_state;
+    if (!partial || !partial.career_goal) {
+      setPipelineError("Missing career goal — please pick one.");
+      return;
+    }
+
+    const ac = new AbortController();
+
+    (async () => {
+      try {
+        const stream = streamPipeline(
+          {
+            career_goal: partial.career_goal!,
+            student_state: partial.student_state,
+            requirements_map: partial.requirements_map,
+          },
+          ac.signal,
+        );
+
+        for await (const ev of stream) {
+          switch (ev.event) {
+            case "started":
+              setActiveIndex(0);
+              break;
+            case "hard_requirements_complete":
+              setActiveIndex(1);
+              break;
+            case "soft_requirements_complete":
+              setActiveIndex(2);
+              break;
+            case "plan_generated":
+              setActiveIndex(3);
+              break;
+            case "complete": {
+              setActiveIndex(4);
+              const next = saveAfterPipeline(ev.payload, partial);
+              setState(next);
+              setStep("plan");
+              return;
+            }
+            case "error":
+              setPipelineError(ev.message || "Pipeline failed.");
+              return;
+          }
+        }
+      } catch (err) {
+        if (ac.signal.aborted) return;
+        setPipelineError(formatApiError(err, "Couldn't generate your plan"));
+      }
+    })();
+
+    return () => ac.abort();
+  }, [step, runId, state.partial_state]);
 
   switch (step) {
     case "upload":
@@ -50,38 +133,50 @@ export default function App() {
       return (
         <ScreenStudentState
           student_state={state.partial_state.student_state}
+          onContinue={() => setStep("goal")}
         />
       );
 
     case "goal":
+      if (!state.partial_state) {
+        return <ScreenUpload onSelect={handleUpload} />;
+      }
+      return <ScreenGoal onSubmit={handleGoalSubmit} />;
+
     case "generating":
-    case "plan":
-      return <Placeholder step={step} />;
+      return (
+        <ScreenGenerating
+          activeIndex={activeIndex}
+          errorMessage={pipelineError}
+          onRetry={pipelineError ? handleRetryPipeline : undefined}
+        />
+      );
+
+    case "plan": {
+      if (!state.pipeline_state || state.versions.length === 0) {
+        return <ScreenUpload onSelect={handleUpload} />;
+      }
+      const version = state.versions[state.currentIndex] ?? state.versions[0];
+      return (
+        <ScreenSchedule
+          current_plan={version.plan}
+          remarks={version.schedule_remarks}
+          versions={state.versions}
+          currentIndex={state.currentIndex}
+          onSelectVersion={handleSelectVersion}
+          student_state={state.pipeline_state.student_state}
+        />
+      );
+    }
   }
 }
 
-function Placeholder({ step }: { step: Step }) {
-  return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "grid",
-        placeItems: "center",
-        padding: 32,
-        textAlign: "center",
-      }}
-    >
-      <div>
-        <h1
-          className="h-display"
-          style={{ fontSize: 38, margin: "0 0 12px", letterSpacing: "-0.025em" }}
-        >
-          <em>{step}</em> screen
-        </h1>
-        <p style={{ color: "var(--ink-2)", margin: 0, fontSize: 15 }}>
-          Coming in Phase 3.
-        </p>
-      </div>
-    </div>
-  );
+function formatApiError(err: unknown, prefix: string): string {
+  if (err instanceof ApiError) {
+    return `${prefix} (${err.status}). ${err.message}`;
+  }
+  if (err instanceof Error) {
+    return `Couldn't reach the advisor: ${err.message}`;
+  }
+  return "Something went wrong.";
 }
