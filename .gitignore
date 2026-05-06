@@ -46,9 +46,22 @@ frontend/.env.production
 .coverage
 htmlcov/
 
+# Eval run artifacts
+backend/evals/results/
+
+# Eval datasets containing student PII
+backend/evals/datasets/student_state.json
+
 # Jupyter (if used for evals)
 .ipynb_checkpoints/
 
 # docs and CLAUDE
 docs/
-CLAUDE.md 
+CLAUDE.md
+
+# Claude Code session data (memory, project settings)
+.claude/
+
+# Eval test files that may contain student PII or real STARS data
+backend/evals/tests/fixtures/
+backend/evals/datasets/
