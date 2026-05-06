@@ -254,7 +254,7 @@ def chat_system_prompt(request: ModelRequest) -> SystemMessage:
 # ---------------------------------------------------------------------------
 
 @wrap_tool_call
-def chat_tool_error_handler(
+async def chat_tool_error_handler(
     request: ToolCallRequest,
     handler,
 ) -> ToolMessage | Command:
@@ -269,9 +269,13 @@ def chat_tool_error_handler(
     propose_schedule_change returns Command(goto=END) on success — that
     return type is preserved by handler(request) and passes through this
     wrapper untouched. Only exceptions are intercepted.
+
+    Must be async: @wrap_tool_call detects iscoroutinefunction and registers
+    awrap_tool_call on the middleware class. The sync variant only registers
+    wrap_tool_call, which is not called by ainvoke.
     """
     try:
-        return handler(request)
+        return await handler(request)
     except Exception as exc:
         tool_name = request.tool_call.get("name", "<unknown>")
         tool_call_id = request.tool_call.get("id", "")

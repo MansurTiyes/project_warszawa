@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from api.routes import pipeline, stars
+from api.routes import chat, pipeline, stars
 from config import settings
 
 app = FastAPI(title="Project Warszawa API")
@@ -16,3 +16,4 @@ app.add_middleware(
 
 app.include_router(stars.router)
 app.include_router(pipeline.router)
+app.include_router(chat.router)
