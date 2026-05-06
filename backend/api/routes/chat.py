@@ -58,7 +58,7 @@ async def chat(req: ChatRequest) -> ChatResponse:
 
     try:
         result = await chat_agent.ainvoke(
-            {"messages": [HumanMessage(content=req.message), *prior_messages]},
+            {"messages": [*prior_messages, HumanMessage(content=req.message)]},
             config={"recursion_limit": 8},
             context=ctx,
         )

@@ -1,8 +1,9 @@
-import type { PlanJSON, PlanVersion, StudentState } from "@/types";
+import type { ChatMessage, PlanJSON, PlanVersion, StudentState } from "@/types";
 import { inProgressSemester } from "@/lib/schedule-display";
 import { SemesterColumn } from "@/components/SemesterColumn";
 import { RemarksList } from "@/components/RemarksList";
 import { VersionNavigator } from "@/components/VersionNavigator";
+import { ChatPanel } from "@/components/ChatPanel";
 
 type Props = {
   current_plan: PlanJSON;
@@ -11,6 +12,15 @@ type Props = {
   currentIndex: number;
   onSelectVersion: (idx: number) => void;
   student_state: StudentState;
+
+  // Chat
+  chatMessages: ChatMessage[];
+  modify_intent: string | null;
+  chatPending: boolean;
+  modifyPending: boolean;
+  onSend: (text: string) => void;
+  onConfirmModify: () => void;
+  onRegenerate: () => void;
 };
 
 export function ScreenSchedule({
@@ -20,6 +30,13 @@ export function ScreenSchedule({
   currentIndex,
   onSelectVersion,
   student_state,
+  chatMessages,
+  modify_intent,
+  chatPending,
+  modifyPending,
+  onSend,
+  onConfirmModify,
+  onRegenerate,
 }: Props) {
   const semesters = current_plan.semesters ?? [];
   const inProgressIdx = inProgressSemester(current_plan, student_state);
@@ -27,9 +44,10 @@ export function ScreenSchedule({
   return (
     <div
       style={{
-        minHeight: "100vh",
+        height: "100vh",
         display: "flex",
         flexDirection: "column",
+        overflow: "hidden",
       }}
     >
       <main
@@ -37,10 +55,13 @@ export function ScreenSchedule({
           flex: 1,
           display: "flex",
           flexDirection: "column",
+          overflow: "hidden",
+          minHeight: 0,
         }}
       >
         <div
           style={{
+            flexShrink: 0,
             padding: "40px 56px 26px",
             display: "flex",
             alignItems: "center",
@@ -67,7 +88,14 @@ export function ScreenSchedule({
           </button>
         </div>
 
-        <div style={{ flex: 1, padding: "0 56px 40px" }}>
+        <div
+          style={{
+            flex: 1,
+            overflow: "auto",
+            padding: "0 56px 16px",
+            minHeight: 0,
+          }}
+        >
           {semesters.length > 0 ? (
             <div
               style={{
@@ -110,6 +138,16 @@ export function ScreenSchedule({
             />
           </div>
         </div>
+
+        <ChatPanel
+          messages={chatMessages}
+          modify_intent={modify_intent}
+          pending={chatPending}
+          modifyPending={modifyPending}
+          onSend={onSend}
+          onConfirmModify={onConfirmModify}
+          onRegenerate={onRegenerate}
+        />
       </main>
     </div>
   );

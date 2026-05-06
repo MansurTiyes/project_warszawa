@@ -1,14 +1,23 @@
-import { useEffect, useState } from "react";
-import { ApiError, postStars, streamPipeline } from "@/lib/api";
+import { useEffect, useRef, useState } from "react";
 import {
+  ApiError,
+  postChat,
+  postScheduleModify,
+  postStars,
+  streamPipeline,
+} from "@/lib/api";
+import {
+  clearModifyIntent,
   loadAdvisorState,
+  saveAfterModify,
   saveAfterPipeline,
   saveAfterStars,
   setCareerGoal,
   setCurrentIndex,
+  setModifyIntent,
 } from "@/lib/localStorage";
 import { stepFor } from "@/lib/router";
-import type { AdvisorState, Step } from "@/types";
+import type { AdvisorState, ChatMessage, ChatRequest, Step } from "@/types";
 import { ScreenUpload } from "@/components/ScreenUpload";
 import { ScreenParsing } from "@/components/ScreenParsing";
 import { ScreenStudentState } from "@/components/ScreenStudentState";
@@ -23,6 +32,32 @@ export default function App() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [pipelineError, setPipelineError] = useState<string | null>(null);
   const [runId, setRunId] = useState(0);
+
+  // Chat state — not persisted (per CLAUDE.md "no chat history persistence")
+  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
+  const [chatPending, setChatPending] = useState(false);
+  const [modifyPending, setModifyPending] = useState(false);
+  const chatAbortRef = useRef<AbortController | null>(null);
+
+  // Stale modify_intent cleanup: on first mount, if localStorage carries a
+  // pending modify_intent but we have no chat history to anchor it, drop it.
+  // (Per CLAUDE.md: "On page reload with a stale modify_intent, frontend
+  // silently discards it.")
+  const staleCleanupRan = useRef(false);
+  useEffect(() => {
+    if (staleCleanupRan.current) return;
+    staleCleanupRan.current = true;
+    if (state.modify_intent && chatMessages.length === 0) {
+      setState(clearModifyIntent());
+    }
+    // run-once on mount; deliberately empty deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Abort any in-flight chat/modify request on unmount.
+  useEffect(() => {
+    return () => chatAbortRef.current?.abort();
+  }, []);
 
   async function handleUpload(file: File) {
     setError(null);
@@ -119,6 +154,128 @@ export default function App() {
     return () => ac.abort();
   }, [step, runId, state.partial_state]);
 
+  // ============================================================
+  // Chat handlers (only relevant on the plan step)
+  // ============================================================
+
+  async function handleSend(text: string) {
+    const pipeline_state = state.pipeline_state;
+    if (!pipeline_state || state.versions.length === 0) return;
+    if (chatPending || modifyPending) return;
+
+    // Implicit cancel: any new chat send clears a pending modify_intent
+    // BEFORE the request fires. Otherwise the buttons would linger across
+    // the request and confuse the user.
+    let nextState = state;
+    if (state.modify_intent) {
+      nextState = clearModifyIntent();
+      setState(nextState);
+    }
+
+    const priorMessages = chatMessages;
+    const userMsg: ChatMessage = { type: "human", content: text };
+    setChatMessages([...priorMessages, userMsg]);
+
+    const viewedPlan = state.versions[state.currentIndex].plan;
+    const req: ChatRequest = {
+      message: text,
+      // Wire shape is `{type, content}[]` — see types/index.ts. OpenAPI
+      // generator widens it to `{[k]: unknown}[]` (Pydantic list[dict]),
+      // so we cast at the boundary.
+      messages: priorMessages as unknown as ChatRequest["messages"],
+      current_plan: viewedPlan,
+      student_state: pipeline_state.student_state,
+      requirements_map: pipeline_state.requirements_map,
+      career_goal: pipeline_state.career_goal,
+      hard_courses: pipeline_state.hard_courses,
+      scored_electives: pipeline_state.scored_electives,
+      scored_enrichment: pipeline_state.scored_enrichment,
+      other_must_reqs: pipeline_state.other_must_reqs,
+      ge_placeholders_remaining: pipeline_state.ge_placeholders_remaining,
+    };
+
+    chatAbortRef.current?.abort();
+    const ac = new AbortController();
+    chatAbortRef.current = ac;
+    setChatPending(true);
+    try {
+      const res = await postChat(req, ac.signal);
+      if (ac.signal.aborted) return;
+      const aiMsg: ChatMessage = { type: "ai", content: res.message };
+      setChatMessages((prev) => [...prev, aiMsg]);
+      if (res.modify_intent) {
+        setState(setModifyIntent(res.modify_intent));
+      }
+    } catch (err) {
+      if (ac.signal.aborted) return;
+      const errMsg = formatApiError(err, "Couldn't reach the advisor");
+      setChatMessages((prev) => [...prev, { type: "ai", content: errMsg }]);
+    } finally {
+      if (chatAbortRef.current === ac) chatAbortRef.current = null;
+      setChatPending(false);
+    }
+  }
+
+  async function handleConfirmModify() {
+    const pipeline_state = state.pipeline_state;
+    const intent = state.modify_intent;
+    if (!pipeline_state || !intent) return;
+    if (state.versions.length === 0) return;
+    if (chatPending || modifyPending) return;
+
+    const viewedPlan = state.versions[state.currentIndex].plan;
+
+    chatAbortRef.current?.abort();
+    const ac = new AbortController();
+    chatAbortRef.current = ac;
+    setModifyPending(true);
+    try {
+      const res = await postScheduleModify(
+        {
+          modify_intent: intent,
+          current_plan: viewedPlan,
+          student_state: pipeline_state.student_state,
+          requirements_map: pipeline_state.requirements_map,
+          career_goal: pipeline_state.career_goal,
+          hard_courses: pipeline_state.hard_courses,
+          scored_electives: pipeline_state.scored_electives,
+          scored_enrichment: pipeline_state.scored_enrichment,
+          other_must_reqs: pipeline_state.other_must_reqs,
+          ge_placeholders_remaining: pipeline_state.ge_placeholders_remaining,
+        },
+        ac.signal,
+      );
+      if (ac.signal.aborted) return;
+      const next = saveAfterModify({
+        new_plan: res.new_plan,
+        diff_label: res.diff_label,
+        schedule_remarks: res.schedule_remarks,
+      });
+      setState(next);
+      const newVersionNumber = next.currentIndex + 1;
+      setChatMessages((prev) => [
+        ...prev,
+        { type: "ai", content: `Updated. Switching you to v${newVersionNumber}.` },
+      ]);
+    } catch (err) {
+      if (ac.signal.aborted) return;
+      const errMsg = formatApiError(err, "Couldn't apply that change");
+      setChatMessages((prev) => [...prev, { type: "ai", content: errMsg }]);
+    } finally {
+      if (chatAbortRef.current === ac) chatAbortRef.current = null;
+      setModifyPending(false);
+    }
+  }
+
+  function handleRegenerate() {
+    if (!state.modify_intent) return;
+    setState(clearModifyIntent());
+    setChatMessages((prev) => [
+      ...prev,
+      { type: "ai", content: "OK, no change made." },
+    ]);
+  }
+
   switch (step) {
     case "upload":
       return <ScreenUpload onSelect={handleUpload} initialError={error} />;
@@ -165,6 +322,13 @@ export default function App() {
           currentIndex={state.currentIndex}
           onSelectVersion={handleSelectVersion}
           student_state={state.pipeline_state.student_state}
+          chatMessages={chatMessages}
+          modify_intent={state.modify_intent}
+          chatPending={chatPending}
+          modifyPending={modifyPending}
+          onSend={handleSend}
+          onConfirmModify={handleConfirmModify}
+          onRegenerate={handleRegenerate}
         />
       );
     }

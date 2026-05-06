@@ -135,11 +135,15 @@ export async function* streamPipeline(
 // /api/chat  (JSON)
 // ============================================================
 
-export async function postChat(req: ChatRequest): Promise<ChatResponse> {
+export async function postChat(
+  req: ChatRequest,
+  signal?: AbortSignal,
+): Promise<ChatResponse> {
   const res = await fetch(`${API_BASE}/api/chat`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(req),
+    signal,
   });
   await throwIfNotOk(res);
   return (await res.json()) as ChatResponse;
@@ -151,11 +155,13 @@ export async function postChat(req: ChatRequest): Promise<ChatResponse> {
 
 export async function postScheduleModify(
   req: ScheduleModifyRequest,
+  signal?: AbortSignal,
 ): Promise<ScheduleModifyResponse> {
   const res = await fetch(`${API_BASE}/api/schedule/modify`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(req),
+    signal,
   });
   await throwIfNotOk(res);
   return (await res.json()) as ScheduleModifyResponse;
