@@ -47,6 +47,7 @@ export function ChatPanel({
 
   return (
     <div
+      className="no-print"
       style={{
         flexShrink: 0,
         borderTop: "1px solid var(--line-1)",
@@ -225,13 +226,8 @@ function AiBubble({
             <button
               type="button"
               className="btn btn--ghost"
-              disabled
-              style={{
-                padding: "8px 14px",
-                fontSize: 13,
-                opacity: 0.5,
-                cursor: "default",
-              }}
+              onClick={() => window.print()}
+              style={{ padding: "8px 14px", fontSize: 13 }}
             >
               Export PDF
             </button>

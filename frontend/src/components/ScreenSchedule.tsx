@@ -43,6 +43,7 @@ export function ScreenSchedule({
 
   return (
     <div
+      className="print-host"
       style={{
         height: "100vh",
         display: "flex",
@@ -51,6 +52,7 @@ export function ScreenSchedule({
       }}
     >
       <main
+        className="print-host"
         style={{
           flex: 1,
           display: "flex",
@@ -80,15 +82,16 @@ export function ScreenSchedule({
           </h1>
           <button
             type="button"
-            className="btn"
-            disabled
-            style={{ padding: "6px 12px", fontSize: 12, opacity: 0.5, cursor: "default" }}
+            className="btn no-print"
+            onClick={() => window.print()}
+            style={{ padding: "6px 12px", fontSize: 12 }}
           >
             Export PDF
           </button>
         </div>
 
         <div
+          className="print-scroll-fit"
           style={{
             flex: 1,
             overflow: "auto",
@@ -131,11 +134,13 @@ export function ScreenSchedule({
             <div style={{ flex: 1 }}>
               <RemarksList remarks={remarks} />
             </div>
-            <VersionNavigator
-              currentIndex={currentIndex}
-              count={versions.length}
-              onChange={onSelectVersion}
-            />
+            <div className="no-print">
+              <VersionNavigator
+                currentIndex={currentIndex}
+                count={versions.length}
+                onChange={onSelectVersion}
+              />
+            </div>
           </div>
         </div>
 
