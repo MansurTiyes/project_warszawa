@@ -157,3 +157,9 @@ Result: declined and redirected to course planning. The agent does not engage wi
 - **Embedded-in-content injection** in chat (e.g. user pastes a code snippet that contains "ignore previous instructions"). Anthropic's training mitigates this but we have no explicit guard.
 
 The headline finding: **0 / 4 attempted prompt-injection / persona-swap / off-topic attacks succeeded.** The single demo-relevant weakness from the eval set is the model's tendency to over-fetch course details before committing to a schedule proposal — a usability cost, not a security one.
+
+---
+
+## License
+
+MIT — see [LICENSE](LICENSE).

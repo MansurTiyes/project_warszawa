@@ -2,6 +2,7 @@
 name = "warszawa-backend"
 version = "0.1.0"
 description = "backend service for USC AI agentic advisor system"
+license = "MIT"
 authors = [
     {name = "Mansur Tiyes"}
 ]
