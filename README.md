@@ -16,15 +16,13 @@ poetry install
 poetry run python -m venv .venv && poetry run pip install -e .   # if not already
 ```
 
-Create `backend/.env` with:
+Create `backend/.env` from the template and fill in the three API keys:
 
+```sh
+cp .env.example .env
 ```
-ANTHROPIC_API_KEY=sk-ant-...
-OPENAI_API_KEY=sk-...
-GEMINI_API_KEY=...
-CHROMA_DB_PATH=./data/chroma_db
-MAX_PIPELINE_ITERATIONS=3
-```
+
+Only `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, and `GEMINI_API_KEY` are required — every other setting in `config.py` has a working default.
 
 The ChromaDB course catalog is **not committed** (~53 MB). Build it once before first run — this scrapes `catalogue.usc.edu`:
 
