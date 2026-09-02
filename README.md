@@ -1,15 +1,19 @@
 # USC CS Advisor
 
-[![License: MIT](https://img.shields.io/github/license/MansurTiyes/project_warszawa?style=flat-square&color=blue)](LICENSE)
-[![Python 3.13+](https://img.shields.io/badge/Python-3.13+-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
-[![Tests](https://img.shields.io/badge/tests-66%20passing-brightgreen?style=flat-square)](backend/evals/tests)
+<p align="center">
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/github/license/MansurTiyes/project_warszawa?style=flat-square&color=blue"></a>
+  <a href="https://www.python.org/"><img alt="Python 3.13+" src="https://img.shields.io/badge/Python-3.13+-3776AB?style=flat-square&logo=python&logoColor=white"></a>
+  <a href="backend/evals/tests"><img alt="Tests" src="https://img.shields.io/badge/tests-66%20passing-brightgreen?style=flat-square"></a>
+</p>
 
-[![LangGraph](https://img.shields.io/badge/LangGraph-1C3C3C?style=flat-square&logo=langgraph&logoColor=white)](https://langchain-ai.github.io/langgraph/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![Claude Sonnet 4.6](https://img.shields.io/badge/Claude%20Sonnet%204.6-D97757?style=flat-square&logo=anthropic&logoColor=white)](https://www.anthropic.com/)
-[![Gemini Flash](https://img.shields.io/badge/Gemini%20Flash-8E75B2?style=flat-square&logo=googlegemini&logoColor=white)](https://ai.google.dev/)
-[![React 19](https://img.shields.io/badge/React%2019-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+<p align="center">
+  <a href="https://langchain-ai.github.io/langgraph/"><img alt="LangGraph" src="https://img.shields.io/badge/LangGraph-1C3C3C?style=flat-square&logo=langgraph&logoColor=white"></a>
+  <a href="https://fastapi.tiangolo.com/"><img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white"></a>
+  <a href="https://www.anthropic.com/"><img alt="Claude Sonnet 4.6" src="https://img.shields.io/badge/Claude%20Sonnet%204.6-D97757?style=flat-square&logo=anthropic&logoColor=white"></a>
+  <a href="https://ai.google.dev/"><img alt="Gemini Flash" src="https://img.shields.io/badge/Gemini%20Flash-8E75B2?style=flat-square&logo=googlegemini&logoColor=white"></a>
+  <a href="https://react.dev/"><img alt="React 19" src="https://img.shields.io/badge/React%2019-61DAFB?style=flat-square&logo=react&logoColor=black"></a>
+  <a href="https://www.typescriptlang.org/"><img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white"></a>
+</p>
 
 **A multi-agent system that turns a university transcript into a validated four-year degree plan.**
 
