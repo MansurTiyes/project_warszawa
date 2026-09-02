@@ -17,7 +17,7 @@
 
 **A multi-agent system that turns a university transcript into a validated four-year degree plan.**
 
-Upload a STARS transcript PDF, pick a career goal, and get a semester-by-semester course plan that provably satisfies the degree requirements — prerequisite ordering, unit caps, GE coverage, and graduation totals are enforced in Python, not left to the model. A chat agent answers questions about the plan and proposes edits behind an explicit confirmation gate.
+Upload a STARS transcript PDF, pick a career goal, and get a semester-by-semester course plan that provably satisfies the degree requirements: prerequisite ordering, unit caps, GE coverage, and graduation totals are enforced in Python, not left to the model. A chat agent answers questions about the plan and proposes edits behind an explicit confirmation gate.
 
 Built to address a real constraint: USC Viterbi undergrads largely self-advise, because advisor time is scarce.
 
@@ -57,7 +57,7 @@ The pipeline runs once per plan; the chat agent runs per message. Both are LangG
 
 **LLM only when judgment is required.** Unit arithmetic, prerequisite graph construction, set differences, and invariant checking are all plain Python. The model decides *which* courses and *what order*; it never counts, and it is never trusted to confirm its own output is legal.
 
-**The validator is a gate, not a suggestion.** Five invariants — no duplicates, prerequisite ordering, all required courses present, sufficient total units, and an 18-unit semester cap — run on every generated plan. All checks run in a single pass so multiple violations can be fixed per iteration. Hitting the iteration ceiling is not an error: the best-effort plan is returned with unresolved violations surfaced to the user as remarks, rather than failing or silently pretending to be valid.
+**The validator is a gate, not a suggestion.** Five invariants (no duplicates, prerequisite ordering, all required courses present, sufficient total units, and an 18-unit semester cap) run on every generated plan. All checks run in a single pass so multiple violations can be fixed per iteration. Hitting the iteration ceiling is not an error: the best-effort plan is returned with unresolved violations surfaced to the user as remarks, rather than failing or silently pretending to be valid.
 
 **The confirmation gate is split across two endpoints.** `/api/chat` *never* returns a plan; `/api/schedule/modify` *always* does. The endpoint alone determines what the UI renders, so the frontend never inspects a response body to decide — and no schedule change can happen without a distinct user action.
 
