@@ -1,5 +1,7 @@
 # USC CS Advisor
 
+<img width="2048" height="768" alt="Image Sep 2, 2026, 03_18_51 PM" src="https://github.com/user-attachments/assets/7e71f0a0-4d79-4f42-8cd8-9e8d758c5a71" />
+
 <p align="center">
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/github/license/MansurTiyes/project_warszawa?style=flat-square&color=blue"></a>
   <a href="https://www.python.org/"><img alt="Python 3.13+" src="https://img.shields.io/badge/Python-3.13+-3776AB?style=flat-square&logo=python&logoColor=white"></a>
