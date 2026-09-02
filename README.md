@@ -25,6 +25,46 @@ Built to address a real constraint: USC Viterbi undergrads largely self-advise, 
 
 ---
 
+## Demo
+
+A full pass through the system: transcript in, validated plan out, then two chat interactions against the finished plan.
+
+### 1. Upload a transcript
+
+Selecting a STARS PDF. Text is extracted in the browser's request and parsed server-side by two LLM calls running in parallel — one reading the student's record, one reading the degree's structure.
+
+<!-- paste video here -->
+
+### 2. Parsed requirement audit
+
+What the parser produced: courses completed, standing, units, and the requirements still outstanding. This is the state everything downstream reasons over.
+
+<!-- paste screenshot here -->
+
+### 3. Set a career goal
+
+Choosing a goal and adding free-text direction for the scheduler. This steers elective ranking and enrichment retrieval, not the hard requirements — those are fixed by the degree.
+
+<!-- paste video here -->
+
+### 4. The generated plan
+
+The finished four-year plan, semester by semester. Every version shown here has passed the five Python invariants — prerequisite ordering, no duplicates, required courses present, unit totals, and the per-semester cap.
+
+<!-- paste video here -->
+
+### 5. Requesting a change
+
+Asking the chat agent to swap EE-451 for TAC-303. The agent proposes the change and waits: `/api/chat` cannot modify a plan, so nothing happens until the change is explicitly confirmed. On confirmation the scheduler re-runs and a new plan version is appended.
+
+<!-- paste video here -->
+
+### 6. Asking for a recommendation
+
+Comparing courses and asking which the agent would recommend, and why. It answers from the course catalog and the student's own record — checking prerequisites against what they have actually completed.
+
+<!-- paste video here -->
+
 ## How it works
 
 ```mermaid
