@@ -45,9 +45,10 @@ frontend/.env.production
 .coverage
 htmlcov/
 
-# Eval run artifacts
-backend/evals/results/
-backend/evals/fixtures/
+# Eval run artifacts — results are published (de-identified); raw inputs are not.
+# Note: use `dir/*` not `dir/`, otherwise the negation below cannot re-include.
+backend/evals/fixtures/*
+!backend/evals/fixtures/sample_stars.pdf
 
 # Eval datasets containing student PII
 backend/evals/datasets/student_state.json

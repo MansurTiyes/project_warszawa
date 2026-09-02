@@ -1,0 +1,1918 @@
+{
+  "run_id": "retrieval_20260501_021912",
+  "dataset": "retrieval",
+  "top_k": 5,
+  "timestamp": "2026-05-01T02:19:12.101168+00:00",
+  "total_items": 21,
+  "results": [
+    {
+      "id": "ret_s1_001",
+      "set": 1,
+      "set_label": "Known course lookups",
+      "query": "CSCI 467 machine learning",
+      "filters": null,
+      "note": "Query includes both course code and name — strongest signal; should be rank 1.",
+      "expected_output": {
+        "top_k_contains": [
+          "CSCI-467"
+        ]
+      },
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "ISE-568",
+          "distance": 0.434157,
+          "document": "ISE-568: Machine Learning\n\n(Enroll in CSCI 567",
+          "metadata": {
+            "instruction_mode": "",
+            "units": "3.0",
+            "grading_option": "",
+            "terms_offered": "Fa",
+            "class_code": "ISE-568",
+            "doc_type": "course",
+            "department": "ISE",
+            "prereqs": "[]",
+            "max_units": "3.0",
+            "title": "Machine Learning",
+            "source": "usc_catalog_21"
+          }
+        },
+        {
+          "rank": 2,
+          "id": "CSCI-559",
+          "distance": 0.484064,
+          "document": "CSCI-559: Machine Learning I: Supervised Methods\n\n(Enroll in EE 559",
+          "metadata": {
+            "title": "Machine Learning I: Supervised Methods",
+            "terms_offered": "Sp",
+            "grading_option": "",
+            "prereqs": "[]",
+            "class_code": "CSCI-559",
+            "source": "usc_catalog_21",
+            "instruction_mode": "",
+            "units": "4.0",
+            "doc_type": "course",
+            "max_units": "4.0",
+            "department": "CSCI"
+          }
+        },
+        {
+          "rank": 3,
+          "id": "CSCI-583",
+          "distance": 0.490016,
+          "document": "CSCI-583: Machine Learning Theory\n\nDeveloping the core concepts and techniques, inherent abilities, and limitations of learning algorithms in well-defined learning models.",
+          "metadata": {
+            "source": "usc_catalog_21",
+            "doc_type": "course",
+            "title": "Machine Learning Theory",
+            "instruction_mode": "Lecture",
+            "units": "4.0",
+            "prereqs": "[]",
+            "class_code": "CSCI-583",
+            "terms_offered": "",
+            "grading_option": "Letter",
+            "department": "CSCI",
+            "max_units": "4.0"
+          }
+        },
+        {
+          "rank": 4,
+          "id": "CSCI-567",
+          "distance": 0.614393,
+          "document": "CSCI-567: Machine Learning\n\nStatistical methods for building intelligent and adaptive systems that improve performance from experiences; focus on theoretical understanding of these methods and their computational implications. Crosslisted as ISE-568",
+          "metadata": {
+            "title": "Machine Learning",
+            "source": "usc_catalog_21",
+            "class_code": "CSCI-567",
+            "prereqs": "[]",
+            "max_units": "4.0",
+            "grading_option": "Letter",
+            "instruction_mode": "Lecture, Discussion",
+            "terms_offered": "Fa",
+            "units": "4.0",
+            "department": "CSCI",
+            "doc_type": "course"
+          }
+        },
+        {
+          "rank": 5,
+          "id": "DSCI-552",
+          "distance": 0.629553,
+          "document": "DSCI-552: Machine Learning for Data Science\n\nPractical applications of machine learning techniques to real-world problems. Uses in data mining and recommendation systems and for building adaptive user interfaces.",
+          "metadata": {
+            "department": "DSCI",
+            "max_units": "4.0",
+            "title": "Machine Learning for Data Science",
+            "source": "usc_catalog_21",
+            "terms_offered": "FaSpSm",
+            "prereqs": "[]",
+            "units": "4.0",
+            "instruction_mode": "Lecture, Quiz",
+            "grading_option": "Letter",
+            "class_code": "DSCI-552",
+            "doc_type": "course"
+          }
+        }
+      ],
+      "hits": [],
+      "misses": [
+        "CSCI-467"
+      ],
+      "passed": false
+    },
+    {
+      "id": "ret_s1_002",
+      "set": 1,
+      "set_label": "Known course lookups",
+      "query": "operating systems",
+      "filters": null,
+      "note": "Generic term — tests that canonical CS core courses surface without a course code hint.",
+      "expected_output": {
+        "top_k_contains": [
+          "CSCI-350"
+        ]
+      },
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "CSCI-555",
+          "distance": 0.706302,
+          "document": "CSCI-555: Advanced Operating Systems\n\nAdvanced topics in operating system research: new OS structures, novel memory management, communication, file system, process management, reliability and security techniques.",
+          "metadata": {
+            "terms_offered": "",
+            "units": "4.0",
+            "prereqs": "[[\"CSCI-350\", \"CSCI-402\"]]",
+            "title": "Advanced Operating Systems",
+            "department": "CSCI",
+            "grading_option": "Letter",
+            "doc_type": "course",
+            "source": "usc_catalog_21",
+            "max_units": "4.0",
+            "class_code": "CSCI-555",
+            "instruction_mode": "Lecture, Lab Required"
+          }
+        },
+        {
+          "rank": 2,
+          "id": "CSCI-350",
+          "distance": 0.789589,
+          "document": "CSCI-350: Fundamentals of Operating Systems\n\nBasic issues in concurrency, deadlock control, synchronization scheduling, memory management, protection and access control, inter-process communication, and structured design. Laboratory experiences with Unix-like operating system. CSCI 402",
+          "metadata": {
+            "department": "CSCI",
+            "title": "Fundamentals of Operating Systems",
+            "max_units": "4.0",
+            "terms_offered": "",
+            "doc_type": "course",
+            "source": "usc_catalog_21",
+            "class_code": "CSCI-350",
+            "instruction_mode": "Lecture, Quiz",
+            "grading_option": "Letter",
+            "units": "4.0",
+            "prereqs": "[[\"CSCI-356\", \"EE-354\"], [\"CSCI-201\", \"EE-250\"]]"
+          }
+        },
+        {
+          "rank": 3,
+          "id": "CSCI-655",
+          "distance": 0.865261,
+          "document": "CSCI-655: Advanced Topics in Operating Systems\n\nAdvanced OS architectures; methods in design and evaluation of process management and concurrency; reliable distributed file systems; memory management, for cloud and virtualized environments.",
+          "metadata": {
+            "terms_offered": "Fa",
+            "class_code": "CSCI-655",
+            "doc_type": "course",
+            "units": "4.0",
+            "department": "CSCI",
+            "prereqs": "[[\"CSCI-350\", \"CSCI-402\"]]",
+            "instruction_mode": "Lecture",
+            "grading_option": "Letter",
+            "title": "Advanced Topics in Operating Systems",
+            "source": "usc_catalog_21",
+            "max_units": "4.0"
+          }
+        },
+        {
+          "rank": 4,
+          "id": "CSCI-402",
+          "distance": 0.886659,
+          "document": "CSCI-402: Operating Systems\n\nConcurrency, deadlock control, synchronization, process and thread scheduling, memory management, file systems, security and access control, communication and networking, distributed file systems, data management. CSCI 350",
+          "metadata": {
+            "terms_offered": "FaSpSm",
+            "max_units": "4.0",
+            "prereqs": "[]",
+            "title": "Operating Systems",
+            "source": "usc_catalog_21",
+            "doc_type": "course",
+            "department": "CSCI",
+            "grading_option": "Letter",
+            "units": "4.0",
+            "instruction_mode": "Lecture, Discussion",
+            "class_code": "CSCI-402"
+          }
+        },
+        {
+          "rank": 5,
+          "id": "CSCI-661",
+          "distance": 1.101792,
+          "document": "CSCI-661: Advanced Topics in Computer System Architecture\n\n(Enroll in EE 654)",
+          "metadata": {
+            "class_code": "CSCI-661",
+            "instruction_mode": "Lecture",
+            "terms_offered": "",
+            "prereqs": "[]",
+            "source": "usc_catalog_21",
+            "units": "4.0",
+            "grading_option": "Letter",
+            "max_units": "4.0",
+            "title": "Advanced Topics in Computer System Architecture",
+            "department": "CSCI",
+            "doc_type": "course"
+          }
+        }
+      ],
+      "hits": [
+        "CSCI-350"
+      ],
+      "misses": [],
+      "passed": true
+    },
+    {
+      "id": "ret_s1_003",
+      "set": 1,
+      "set_label": "Known course lookups",
+      "query": "algorithms",
+      "filters": null,
+      "note": "Single-word query — broad term shared across many courses; CSCI-270 must outrank generic mentions.",
+      "expected_output": {
+        "top_k_contains": [
+          "CSCI-270"
+        ]
+      },
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "ISE-670",
+          "distance": 0.723175,
+          "document": "ISE-670: Advanced Analysis of Algorithms\n\n(Enroll in CSCI 670",
+          "metadata": {
+            "doc_type": "course",
+            "max_units": "3.0",
+            "instruction_mode": "",
+            "source": "usc_catalog_21",
+            "department": "ISE",
+            "terms_offered": "Fa",
+            "title": "Advanced Analysis of Algorithms",
+            "prereqs": "[]",
+            "units": "3.0",
+            "class_code": "ISE-670",
+            "grading_option": ""
+          }
+        },
+        {
+          "rank": 2,
+          "id": "CSCI-570",
+          "distance": 0.728348,
+          "document": "CSCI-570: Analysis of Algorithms\n\nExplores fundamental techniques such as recursion, Fourier transform ordering, dynamic programming for efficient algorithm construction. Examples include arithmetic, algebraic, graph, pattern matching, sorting, searching algorithms.",
+          "metadata": {
+            "max_units": "4.0",
+            "title": "Analysis of Algorithms",
+            "grading_option": "Letter",
+            "terms_offered": "FaSpSm",
+            "class_code": "CSCI-570",
+            "doc_type": "course",
+            "instruction_mode": "Lecture",
+            "source": "usc_catalog_21",
+            "units": "4.0",
+            "department": "CSCI",
+            "prereqs": "[]"
+          }
+        },
+        {
+          "rank": 3,
+          "id": "ISE-560",
+          "distance": 0.81568,
+          "document": "ISE-560: Analysis of Algorithms\n\n(Enroll in CSCI 570",
+          "metadata": {
+            "doc_type": "course",
+            "prereqs": "[]",
+            "department": "ISE",
+            "units": "4.0",
+            "class_code": "ISE-560",
+            "terms_offered": "",
+            "max_units": "4.0",
+            "source": "usc_catalog_21",
+            "instruction_mode": "",
+            "grading_option": "",
+            "title": "Analysis of Algorithms"
+          }
+        },
+        {
+          "rank": 4,
+          "id": "CSCI-672",
+          "distance": 0.822402,
+          "document": "CSCI-672: Approximation Algorithms\n\nAlgorithmic techniques include combinatorial algorithms and rounding of linear and semi-definite programs. Applications include network design, graph cuts, covering problems, and approximation hardness.",
+          "metadata": {
+            "prereqs": "[[\"CSCI-570\", \"CSCI-670\"]]",
+            "terms_offered": "",
+            "source": "usc_catalog_21",
+            "max_units": "4.0",
+            "grading_option": "Letter",
+            "doc_type": "course",
+            "instruction_mode": "Lecture",
+            "title": "Approximation Algorithms",
+            "class_code": "CSCI-672",
+            "department": "CSCI",
+            "units": "4.0"
+          }
+        },
+        {
+          "rank": 5,
+          "id": "ISE-671",
+          "distance": 0.835053,
+          "document": "ISE-671: Randomized Algorithms\n\n(Enroll in CSCI 671",
+          "metadata": {
+            "terms_offered": "Sp",
+            "prereqs": "[]",
+            "doc_type": "course",
+            "instruction_mode": "",
+            "grading_option": "",
+            "title": "Randomized Algorithms",
+            "class_code": "ISE-671",
+            "source": "usc_catalog_21",
+            "max_units": "3.0",
+            "units": "3.0",
+            "department": "ISE"
+          }
+        }
+      ],
+      "hits": [],
+      "misses": [
+        "CSCI-270"
+      ],
+      "passed": false
+    },
+    {
+      "id": "ret_s1_004",
+      "set": 1,
+      "set_label": "Known course lookups",
+      "query": "iOS app development",
+      "filters": null,
+      "note": "Cross-department query (ITP, not CSCI) — tests that non-CSCI relevant courses are indexed and retrieved.",
+      "expected_output": {
+        "top_k_contains": [
+          "ITP-342"
+        ]
+      },
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "ACAD-344",
+          "distance": 0.48988,
+          "document": "ACAD-344: Advanced iOS App Development\n\n(Enroll in TAC 344",
+          "metadata": {
+            "units": "4.0",
+            "max_units": "4.0",
+            "terms_offered": "FaSp",
+            "title": "Advanced iOS App Development",
+            "class_code": "ACAD-344",
+            "doc_type": "course",
+            "department": "ACAD",
+            "grading_option": "",
+            "prereqs": "[]",
+            "instruction_mode": "",
+            "source": "usc_catalog_21"
+          }
+        },
+        {
+          "rank": 2,
+          "id": "TAC-344",
+          "distance": 0.493275,
+          "document": "TAC-344: Advanced iOS App Development\n\nApp development for iOS devices using advanced functionalities including background data processing, network services and push notifications. Crosslisted as ACAD 344",
+          "metadata": {
+            "terms_offered": "FaSp",
+            "prereqs": "[[\"TAC-342\", \"ITP-342\"]]",
+            "doc_type": "course",
+            "units": "4.0",
+            "source": "usc_catalog_21",
+            "max_units": "4.0",
+            "title": "Advanced iOS App Development",
+            "instruction_mode": "Lecture",
+            "class_code": "TAC-344",
+            "department": "TAC",
+            "grading_option": "Letter"
+          }
+        },
+        {
+          "rank": 3,
+          "id": "TAC-342",
+          "distance": 0.569402,
+          "document": "TAC-342: iOS App Development\n\nIntroduction to the Swift programming language, various frameworks, and design patterns needed to develop applications for iOS mobile devices such as iPhones and iPads. Crosslisted as ACAD 342",
+          "metadata": {
+            "prereqs": "[[\"TAC-265\", \"ITP-265\", \"CSCI-103\"]]",
+            "max_units": "4.0",
+            "department": "TAC",
+            "class_code": "TAC-342",
+            "source": "usc_catalog_21",
+            "instruction_mode": "Lecture",
+            "units": "4.0",
+            "terms_offered": "FaSp",
+            "title": "iOS App Development",
+            "doc_type": "course",
+            "grading_option": "Letter"
+          }
+        },
+        {
+          "rank": 4,
+          "id": "ACAD-342",
+          "distance": 0.583206,
+          "document": "ACAD-342: iOS App Development\n\n(Enroll in TAC 342",
+          "metadata": {
+            "grading_option": "",
+            "doc_type": "course",
+            "terms_offered": "FaSp",
+            "source": "usc_catalog_21",
+            "class_code": "ACAD-342",
+            "units": "4.0",
+            "max_units": "4.0",
+            "prereqs": "[]",
+            "department": "ACAD",
+            "instruction_mode": "",
+            "title": "iOS App Development"
+          }
+        },
+        {
+          "rank": 5,
+          "id": "TAC-341",
+          "distance": 0.822474,
+          "document": "TAC-341: Android App Development\n\nApp development for the Android open-source platform utilizing core mobile device functionalities, third-party API integration and backend services. Crosslisted as ACAD 341",
+          "metadata": {
+            "units": "4.0",
+            "prereqs": "[[\"TAC-265\", \"ITP-265\", \"CSCI-103\"]]",
+            "department": "TAC",
+            "max_units": "4.0",
+            "class_code": "TAC-341",
+            "terms_offered": "FaSp",
+            "grading_option": "Letter",
+            "source": "usc_catalog_21",
+            "instruction_mode": "Lecture",
+            "doc_type": "course",
+            "title": "Android App Development"
+          }
+        }
+      ],
+      "hits": [],
+      "misses": [
+        "ITP-342"
+      ],
+      "passed": false
+    },
+    {
+      "id": "ret_s2_001",
+      "set": 2,
+      "set_label": "Career goal queries",
+      "query": "machine learning engineer internship",
+      "filters": null,
+      "note": "Should surface ML/AI courses (CSCI-467, CSCI-499, CSCI-445, EE-451). LLM evaluator to score relevance.",
+      "expected_output": null,
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "ENGR-596",
+          "distance": 0.743424,
+          "document": "ENGR-596: Internship in Engineering\n\nPart-time or full-time, practical work experience in the student’s field of study. The internship must be located at an off-campus facility. Students are individually supervised by faculty. May not be taken until the student has completed at least one semester of enrollment in the graduate program.",
+          "metadata": {
+            "grading_option": "Credit/No Credit",
+            "title": "Internship in Engineering",
+            "doc_type": "course",
+            "department": "ENGR",
+            "prereqs": "[]",
+            "source": "usc_catalog_21",
+            "max_units": "3.0",
+            "instruction_mode": "",
+            "class_code": "ENGR-596",
+            "units": "1.0",
+            "terms_offered": "FaSpSm"
+          }
+        },
+        {
+          "rank": 2,
+          "id": "ENGL-596",
+          "distance": 0.7823,
+          "document": "ENGL-596: Internship for Curricular Practical Training\n\nPart-time or full-time practical work experience in the student’s field of study. The internship must be located at an off-campus facility. Students are individually supervised by faculty. May not be taken until the student has completed at least on semester of enrollment in the graduate program.",
+          "metadata": {
+            "max_units": "3.0",
+            "grading_option": "Credit/No Credit",
+            "source": "usc_catalog_21",
+            "department": "ENGL",
+            "units": "1.0",
+            "doc_type": "course",
+            "title": "Internship for Curricular Practical Training",
+            "prereqs": "[]",
+            "class_code": "ENGL-596",
+            "instruction_mode": "Lecture",
+            "terms_offered": "FaSpSm"
+          }
+        },
+        {
+          "rank": 3,
+          "id": "PHYS-596",
+          "distance": 0.812246,
+          "document": "PHYS-596: Internship for Curricular Practical Training\n\nPart-time or full-time, practical work experience in the student’s field of study. The internship must be located at an off-campus facility. Students are individually supervised by faculty. May not be taken until the student has completed at least one semester of enrollment in the graduate program with a cumulative 3.0 GPA.",
+          "metadata": {
+            "max_units": "3.0",
+            "department": "PHYS",
+            "prereqs": "[]",
+            "terms_offered": "FaSpSm",
+            "instruction_mode": "Lecture",
+            "doc_type": "course",
+            "class_code": "PHYS-596",
+            "grading_option": "Credit/No Credit",
+            "units": "1.0",
+            "source": "usc_catalog_21",
+            "title": "Internship for Curricular Practical Training"
+          }
+        },
+        {
+          "rank": 4,
+          "id": "BKN-596",
+          "distance": 0.818488,
+          "document": "BKN-596: Internship for Curricular Practical Training\n\nPart-time or full-time, practical work experience in the student’s field of study. The internship must be located at an off-campus facility. Students are individually supervised by faculty. May not be taken until the student has completed at least one semester of enrollment in the graduate program with a cumulative 3.0 GPA.",
+          "metadata": {
+            "max_units": "3.0",
+            "source": "usc_catalog_21",
+            "terms_offered": "FaSpSm",
+            "doc_type": "course",
+            "instruction_mode": "Lecture",
+            "prereqs": "[]",
+            "grading_option": "Credit/No Credit",
+            "class_code": "BKN-596",
+            "title": "Internship for Curricular Practical Training",
+            "units": "1.0",
+            "department": "BKN"
+          }
+        },
+        {
+          "rank": 5,
+          "id": "TAC-480",
+          "distance": 0.830917,
+          "document": "TAC-480: Technology and Applied Computing Internship\n\nPractical experience in applying information technology skills in real-world settings. Supervised internship at companies and start-ups. Balancing academic rigor with corporate challenges and deadlines.",
+          "metadata": {
+            "class_code": "TAC-480",
+            "terms_offered": "",
+            "prereqs": "[]",
+            "source": "usc_catalog_21",
+            "instruction_mode": "Lecture",
+            "doc_type": "course",
+            "grading_option": "Credit/No Credit",
+            "units": "1.0",
+            "department": "TAC",
+            "title": "Technology and Applied Computing Internship",
+            "max_units": "8.0"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ret_s2_002",
+      "set": 2,
+      "set_label": "Career goal queries",
+      "query": "backend systems software engineer",
+      "filters": null,
+      "note": "Should surface systems/OS/networking courses. LLM evaluator to score relevance.",
+      "expected_output": null,
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "ACAD-405",
+          "distance": 0.865608,
+          "document": "ACAD-405: Advanced Back-End Web Development\n\n(Enroll in TAC 405",
+          "metadata": {
+            "grading_option": "",
+            "class_code": "ACAD-405",
+            "title": "Advanced Back-End Web Development",
+            "prereqs": "[]",
+            "instruction_mode": "",
+            "doc_type": "course",
+            "max_units": "4.0",
+            "terms_offered": "Sp",
+            "source": "usc_catalog_21",
+            "department": "ACAD",
+            "units": "4.0"
+          }
+        },
+        {
+          "rank": 2,
+          "id": "AME-549",
+          "distance": 0.918622,
+          "document": "AME-549: Systems Architecting\n\n(Enroll in SAE 549",
+          "metadata": {
+            "instruction_mode": "",
+            "terms_offered": "FaSm",
+            "max_units": "3.0",
+            "class_code": "AME-549",
+            "department": "AME",
+            "title": "Systems Architecting",
+            "source": "usc_catalog_21",
+            "doc_type": "course",
+            "prereqs": "[]",
+            "grading_option": "",
+            "units": "3.0"
+          }
+        },
+        {
+          "rank": 3,
+          "id": "TAC-483",
+          "distance": 0.946799,
+          "document": "TAC-483: Communication for Software Engineers\n\nUser-focused design, problem space vs solution space, data structures, algorithms, live coding challenges, engineering demonstrations and presentations.",
+          "metadata": {
+            "prereqs": "[[\"CSCI-104\", \"TAC-365\", \"ITP-365\"]]",
+            "title": "Communication for Software Engineers",
+            "max_units": "2.0",
+            "class_code": "TAC-483",
+            "units": "2.0",
+            "grading_option": "Letter",
+            "department": "TAC",
+            "source": "usc_catalog_21",
+            "terms_offered": "Fa",
+            "instruction_mode": "Lecture",
+            "doc_type": "course"
+          }
+        },
+        {
+          "rank": 4,
+          "id": "TAC-404",
+          "distance": 1.059269,
+          "document": "TAC-404: Advanced Front-End Web Development\n\nThe technologies, techniques, conventions and best practices used in contemporary front-end web development. Crosslisted as ACAD 404",
+          "metadata": {
+            "max_units": "4.0",
+            "department": "TAC",
+            "instruction_mode": "Lecture",
+            "prereqs": "[[\"TAC-301\", \"ITP-301\", \"TAC-303\", \"ITP-303\", \"ACAD-275\"]]",
+            "units": "4.0",
+            "terms_offered": "Fa",
+            "class_code": "TAC-404",
+            "title": "Advanced Front-End Web Development",
+            "grading_option": "Letter",
+            "doc_type": "course",
+            "source": "usc_catalog_21"
+          }
+        },
+        {
+          "rank": 5,
+          "id": "ISE-350",
+          "distance": 1.060281,
+          "document": "ISE-350: Principles and Practices of Systems Engineering\n\nSystems as complex collaborative ensembles of interconnected components. Theory and practice of requirements, design, implementation, testing, deployment, operation and disposal. Case studies from real projects.",
+          "metadata": {
+            "units": "4.0",
+            "class_code": "ISE-350",
+            "department": "ISE",
+            "instruction_mode": "Lecture",
+            "prereqs": "[[\"ISE-225\"]]",
+            "title": "Principles and Practices of Systems Engineering",
+            "terms_offered": "FaSp",
+            "source": "usc_catalog_21",
+            "max_units": "4.0",
+            "doc_type": "course",
+            "grading_option": "Letter"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ret_s2_003",
+      "set": 2,
+      "set_label": "Career goal queries",
+      "query": "quant finance programming",
+      "filters": null,
+      "note": "Cross-domain query — should surface MATH-458 and finance/probability courses alongside CS. Tests cross-dept retrieval.",
+      "expected_output": null,
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "MATH-548",
+          "distance": 0.796373,
+          "document": "MATH-548: Machine Learning in Quantitive Finance\n\nMathematical foundations of machine learning, machine learning algorithms, applications in financial forecasting, derivatives valuation and hedging, portfolio optimization.",
+          "metadata": {
+            "title": "Machine Learning in Quantitive Finance",
+            "source": "usc_catalog_21",
+            "doc_type": "course",
+            "prereqs": "[[\"MATH-530a\"]]",
+            "instruction_mode": "Lecture",
+            "grading_option": "Letter",
+            "max_units": "3.0",
+            "department": "MATH",
+            "units": "3.0",
+            "terms_offered": "FaSp",
+            "class_code": "MATH-548"
+          }
+        },
+        {
+          "rank": 2,
+          "id": "MATH-512",
+          "distance": 0.926316,
+          "document": "MATH-512: Financial Informatics and Simulation (Computer Labs and Practitioner Seminar)\n\nExperimental laboratory trading for financial markets using double auctions: handling statistical packages for data analysis. Practical training in virtual market environments, using financial trading system software.",
+          "metadata": {
+            "terms_offered": "FaSp",
+            "class_code": "MATH-512",
+            "title": "Financial Informatics and Simulation (Computer Labs and Practitioner Seminar)",
+            "instruction_mode": "Lecture, Discussion",
+            "department": "MATH",
+            "units": "3.0",
+            "doc_type": "course",
+            "source": "usc_catalog_21",
+            "grading_option": "Letter",
+            "max_units": "3.0",
+            "prereqs": "[]"
+          }
+        },
+        {
+          "rank": 3,
+          "id": "ECON-695",
+          "distance": 0.936242,
+          "document": "ECON-695: Internship in Mathematical Finance\n\nInternship for students in the Mathematical Finance master’s program. Practical training in real market environments. Real-world first-hand experience in implementing trading strategies. Application of mathematical finance to real financial markets.",
+          "metadata": {
+            "max_units": "4.0",
+            "terms_offered": "Sm",
+            "department": "ECON",
+            "units": "4.0",
+            "grading_option": "Letter",
+            "title": "Internship in Mathematical Finance",
+            "instruction_mode": "Lecture",
+            "prereqs": "[]",
+            "doc_type": "course",
+            "source": "usc_catalog_21",
+            "class_code": "ECON-695"
+          }
+        },
+        {
+          "rank": 4,
+          "id": "ISE-537",
+          "distance": 0.9497,
+          "document": "ISE-537: Financial Analytics\n\nModern portfolio theory and optimal decision-making problems in finance. Market microstructure and high-frequency trading. Machine learning models for quantitative finance.",
+          "metadata": {
+            "instruction_mode": "Lecture",
+            "max_units": "4.0",
+            "department": "ISE",
+            "doc_type": "course",
+            "terms_offered": "FaSp",
+            "grading_option": "Letter",
+            "title": "Financial Analytics",
+            "source": "usc_catalog_21",
+            "class_code": "ISE-537",
+            "prereqs": "[]",
+            "units": "4.0"
+          }
+        },
+        {
+          "rank": 5,
+          "id": "FBE-551",
+          "distance": 0.991254,
+          "document": "FBE-551: Quantitative Investing\n\nBuild, test and implement the types of models in use by quantitative asset managers.",
+          "metadata": {
+            "terms_offered": "Fa",
+            "doc_type": "course",
+            "source": "usc_catalog_21",
+            "title": "Quantitative Investing",
+            "class_code": "FBE-551",
+            "units": "3.0",
+            "grading_option": "Letter",
+            "instruction_mode": "Lecture",
+            "department": "FBE",
+            "max_units": "3.0",
+            "prereqs": "[[\"FBE-555\"]]"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ret_s2_004",
+      "set": 2,
+      "set_label": "Career goal queries",
+      "query": "computer vision deep learning",
+      "filters": null,
+      "note": "Should surface CSCI-420, CSCI-445, CSCI-467. LLM evaluator to score relevance.",
+      "expected_output": null,
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "CSCI-469",
+          "distance": 0.827478,
+          "document": "CSCI-469: Computer Vision\n\nComputer vision; image filtering and classification; object detection. Deep learning for computer vision including multi-view reconstruction, visual recognition, visual reasoning and vision-language models. Corequisite: CSCI 467 or EE 460",
+          "metadata": {
+            "source": "usc_catalog_21",
+            "terms_offered": "FaSp",
+            "max_units": "4.0",
+            "prereqs": "[[\"CSCI-270\"], [\"EE-141\", \"MATH-225\"], [\"ISE-220\", \"EE-364\", \"MATH-407\"]]",
+            "doc_type": "course",
+            "grading_option": "Letter",
+            "department": "CSCI",
+            "instruction_mode": "Lecture",
+            "units": "4.0",
+            "title": "Computer Vision",
+            "class_code": "CSCI-469"
+          }
+        },
+        {
+          "rank": 2,
+          "id": "CSCI-566",
+          "distance": 0.920061,
+          "document": "CSCI-566: Deep Learning and Its Applications\n\nDeep learning research in computer vision, natural language processing and robotics; neural networks; deep learning algorithms, tools and software. CSCI 527",
+          "metadata": {
+            "department": "CSCI",
+            "title": "Deep Learning and Its Applications",
+            "prereqs": "[]",
+            "source": "usc_catalog_21",
+            "units": "4.0",
+            "instruction_mode": "Lecture",
+            "class_code": "CSCI-566",
+            "grading_option": "Letter",
+            "doc_type": "course",
+            "max_units": "4.0",
+            "terms_offered": "Fa"
+          }
+        },
+        {
+          "rank": 3,
+          "id": "DSO-569",
+          "distance": 0.98542,
+          "document": "DSO-569: Deep Learning for Business Applications\n\nApply machine learning tools to business. Write code to solve complex pattern recognition. Build strategies, technical planning, research and analyze data. Present complex technical data. Corequisite: DSO 530",
+          "metadata": {
+            "department": "DSO",
+            "terms_offered": "Sp",
+            "title": "Deep Learning for Business Applications",
+            "class_code": "DSO-569",
+            "instruction_mode": "Lecture",
+            "prereqs": "[[\"DSO-545\"]]",
+            "source": "usc_catalog_21",
+            "grading_option": "Letter",
+            "doc_type": "course",
+            "units": "1.5",
+            "max_units": "1.5"
+          }
+        },
+        {
+          "rank": 4,
+          "id": "DSO-464",
+          "distance": 1.005856,
+          "document": "DSO-464: Deep Learning for AI and Business Applications\n\nBasics of deep learning technologies for AI and utilizing current technologies in deep learning that are reshaping and driving the modern business with Big Data.",
+          "metadata": {
+            "source": "usc_catalog_21",
+            "class_code": "DSO-464",
+            "units": "4.0",
+            "title": "Deep Learning for AI and Business Applications",
+            "instruction_mode": "Lecture",
+            "doc_type": "course",
+            "prereqs": "[]",
+            "max_units": "4.0",
+            "department": "DSO",
+            "grading_option": "Letter",
+            "terms_offered": "Sp"
+          }
+        },
+        {
+          "rank": 5,
+          "id": "DSCI-565",
+          "distance": 1.013853,
+          "document": "DSCI-565: Introduction to Deep Learning for Data Science\n\nAn introduction to core deep learning algorithms combined with practical experience in building and applying deep learning networks.",
+          "metadata": {
+            "title": "Introduction to Deep Learning for Data Science",
+            "class_code": "DSCI-565",
+            "grading_option": "Letter",
+            "instruction_mode": "Lecture",
+            "prereqs": "[[\"DSCI-552\"]]",
+            "source": "usc_catalog_21",
+            "terms_offered": "FaSp",
+            "units": "4.0",
+            "department": "DSCI",
+            "doc_type": "course",
+            "max_units": "4.0"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ret_s2_005",
+      "set": 2,
+      "set_label": "Career goal queries",
+      "query": "distributed systems infrastructure",
+      "filters": null,
+      "note": "Should surface networking, OS, and systems-level courses. LLM evaluator to score relevance.",
+      "expected_output": null,
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "CSCI-657",
+          "distance": 0.712401,
+          "document": "CSCI-657: Advanced Distributed Systems\n\nThe foundations and modern applications of distributed systems. Topics include: logical time, fault tolerance, group communication, consensus, consistency, transactions, and peer-to-peer.",
+          "metadata": {
+            "instruction_mode": "Lecture",
+            "prereqs": "[]",
+            "source": "usc_catalog_21",
+            "max_units": "4.0",
+            "grading_option": "Letter",
+            "doc_type": "course",
+            "units": "4.0",
+            "class_code": "CSCI-657",
+            "department": "CSCI",
+            "title": "Advanced Distributed Systems",
+            "terms_offered": ""
+          }
+        },
+        {
+          "rank": 2,
+          "id": "CSCI-546",
+          "distance": 0.718729,
+          "document": "CSCI-546: Distributed Systems\n\nThe theory and practice of distributed systems. Topics include: distributed storage systems, fault tolerance, consensus, consistency, transactions, distributed data processing and efficient cloud computing.",
+          "metadata": {
+            "title": "Distributed Systems",
+            "units": "4.0",
+            "source": "usc_catalog_21",
+            "instruction_mode": "Lecture",
+            "terms_offered": "FaSp",
+            "doc_type": "course",
+            "department": "CSCI",
+            "class_code": "CSCI-546",
+            "prereqs": "[]",
+            "max_units": "4.0",
+            "grading_option": "Letter"
+          }
+        },
+        {
+          "rank": 3,
+          "id": "EE-461",
+          "distance": 0.925449,
+          "document": "EE-461: Machine Learning with Distributed Computing Systems\n\nAn introduction to distributed machine learning including: distributed stochastic gradient algorithms; federated machine learning; stragglers and byzantine nodes; performance and model accuracy; scalability bottlenecks.",
+          "metadata": {
+            "instruction_mode": "Lecture",
+            "class_code": "EE-461",
+            "terms_offered": "Sp",
+            "units": "4.0",
+            "max_units": "4.0",
+            "department": "EE",
+            "title": "Machine Learning with Distributed Computing Systems",
+            "doc_type": "course",
+            "grading_option": "Letter",
+            "prereqs": "[[\"EE-355\", \"CSCI-114\"], [\"EE-460\", \"CSCI-467\"]]",
+            "source": "usc_catalog_21"
+          }
+        },
+        {
+          "rank": 4,
+          "id": "EE-657",
+          "distance": 0.927257,
+          "document": "EE-657: Parallel and Distributed Computing\n\nScalable multiprocessor systems and clusters, virtual machine, service oriented architecture, network-based computing, peer-to-peer, grid and cloud based storage and computing, case studies.",
+          "metadata": {
+            "instruction_mode": "Lecture",
+            "units": "3.0",
+            "terms_offered": "FaSpSm",
+            "grading_option": "Letter",
+            "class_code": "EE-657",
+            "department": "EE",
+            "source": "usc_catalog_21",
+            "max_units": "3.0",
+            "doc_type": "course",
+            "title": "Parallel and Distributed Computing",
+            "prereqs": "[[\"EE-557\"]]"
+          }
+        },
+        {
+          "rank": 5,
+          "id": "SAE-574",
+          "distance": 0.943169,
+          "document": "SAE-574: Net-Centric Systems Architecting and Engineering\n\nIn-depth examination of the technical design approaches, tools, and processes to enable the benefits of net-centric operations in a networked systems-of-systems.",
+          "metadata": {
+            "class_code": "SAE-574",
+            "source": "usc_catalog_21",
+            "department": "SAE",
+            "instruction_mode": "Lecture",
+            "doc_type": "course",
+            "grading_option": "Letter",
+            "terms_offered": "FaSp",
+            "prereqs": "[]",
+            "title": "Net-Centric Systems Architecting and Engineering",
+            "units": "3.0",
+            "max_units": "3.0"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ret_s2_006",
+      "set": 2,
+      "set_label": "Career goal queries",
+      "query": "full stack web development",
+      "filters": null,
+      "note": "Should surface ITP and CSCI web/software engineering courses. LLM evaluator to score relevance.",
+      "expected_output": null,
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "ACAD-405",
+          "distance": 0.733707,
+          "document": "ACAD-405: Advanced Back-End Web Development\n\n(Enroll in TAC 405",
+          "metadata": {
+            "class_code": "ACAD-405",
+            "department": "ACAD",
+            "prereqs": "[]",
+            "units": "4.0",
+            "source": "usc_catalog_21",
+            "max_units": "4.0",
+            "doc_type": "course",
+            "terms_offered": "Sp",
+            "title": "Advanced Back-End Web Development",
+            "instruction_mode": "",
+            "grading_option": ""
+          }
+        },
+        {
+          "rank": 2,
+          "id": "TAC-303",
+          "distance": 0.735763,
+          "document": "TAC-303: Full-Stack Web Development\n\nModern web development techniques and technologies used to create web applications from ground up. Topics include front-end, back-end and web servers.",
+          "metadata": {
+            "units": "4.0",
+            "class_code": "TAC-303",
+            "max_units": "4.0",
+            "prereqs": "[[\"TAC-265\", \"ITP-265\", \"CSCI-103\"]]",
+            "grading_option": "Letter",
+            "doc_type": "course",
+            "source": "usc_catalog_21",
+            "title": "Full-Stack Web Development",
+            "department": "TAC",
+            "terms_offered": "",
+            "instruction_mode": "Lecture, Lab"
+          }
+        },
+        {
+          "rank": 3,
+          "id": "TAC-404",
+          "distance": 0.756618,
+          "document": "TAC-404: Advanced Front-End Web Development\n\nThe technologies, techniques, conventions and best practices used in contemporary front-end web development. Crosslisted as ACAD 404",
+          "metadata": {
+            "units": "4.0",
+            "department": "TAC",
+            "title": "Advanced Front-End Web Development",
+            "doc_type": "course",
+            "source": "usc_catalog_21",
+            "prereqs": "[[\"TAC-301\", \"ITP-301\", \"TAC-303\", \"ITP-303\", \"ACAD-275\"]]",
+            "grading_option": "Letter",
+            "terms_offered": "Fa",
+            "class_code": "TAC-404",
+            "instruction_mode": "Lecture",
+            "max_units": "4.0"
+          }
+        },
+        {
+          "rank": 4,
+          "id": "IDSN-531",
+          "distance": 0.920588,
+          "document": "IDSN-531: Front End Web Programming\n\nFront-end (user-facing) development of interactive web pages; tools, techniques and practice. TAC 301",
+          "metadata": {
+            "doc_type": "course",
+            "units": "2.0",
+            "instruction_mode": "Lecture",
+            "terms_offered": "",
+            "prereqs": "[]",
+            "title": "Front End Web Programming",
+            "max_units": "2.0",
+            "source": "usc_catalog_21",
+            "department": "IDSN",
+            "grading_option": "Letter",
+            "class_code": "IDSN-531"
+          }
+        },
+        {
+          "rank": 5,
+          "id": "TAC-104",
+          "distance": 0.950928,
+          "document": "TAC-104: Introduction to Web Development\n\nWeb publishing using HTML, CSS and other Web technologies. Concepts and theory of Web site creation, page layout and production. Introduction to advanced topics.",
+          "metadata": {
+            "units": "2.0",
+            "grading_option": "Letter",
+            "class_code": "TAC-104",
+            "instruction_mode": "Lecture, Lab",
+            "prereqs": "[]",
+            "terms_offered": "FaSp",
+            "title": "Introduction to Web Development",
+            "source": "usc_catalog_21",
+            "max_units": "2.0",
+            "doc_type": "course",
+            "department": "TAC"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ret_s2_007",
+      "set": 2,
+      "set_label": "Career goal queries",
+      "query": "natural language processing",
+      "filters": null,
+      "note": "Should surface CSCI-467, CSCI-544, and related AI courses. LLM evaluator to score relevance.",
+      "expected_output": null,
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "CSCI-662",
+          "distance": 0.808998,
+          "document": "CSCI-662: Advanced Natural Language Processing\n\nComputational models of natural language. Formalisms for describing structures of human language, and algorithms for learning language structures from data.",
+          "metadata": {
+            "instruction_mode": "Lecture",
+            "class_code": "CSCI-662",
+            "department": "CSCI",
+            "grading_option": "Letter",
+            "terms_offered": "",
+            "title": "Advanced Natural Language Processing",
+            "units": "4.0",
+            "source": "usc_catalog_21",
+            "prereqs": "[]",
+            "max_units": "4.0",
+            "doc_type": "course"
+          }
+        },
+        {
+          "rank": 2,
+          "id": "LING-486",
+          "distance": 0.823909,
+          "document": "LING-486: Natural Language Processing\n\nIntroduction to modern neural network approaches to natural language processing, based on Deep Learning. Recursive and recurrent neural networks; backpropagation; Ngram models.",
+          "metadata": {
+            "department": "LING",
+            "grading_option": "Letter",
+            "terms_offered": "",
+            "title": "Natural Language Processing",
+            "max_units": "4.0",
+            "doc_type": "course",
+            "instruction_mode": "Lecture",
+            "class_code": "LING-486",
+            "source": "usc_catalog_21",
+            "units": "4.0",
+            "prereqs": "[[\"LING-385\"]]"
+          }
+        },
+        {
+          "rank": 3,
+          "id": "CSCI-544",
+          "distance": 0.932397,
+          "document": "CSCI-544: Applied Natural Language Processing\n\nIntroduction to key components of human language technologies, including: information extraction, sentiment analysis, question answering, machine translation.",
+          "metadata": {
+            "instruction_mode": "Lecture",
+            "terms_offered": "",
+            "prereqs": "[]",
+            "source": "usc_catalog_21",
+            "grading_option": "Letter",
+            "units": "4.0",
+            "department": "CSCI",
+            "max_units": "4.0",
+            "class_code": "CSCI-544",
+            "title": "Applied Natural Language Processing",
+            "doc_type": "course"
+          }
+        },
+        {
+          "rank": 4,
+          "id": "PSYC-626",
+          "distance": 1.024621,
+          "document": "PSYC-626: Text as Data\n\nFocuses on applications of natural language processing, guided by psychological theories, for identifying various social and cognitive properties evident in language. Crosslisted as CSCI 626",
+          "metadata": {
+            "title": "Text as Data",
+            "terms_offered": "Fa",
+            "units": "4.0",
+            "department": "PSYC",
+            "grading_option": "Letter",
+            "prereqs": "[]",
+            "source": "usc_catalog_21",
+            "doc_type": "course",
+            "class_code": "PSYC-626",
+            "instruction_mode": "Lecture",
+            "max_units": "4.0"
+          }
+        },
+        {
+          "rank": 5,
+          "id": "LING-480",
+          "distance": 1.035676,
+          "document": "LING-480: Linguistic Structures\n\nAnalysis of grammatical structures of an individual language.",
+          "metadata": {
+            "terms_offered": "",
+            "max_units": "4.0",
+            "source": "usc_catalog_21",
+            "department": "LING",
+            "prereqs": "[]",
+            "grading_option": "Letter",
+            "instruction_mode": "Lecture, Discussion",
+            "doc_type": "course",
+            "title": "Linguistic Structures",
+            "class_code": "LING-480",
+            "units": "4.0"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ret_s3_001",
+      "set": 3,
+      "set_label": "Elective pool metadata lookups",
+      "query": "CSCI-467",
+      "filters": {
+        "class_code": "CSCI-467"
+      },
+      "note": "Exact metadata match — verifies CSCI-467 was ingested with correct class_code field.",
+      "expected_output": {
+        "top_k_contains": [
+          "CSCI-467"
+        ]
+      },
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "CSCI-467",
+          "distance": 1.354166,
+          "document": "CSCI-467: Foundations of Machine Learning\n\nAlgorithms for learning behavior from data, including both mathematical underpinnings and practical techniques. Covers supervised learning, deep learning, unsupervised learning and reinforcement learning. EE 460",
+          "metadata": {
+            "doc_type": "course",
+            "terms_offered": "FaSp",
+            "max_units": "4.0",
+            "title": "Foundations of Machine Learning",
+            "source": "usc_catalog_21",
+            "prereqs": "[[\"CSCI-170\"], [\"CSCI-104\", \"CSCI-114\"], [\"MATH-225\", \"EE-141\"], [\"EE-364\", \"MATH-407\", \"BUAD-310\", \"ISE-225\"]]",
+            "units": "4.0",
+            "class_code": "CSCI-467",
+            "department": "CSCI",
+            "grading_option": "Letter",
+            "instruction_mode": "Lecture, Discussion"
+          }
+        }
+      ],
+      "hits": [
+        "CSCI-467"
+      ],
+      "misses": [],
+      "passed": true
+    },
+    {
+      "id": "ret_s3_002",
+      "set": 3,
+      "set_label": "Elective pool metadata lookups",
+      "query": "CSCI-445",
+      "filters": {
+        "class_code": "CSCI-445"
+      },
+      "note": "Exact metadata match — verifies CSCI-445 ingestion.",
+      "expected_output": {
+        "top_k_contains": [
+          "CSCI-445"
+        ]
+      },
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "CSCI-445",
+          "distance": 0.969593,
+          "document": "CSCI-445: Foundations of Robotics\n\nDesigning and programming mobile robots; sensors, effectors, basic control theory, control architectures, planning, some advanced topics, illustrations of state-of-the-art. Weekly robot programming labs; final project. Crosslisted as EE 445",
+          "metadata": {
+            "source": "usc_catalog_21",
+            "grading_option": "Letter",
+            "class_code": "CSCI-445",
+            "instruction_mode": "Lecture, Lab Required",
+            "terms_offered": "FaSpSm",
+            "max_units": "4.0",
+            "title": "Foundations of Robotics",
+            "prereqs": "[[\"CSCI-104\", \"CSCI-114\", \"EE-355\"]]",
+            "department": "CSCI",
+            "units": "4.0",
+            "doc_type": "course"
+          }
+        }
+      ],
+      "hits": [
+        "CSCI-445"
+      ],
+      "misses": [],
+      "passed": true
+    },
+    {
+      "id": "ret_s3_003",
+      "set": 3,
+      "set_label": "Elective pool metadata lookups",
+      "query": "CSCI-420",
+      "filters": {
+        "class_code": "CSCI-420"
+      },
+      "note": "Exact metadata match — verifies CSCI-420 ingestion.",
+      "expected_output": {
+        "top_k_contains": [
+          "CSCI-420"
+        ]
+      },
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "CSCI-420",
+          "distance": 0.685427,
+          "document": "CSCI-420: Computer Graphics\n\nComputer graphics, OpenGL, 2D and 3D transformations, Bézier splines, computer animation, rendering including ray tracing, shading and lighting, artistic rendering, virtual reality, visualization.",
+          "metadata": {
+            "prereqs": "[[\"CSCI-104\"], [\"MATH-225\", \"EE-141\"], [\"MATH-126\", \"MATH-127\", \"MATH-129\"]]",
+            "instruction_mode": "Lecture, Discussion",
+            "class_code": "CSCI-420",
+            "source": "usc_catalog_21",
+            "max_units": "4.0",
+            "terms_offered": "FaSp",
+            "grading_option": "Letter",
+            "units": "4.0",
+            "title": "Computer Graphics",
+            "doc_type": "course",
+            "department": "CSCI"
+          }
+        }
+      ],
+      "hits": [
+        "CSCI-420"
+      ],
+      "misses": [],
+      "passed": true
+    },
+    {
+      "id": "ret_s3_004",
+      "set": 3,
+      "set_label": "Elective pool metadata lookups",
+      "query": "TAC-368",
+      "filters": {
+        "class_code": "TAC-368"
+      },
+      "note": "Cross-dept check — TAC courses are less common in CS planning contexts; verifies they were scraped and stored.",
+      "expected_output": {
+        "top_k_contains": [
+          "TAC-368"
+        ]
+      },
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "TAC-368",
+          "distance": 1.222493,
+          "document": "TAC-368: Cross-Platform App Development\n\nProgramming applications with dynamic graphical user interfaces. Topics include events, controls, resources, data bindings, styles and user experience. Crosslisted as CSCI 368",
+          "metadata": {
+            "title": "Cross-Platform App Development",
+            "units": "4.0",
+            "max_units": "4.0",
+            "instruction_mode": "Lecture",
+            "prereqs": "[[\"TAC-265\", \"ITP-265\", \"CSCI-103\"]]",
+            "terms_offered": "FaSp",
+            "department": "TAC",
+            "class_code": "TAC-368",
+            "source": "usc_catalog_21",
+            "grading_option": "Letter",
+            "doc_type": "course"
+          }
+        }
+      ],
+      "hits": [
+        "TAC-368"
+      ],
+      "misses": [],
+      "passed": true
+    },
+    {
+      "id": "ret_s3_005",
+      "set": 3,
+      "set_label": "Elective pool metadata lookups",
+      "query": "EE-451",
+      "filters": {
+        "class_code": "EE-451"
+      },
+      "note": "EE dept cross-check — verifies electrical engineering courses are in the catalogue.",
+      "expected_output": {
+        "top_k_contains": [
+          "EE-451"
+        ]
+      },
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "EE-451",
+          "distance": 1.311084,
+          "document": "EE-451: Parallel and Distributed Computation\n\nIntroduction to parallel programming techniques, models and optimization strategies; Application mapping to multi-core, accelerator, GPU and cloud platforms; High Performance Computing and Data Science applications. Crosslisted as CSCI 452",
+          "metadata": {
+            "grading_option": "Letter",
+            "prereqs": "[[\"EE-355\", \"CSCI-104\", \"CSCI-114\"]]",
+            "instruction_mode": "Lecture, Lab",
+            "class_code": "EE-451",
+            "source": "usc_catalog_21",
+            "terms_offered": "Fa",
+            "doc_type": "course",
+            "title": "Parallel and Distributed Computation",
+            "max_units": "4.0",
+            "units": "4.0",
+            "department": "EE"
+          }
+        }
+      ],
+      "hits": [
+        "EE-451"
+      ],
+      "misses": [],
+      "passed": true
+    },
+    {
+      "id": "ret_s3_006",
+      "set": 3,
+      "set_label": "Elective pool metadata lookups",
+      "query": "MATH-458",
+      "filters": {
+        "class_code": "MATH-458"
+      },
+      "note": "MATH dept cross-check — verifies math electives relevant to quant/ML tracks are present.",
+      "expected_output": {
+        "top_k_contains": [
+          "MATH-458"
+        ]
+      },
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "MATH-458",
+          "distance": 1.152779,
+          "document": "MATH-458: Numerical Methods\n\nRounding errors in digital computation; solution of linear algebraic systems; Newton’s method for nonlinear systems; matrix eigenvalues; polynomial approximation; numerical integration; numerical solution of ordinary differential equations. Crosslisted as CSCI 458",
+          "metadata": {
+            "grading_option": "Letter",
+            "class_code": "MATH-458",
+            "terms_offered": "FaSp",
+            "doc_type": "course",
+            "instruction_mode": "Lecture, Discussion",
+            "title": "Numerical Methods",
+            "department": "MATH",
+            "max_units": "4.0",
+            "units": "4.0",
+            "prereqs": "[[\"MATH-225\", \"MATH-235\", \"MATH-245\"]]",
+            "source": "usc_catalog_21"
+          }
+        }
+      ],
+      "hits": [
+        "MATH-458"
+      ],
+      "misses": [],
+      "passed": true
+    },
+    {
+      "id": "ret_s4_001",
+      "set": 4,
+      "set_label": "Edge cases",
+      "query": "probability statistics",
+      "filters": null,
+      "note": "Tests MATH dept coverage in semantic search — a common omission if scraping skipped math pages.",
+      "expected_output": {
+        "top_k_contains": [
+          "MATH-407"
+        ]
+      },
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "MATH-605",
+          "distance": 0.862772,
+          "document": "MATH-605: Topics in Probability",
+          "metadata": {
+            "doc_type": "course",
+            "max_units": "12.0",
+            "source": "usc_catalog_21",
+            "class_code": "MATH-605",
+            "prereqs": "[]",
+            "units": "3.0",
+            "grading_option": "Letter",
+            "terms_offered": "",
+            "instruction_mode": "Lecture",
+            "department": "MATH",
+            "title": "Topics in Probability"
+          }
+        },
+        {
+          "rank": 2,
+          "id": "DSCI-564",
+          "distance": 0.882974,
+          "document": "DSCI-564: Probability and Statistics for Data Science\n\nFundamental concepts in probability and statistics from a data science perspective; rigorous probabilistic reasoning and problem solving; statistical methods used in data science.",
+          "metadata": {
+            "doc_type": "course",
+            "class_code": "DSCI-564",
+            "title": "Probability and Statistics for Data Science",
+            "terms_offered": "",
+            "source": "usc_catalog_21",
+            "department": "DSCI",
+            "units": "4.0",
+            "instruction_mode": "Lecture",
+            "grading_option": "Letter",
+            "prereqs": "[]",
+            "max_units": "4.0"
+          }
+        },
+        {
+          "rank": 3,
+          "id": "MATH-705",
+          "distance": 0.899299,
+          "document": "MATH-705: Seminar in Probability",
+          "metadata": {
+            "title": "Seminar in Probability",
+            "units": "3.0",
+            "prereqs": "[]",
+            "instruction_mode": "Lecture",
+            "doc_type": "course",
+            "max_units": "3.0",
+            "department": "MATH",
+            "class_code": "MATH-705",
+            "source": "usc_catalog_21",
+            "terms_offered": "",
+            "grading_option": "Letter"
+          }
+        },
+        {
+          "rank": 4,
+          "id": "CSCI-505a",
+          "distance": 0.914838,
+          "document": "CSCI-505a: Applied Probability\n\n(Enroll in MATH 505a",
+          "metadata": {
+            "doc_type": "course",
+            "prereqs": "[]",
+            "instruction_mode": "",
+            "class_code": "CSCI-505a",
+            "department": "CSCI",
+            "terms_offered": "",
+            "source": "usc_catalog_21",
+            "max_units": "3.0",
+            "title": "Applied Probability",
+            "units": "3.0",
+            "grading_option": ""
+          }
+        },
+        {
+          "rank": 5,
+          "id": "CSCI-505b",
+          "distance": 0.939311,
+          "document": "CSCI-505b: Applied Probability\n\n(Enroll in MATH 505b",
+          "metadata": {
+            "title": "Applied Probability",
+            "terms_offered": "",
+            "prereqs": "[]",
+            "source": "usc_catalog_21",
+            "class_code": "CSCI-505b",
+            "instruction_mode": "",
+            "units": "3.0",
+            "max_units": "3.0",
+            "department": "CSCI",
+            "grading_option": "",
+            "doc_type": "course"
+          }
+        }
+      ],
+      "hits": [],
+      "misses": [
+        "MATH-407"
+      ],
+      "passed": false
+    },
+    {
+      "id": "ret_s4_002",
+      "set": 4,
+      "set_label": "Edge cases",
+      "query": "TAC",
+      "filters": null,
+      "note": "Single-token dept code — should surface TAC courses. Verifies short department codes are queryable semantically.",
+      "expected_output": {
+        "top_k_department": "TAC"
+      },
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "TAC-476",
+          "distance": 0.945027,
+          "document": "TAC-476: Technologies for Interactive Marketing\n\nTechnologies, concepts and strategies in the emerging online advertising ecosystem; learn to drive traffic to a website and measure efficacy; work with a real client and budget to craft and execute an online marketing plan. Crosslisted as ACAD 476",
+          "metadata": {
+            "department": "TAC",
+            "max_units": "4.0",
+            "source": "usc_catalog_21",
+            "terms_offered": "",
+            "prereqs": "[]",
+            "grading_option": "Letter",
+            "doc_type": "course",
+            "title": "Technologies for Interactive Marketing",
+            "units": "4.0",
+            "class_code": "TAC-476",
+            "instruction_mode": "Lecture, Lab"
+          }
+        },
+        {
+          "rank": 2,
+          "id": "TAC-429",
+          "distance": 0.964951,
+          "document": "TAC-429: Embodied Artificial Intelligence\n\nDriverless vehicle control; on-board sensors and video cameras; computer vision, object detection and identification; artificial intelligence; data fusion and routing.",
+          "metadata": {
+            "units": "4.0",
+            "max_units": "4.0",
+            "class_code": "TAC-429",
+            "instruction_mode": "Lecture, Lab",
+            "doc_type": "course",
+            "terms_offered": "FaSp",
+            "source": "usc_catalog_21",
+            "prereqs": "[[\"TAC-115\", \"TAC-116\", \"ITP-115\", \"ITP-116\"]]",
+            "department": "TAC",
+            "title": "Embodied Artificial Intelligence",
+            "grading_option": "Letter"
+          }
+        },
+        {
+          "rank": 3,
+          "id": "TAC-475",
+          "distance": 0.968596,
+          "document": "TAC-475: Advanced Digital Forensics and Incident Response\n\nAdvanced digital forensics; cyber breach investigations; incident response; system triage; advanced Windows file system analysis; trial preparation and testimony.",
+          "metadata": {
+            "doc_type": "course",
+            "grading_option": "Letter",
+            "prereqs": "[[\"TAC-375\", \"ITP-375\"]]",
+            "source": "usc_catalog_21",
+            "terms_offered": "Sp",
+            "units": "4.0",
+            "max_units": "4.0",
+            "instruction_mode": "Lecture",
+            "class_code": "TAC-475",
+            "department": "TAC",
+            "title": "Advanced Digital Forensics and Incident Response"
+          }
+        },
+        {
+          "rank": 4,
+          "id": "TAC-325",
+          "distance": 0.97642,
+          "document": "TAC-325: Ethical Hacking\n\nEthical hacking; penetration testing; vulnerability assessment; red teams; hacker environments, infrastructure and frameworks; lateral movement and data exfiltration techniques; evasion and anti-forensics.",
+          "metadata": {
+            "units": "4.0",
+            "instruction_mode": "Lecture",
+            "prereqs": "[[\"ITP-125\", \"TAC-125\"]]",
+            "max_units": "4.0",
+            "grading_option": "Letter",
+            "source": "usc_catalog_21",
+            "class_code": "TAC-325",
+            "department": "TAC",
+            "doc_type": "course",
+            "terms_offered": "FaSp",
+            "title": "Ethical Hacking"
+          }
+        },
+        {
+          "rank": 5,
+          "id": "TAC-170",
+          "distance": 0.988501,
+          "document": "TAC-170: You Are the Product: Introduction to Data Compliance\n\nData handling, regulatory requirements, best practices and system planning and design for privacy-compliant business processes; privacy ethics for management of Personally Identifiable Information.",
+          "metadata": {
+            "max_units": "2.0",
+            "prereqs": "[]",
+            "source": "usc_catalog_21",
+            "terms_offered": "FaSp",
+            "title": "You Are the Product: Introduction to Data Compliance",
+            "units": "2.0",
+            "class_code": "TAC-170",
+            "doc_type": "course",
+            "department": "TAC",
+            "grading_option": "Letter",
+            "instruction_mode": "Lecture"
+          }
+        }
+      ],
+      "department_hits": [
+        "TAC-476",
+        "TAC-429",
+        "TAC-475",
+        "TAC-325",
+        "TAC-170"
+      ],
+      "passed": true
+    },
+    {
+      "id": "ret_s4_003",
+      "set": 4,
+      "set_label": "Edge cases",
+      "query": "cooperative education",
+      "filters": null,
+      "note": "ENGR-395 has multiple variants (a, b, etc. suffixes stripped during ingestion). Evaluator should check that at least one ENGR-395 variant is in results.",
+      "expected_output": {
+        "top_k_contains": [
+          "ENGR-395"
+        ]
+      },
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "ENGR-395",
+          "distance": 0.554151,
+          "document": "ENGR-395: Cooperative Education Work Experience\n\nSupervised work experience in a professional environment related to a specific degree program, academic level, and career objective. Acceptance into Cooperative Education Program required. Credit Restriction: Degree credit by departmental approval.",
+          "metadata": {
+            "prereqs": "[]",
+            "source": "usc_catalog_21",
+            "class_code": "ENGR-395",
+            "department": "ENGR",
+            "grading_option": "Credit/No Credit",
+            "terms_offered": "",
+            "max_units": "5.0",
+            "instruction_mode": "",
+            "title": "Cooperative Education Work Experience",
+            "units": "1.0",
+            "doc_type": "course"
+          }
+        },
+        {
+          "rank": 2,
+          "id": "ENGR-395b",
+          "distance": 0.573684,
+          "document": "ENGR-395b: Cooperative Education Work Experience\n\nSupervised work experience in a professional environment related to a specific degree program, academic level, and career objective. Acceptance into Cooperative Education Program required. Credit Restriction: Degree credit by departmental approval.",
+          "metadata": {
+            "source": "usc_catalog_21",
+            "prereqs": "[]",
+            "class_code": "ENGR-395b",
+            "department": "ENGR",
+            "instruction_mode": "",
+            "terms_offered": "",
+            "max_units": "5.0",
+            "doc_type": "course",
+            "grading_option": "In-progress & Credit/No Credit",
+            "units": "1.0",
+            "title": "Cooperative Education Work Experience"
+          }
+        },
+        {
+          "rank": 3,
+          "id": "ENGR-395a",
+          "distance": 0.579094,
+          "document": "ENGR-395a: Cooperative Education Work Experience\n\nSupervised work experience in a professional environment related to a specific degree program, academic level, and career objective. Acceptance into Cooperative Education Program required. Credit Restriction: Degree credit by departmental approval.",
+          "metadata": {
+            "max_units": "5.0",
+            "terms_offered": "",
+            "units": "1.0",
+            "title": "Cooperative Education Work Experience",
+            "prereqs": "[]",
+            "source": "usc_catalog_21",
+            "grading_option": "In-progress & Credit/No Credit",
+            "doc_type": "course",
+            "department": "ENGR",
+            "class_code": "ENGR-395a",
+            "instruction_mode": ""
+          }
+        },
+        {
+          "rank": 4,
+          "id": "MOR-565",
+          "distance": 0.937065,
+          "document": "MOR-565: Alliances and Cooperative Strategy\n\nEssential issues and problems of cooperative strategy. Recognize and evaluate collaborative opportunities to develop and assess an overall cooperative strategy. Readings, cases and group project.",
+          "metadata": {
+            "doc_type": "course",
+            "department": "MOR",
+            "terms_offered": "Sp",
+            "units": "3.0",
+            "instruction_mode": "Lecture",
+            "title": "Alliances and Cooperative Strategy",
+            "grading_option": "Letter",
+            "prereqs": "[]",
+            "max_units": "3.0",
+            "class_code": "MOR-565",
+            "source": "usc_catalog_21"
+          }
+        },
+        {
+          "rank": 5,
+          "id": "MDA-460",
+          "distance": 1.059974,
+          "document": "MDA-460: Collaborative Learning Project\n\nA project approved by a faculty committee, requiring students to collaborate on research or an original work in the literary, plastic, or performing arts.",
+          "metadata": {
+            "grading_option": "Credit/No Credit",
+            "instruction_mode": "Lecture",
+            "department": "MDA",
+            "doc_type": "course",
+            "title": "Collaborative Learning Project",
+            "class_code": "MDA-460",
+            "terms_offered": "FaSpSm",
+            "prereqs": "[]",
+            "max_units": "8.0",
+            "source": "usc_catalog_21",
+            "units": "4.0"
+          }
+        }
+      ],
+      "hits": [
+        "ENGR-395"
+      ],
+      "misses": [],
+      "passed": true
+    },
+    {
+      "id": "ret_s4_004",
+      "set": 4,
+      "set_label": "Edge cases",
+      "query": "research",
+      "filters": null,
+      "note": "Broad term shared across many courses — CSCI-499 (Directed Research) must appear. Also validates that other research-type courses (490, 495 variants) are present in broader results.",
+      "expected_output": {
+        "top_k_contains": [
+          "CSCI-499"
+        ]
+      },
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "GR-490",
+          "distance": 0.892444,
+          "document": "GR-490: Directed Research\n\nIndividual research and readings.",
+          "metadata": {
+            "grading_option": "Letter",
+            "instruction_mode": "Lecture",
+            "department": "GR",
+            "max_units": "12.0",
+            "source": "usc_catalog_21",
+            "units": "1.0",
+            "class_code": "GR-490",
+            "terms_offered": "FaSp",
+            "doc_type": "course",
+            "title": "Directed Research",
+            "prereqs": "[]"
+          }
+        },
+        {
+          "rank": 2,
+          "id": "ANST-508",
+          "distance": 0.893581,
+          "document": "ANST-508: Research: Investigative Inquiry\n\nUtilization of research, which includes the evaluation of research, problem identification within the practice setting, awareness of practice outcomes and the clinical application of research.",
+          "metadata": {
+            "doc_type": "course",
+            "units": "3.0",
+            "class_code": "ANST-508",
+            "max_units": "3.0",
+            "department": "ANST",
+            "title": "Research: Investigative Inquiry",
+            "instruction_mode": "Lecture",
+            "prereqs": "[]",
+            "grading_option": "Letter",
+            "terms_offered": "Fa",
+            "source": "usc_catalog_21"
+          }
+        },
+        {
+          "rank": 3,
+          "id": "AHIS-490",
+          "distance": 0.900803,
+          "document": "AHIS-490: Directed Research\n\nIndividual research and readings.",
+          "metadata": {
+            "terms_offered": "FaSp",
+            "title": "Directed Research",
+            "max_units": "12.0",
+            "doc_type": "course",
+            "units": "1.0",
+            "instruction_mode": "Lecture",
+            "grading_option": "Letter",
+            "prereqs": "[]",
+            "source": "usc_catalog_21",
+            "department": "AHIS",
+            "class_code": "AHIS-490"
+          }
+        },
+        {
+          "rank": 4,
+          "id": "RED-490",
+          "distance": 0.902405,
+          "document": "RED-490: Directed Research\n\nIndividual research and readings.",
+          "metadata": {
+            "title": "Directed Research",
+            "department": "RED",
+            "source": "usc_catalog_21",
+            "terms_offered": "FaSpSm",
+            "class_code": "RED-490",
+            "instruction_mode": "Lecture",
+            "grading_option": "Letter",
+            "doc_type": "course",
+            "max_units": "12.0",
+            "prereqs": "[]",
+            "units": "1.0"
+          }
+        },
+        {
+          "rank": 5,
+          "id": "EDUE-727",
+          "distance": 0.916384,
+          "document": "EDUE-727: Research Methods 2\n\nBuilding on Research Methods 1, students learn to implement a research design by conducting pilot studies to answer quantitative and qualitative research questions. Corequisite: EDUE 780a",
+          "metadata": {
+            "prereqs": "[[\"EDUE-726\"]]",
+            "grading_option": "Letter",
+            "terms_offered": "Sp",
+            "source": "usc_catalog_21",
+            "class_code": "EDUE-727",
+            "doc_type": "course",
+            "instruction_mode": "Lecture",
+            "max_units": "3.0",
+            "department": "EDUE",
+            "units": "3.0",
+            "title": "Research Methods 2"
+          }
+        }
+      ],
+      "hits": [],
+      "misses": [
+        "CSCI-499"
+      ],
+      "passed": false
+    }
+  ]
+}

@@ -1,0 +1,404 @@
+{
+  "source_file": "evals/results/_tmp_hard_req_input.json",
+  "student_name": "Alex Trojan",
+  "hard_courses": [
+    {
+      "course_code": "CSCI-310",
+      "name": "Software Engineering",
+      "units": 4.0,
+      "prereqs": [
+        "CSCI-201"
+      ],
+      "prereqs_satisfied": true,
+      "description": "Introduction to the software engineering process and software lifecycle. Covers project management, requirements, architecture, design, implementation, testing, and maintenance phase activities in team based projects."
+    },
+    {
+      "course_code": "CSCI-353",
+      "name": "Internetworking",
+      "units": 4.0,
+      "prereqs": [
+        "CSCI-201"
+      ],
+      "prereqs_satisfied": true,
+      "description": "Global Internet: design principles, layering, protocol design/analysis. Networked applications, Internet structure/architecture, Protocols for transport/congestion control, network layer/routing, link layer/MAC. Network security. EE 450"
+    },
+    {
+      "course_code": "MATH-125",
+      "name": "Calculus I",
+      "units": 4.0,
+      "prereqs": [
+        "MATH-108"
+      ],
+      "prereqs_satisfied": false,
+      "description": "Limits; continuity, derivatives and applications; antiderivatives; the fundamental theorem of calculus; exponential and logarithmic functions. Satisfies New General Education in Category F: Quantitative Reasoning"
+    },
+    {
+      "course_code": "EE-109",
+      "name": "Introduction to Embedded Systems",
+      "units": 4.0,
+      "prereqs": [
+        [
+          "EE-155",
+          "CSCI-102",
+          "CSCI-113"
+        ]
+      ],
+      "prereqs_satisfied": true,
+      "description": "Information representations, embedded programming, digital and serial I/O, analog-to-digital conversion, and interrupt mechanisms. Elementary analog, logic and state-machine design."
+    },
+    {
+      "course_code": "WRIT-340",
+      "name": "Advanced Writing",
+      "units": 4.0,
+      "prereqs": [
+        [
+          "WRIT-130",
+          "WRIT-150"
+        ]
+      ],
+      "prereqs_satisfied": true,
+      "description": "Instruction in writing for various audiences on topics related to a student’s professional or disciplinary interests, with some emphasis on issues of broad public concern."
+    },
+    {
+      "course_code": "CSCI-401",
+      "name": "Capstone: Design and Construction of Large Software Systems",
+      "units": 4.0,
+      "prereqs": [
+        "CSCI-270",
+        "CSCI-310"
+      ],
+      "prereqs_satisfied": false,
+      "description": "Group project with an outside stakeholder to develop real-world software solutions to large-scale problems. Topics include software engineering, professional preparation, and recent computer science research."
+    }
+  ],
+  "elective_courses": [
+    {
+      "course_code": "CSCI-420",
+      "name": "Computer Graphics",
+      "units": 4.0,
+      "prereqs": [
+        "CSCI-104",
+        [
+          "MATH-225",
+          "EE-141"
+        ],
+        [
+          "MATH-126",
+          "MATH-127",
+          "MATH-129"
+        ]
+      ],
+      "prereqs_satisfied": true,
+      "description": "Computer graphics, OpenGL, 2D and 3D transformations, Bézier splines, computer animation, rendering including ray tracing, shading and lighting, artistic rendering, virtual reality, visualization."
+    },
+    {
+      "course_code": "CSCI-423",
+      "name": "Native Console Multiplayer Game Development",
+      "units": 4.0,
+      "prereqs": [
+        [
+          "CSCI-522",
+          "TAC-380"
+        ]
+      ],
+      "prereqs_satisfied": false,
+      "description": "Implementation of AAA style multiplayer game running on consoles and DX11. Console development in native C++, console SDKs, engine components, gameplay, networking, data prediction/replication."
+    },
+    {
+      "course_code": "CSCI-426",
+      "name": "Game Prototyping",
+      "units": 4.0,
+      "prereqs": [],
+      "prereqs_satisfied": true,
+      "description": "Developing games or technology based on current and relevant special topics."
+    },
+    {
+      "course_code": "CSCI-430",
+      "name": "Computer and Network Security",
+      "units": 4.0,
+      "prereqs": [
+        "CSCI-104"
+      ],
+      "prereqs_satisfied": true,
+      "description": "A broad overview of security threats and defenses, security systems and functionalities. Includes homeworks and in-class exercises to provide practical experience working with such systems."
+    },
+    {
+      "course_code": "CSCI-445",
+      "name": "Foundations of Robotics",
+      "units": 4.0,
+      "prereqs": [
+        [
+          "CSCI-104",
+          "CSCI-114",
+          "EE-355"
+        ]
+      ],
+      "prereqs_satisfied": true,
+      "description": "Designing and programming mobile robots; sensors, effectors, basic control theory, control architectures, planning, some advanced topics, illustrations of state-of-the-art. Weekly robot programming labs; final project. Crosslisted as EE 445"
+    },
+    {
+      "course_code": "CSCI-461",
+      "name": "Artificial Intelligence for Sustainable Development",
+      "units": 4.0,
+      "prereqs": [
+        [
+          "CSCI-104",
+          "CSCI-114"
+        ],
+        "CSCI-170"
+      ],
+      "prereqs_satisfied": true,
+      "description": "Hands-on AI: data mining, machine learning, optimization and fairness in the context of applications with environmental and societal benefit."
+    },
+    {
+      "course_code": "CSCI-467",
+      "name": "Foundations of Machine Learning",
+      "units": 4.0,
+      "prereqs": [
+        "CSCI-170",
+        [
+          "CSCI-104",
+          "CSCI-114"
+        ],
+        [
+          "MATH-225",
+          "EE-141"
+        ],
+        [
+          "EE-364",
+          "MATH-407",
+          "BUAD-310",
+          "ISE-225"
+        ]
+      ],
+      "prereqs_satisfied": true,
+      "description": "Algorithms for learning behavior from data, including both mathematical underpinnings and practical techniques. Covers supervised learning, deep learning, unsupervised learning and reinforcement learning. EE 460"
+    },
+    {
+      "course_code": "CSCI-475",
+      "name": "Theory of Computation",
+      "units": 4.0,
+      "prereqs": [
+        "CSCI-270"
+      ],
+      "prereqs_satisfied": true,
+      "description": "History of the theory of computing, foundational theorems and theoretical frameworks of computer science, solvable and unsolvable problems."
+    },
+    {
+      "course_code": "CSCI-476",
+      "name": "Cryptography: Secure Communication and Computation",
+      "units": 4.0,
+      "prereqs": [
+        "CSCI-270"
+      ],
+      "prereqs_satisfied": true,
+      "description": "Introduction to modern Cryptography; mathematical/algorithmic studies of methods for protecting information in computer and communication systems: Public-Key Cryptosystems, zero-knowledge proofs, data privacy."
+    },
+    {
+      "course_code": "CSCI-485",
+      "name": "File and Database Management",
+      "units": 4.0,
+      "prereqs": [
+        "CSCI-170",
+        "CSCI-201"
+      ],
+      "prereqs_satisfied": true,
+      "description": "File input/output techniques, basic methods for file organization, file managers, principles of databases, conceptual data models, and query languages."
+    },
+    {
+      "course_code": "CSCI-490",
+      "name": "Directed Research",
+      "units": 1.0,
+      "prereqs": [],
+      "prereqs_satisfied": true,
+      "description": "Individual research and readings. Credit Restriction: Not available for graduate credit."
+    },
+    {
+      "course_code": "CSCI-499",
+      "name": "Special Topics",
+      "units": 2.0,
+      "prereqs": [],
+      "prereqs_satisfied": true,
+      "description": "Selected topics in computer science."
+    },
+    {
+      "course_code": "EE-354",
+      "name": "Introduction to Digital Circuits",
+      "units": 4.0,
+      "prereqs": [
+        "EE-109"
+      ],
+      "prereqs_satisfied": false,
+      "description": "Digital system design and implementation; synchronous design of datapath and control; schematic/Verilog-based design, simulation, and implementation in Field Programmable Gate Arrays; timing analysis; semester-end project."
+    },
+    {
+      "course_code": "EE-451",
+      "name": "Parallel and Distributed Computation",
+      "units": 4.0,
+      "prereqs": [
+        [
+          "EE-355",
+          "CSCI-104",
+          "CSCI-114"
+        ]
+      ],
+      "prereqs_satisfied": true,
+      "description": "Introduction to parallel programming techniques, models and optimization strategies; Application mapping to multi-core, accelerator, GPU and cloud platforms; High Performance Computing and Data Science applications. Crosslisted as CSCI 452"
+    },
+    {
+      "course_code": "EE-454",
+      "name": "Introduction to System-on-Chip",
+      "units": 4.0,
+      "prereqs": [
+        "EE-354"
+      ],
+      "prereqs_satisfied": false,
+      "description": "Design flow, tools, and issues related to System/Network-on-Chip (S/Noc) design for real-time embedded systems with applications in mobile, cloud, aerospace, and medical electronics. Crosslisted as CSCI 454"
+    },
+    {
+      "course_code": "EE-457",
+      "name": "Computer Systems Organization",
+      "units": 4.0,
+      "prereqs": [
+        "EE-354"
+      ],
+      "prereqs_satisfied": false,
+      "description": "Register Transfer level machine organization; performance; arithmetic; pipelined processors; exceptions, out-of-order and speculative execution, cache, virtual memory, multi-core multi-threaded processors, cache coherence. Crosslisted as CSCI 457"
+    },
+    {
+      "course_code": "EE-459",
+      "name": "Embedded Systems Design Laboratory",
+      "units": 4.0,
+      "prereqs": [
+        "EE-354"
+      ],
+      "prereqs_satisfied": false,
+      "description": "Specification, design, implementation, testing and documentation of a digital system project using embedded processors, programmable logic, analog I/O interfaces and application specific hardware. Capstone design experience. Credit Restriction: Not available for graduate credit"
+    },
+    {
+      "course_code": "EE-477",
+      "name": "MOS VLSI Circuit Design",
+      "units": 4.0,
+      "prereqs": [
+        [
+          "EE-338",
+          "EE-354"
+        ]
+      ],
+      "prereqs_satisfied": false,
+      "description": "Analysis and design of digital MOS VLSI circuits including area, delay and power minimization. Laboratory assignments including design, layout, extraction, simulation and automatic synthesis."
+    },
+    {
+      "course_code": "EE-490",
+      "name": "Directed Research",
+      "units": 1.0,
+      "prereqs": [],
+      "prereqs_satisfied": true,
+      "description": "Individual research and readings. Credit Restriction: Not available for graduate credit."
+    },
+    {
+      "course_code": "EE-499",
+      "name": "Special Topics",
+      "units": 2.0,
+      "prereqs": [],
+      "prereqs_satisfied": true,
+      "description": "Course content will be selected each semester from current developments in the field of electrical engineering."
+    },
+    {
+      "course_code": "MATH-458",
+      "name": "Numerical Methods",
+      "units": 4.0,
+      "prereqs": [
+        [
+          "MATH-225",
+          "MATH-235",
+          "MATH-245"
+        ]
+      ],
+      "prereqs_satisfied": true,
+      "description": "Rounding errors in digital computation; solution of linear algebraic systems; Newton’s method for nonlinear systems; matrix eigenvalues; polynomial approximation; numerical integration; numerical solution of ordinary differential equations. Crosslisted as CSCI 458"
+    },
+    {
+      "course_code": "TAC-368",
+      "name": "Cross-Platform App Development",
+      "units": 4.0,
+      "prereqs": [
+        [
+          "TAC-265",
+          "ITP-265",
+          "CSCI-103"
+        ]
+      ],
+      "prereqs_satisfied": true,
+      "description": "Programming applications with dynamic graphical user interfaces. Topics include events, controls, resources, data bindings, styles and user experience. Crosslisted as CSCI 368"
+    },
+    {
+      "course_code": "TAC-380",
+      "name": "Video Game Programming",
+      "units": 4.0,
+      "prereqs": [
+        [
+          "CSCI-104",
+          "TAC-365",
+          "ITP-365"
+        ]
+      ],
+      "prereqs_satisfied": true,
+      "description": "Underlying concepts and principles required for programming video games (topics include vectors, transformations, 3-D math, geometric primitives, matrices). Crosslisted as CSCI 380"
+    },
+    {
+      "course_code": "TAC-435",
+      "name": "Professional C++",
+      "units": 4.0,
+      "prereqs": [
+        [
+          "CSCI-104",
+          "TAC-365",
+          "ITP-365"
+        ]
+      ],
+      "prereqs_satisfied": true,
+      "description": "Applications of advanced concepts in C++ including lambda expressions, templates, secure coding, parallel programming, writing performant code, CMake and continuous integration. Crosslisted as CSCI 435"
+    },
+    {
+      "course_code": "TAC-439",
+      "name": "Compiler Development",
+      "units": 4.0,
+      "prereqs": [
+        [
+          "TAC-365",
+          "ITP-365",
+          "CSCI-104"
+        ]
+      ],
+      "prereqs_satisfied": true,
+      "description": "Practical applications of techniques used to develop a programming language compiler. Crosslisted as CSCI 439"
+    },
+    {
+      "course_code": "TAC-485",
+      "name": "Programming Game Engines",
+      "units": 4.0,
+      "prereqs": [
+        [
+          "TAC-380",
+          "ITP-380"
+        ]
+      ],
+      "prereqs_satisfied": false,
+      "description": "Techniques for building the core components of a game engine; 2-D/3-D graphics, collision detection, artificial intelligence algorithms, shading, programming input devices. Crosslisted as CSCI 487"
+    }
+  ],
+  "other_must_reqs": {
+    "units_total_required": 128.0,
+    "units_still_needed": 18.0,
+    "upper_division_required": 32.0,
+    "upper_division_still_needed": 4.0,
+    "residency_satisfied": true,
+    "writing_requirement_satisfied": false,
+    "ge_seminar_satisfied": true
+  },
+  "ge_placeholders_remaining": [
+    "GE-C",
+    "GE-G"
+  ]
+}

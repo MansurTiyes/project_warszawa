@@ -1,0 +1,816 @@
+{
+  "student_state": {
+    "name": "Alex Trojan",
+    "class_level": "Junior",
+    "entrance_term": "Fall 2024",
+    "expected_graduation": "Spring 2028",
+    "major": "COMPUTER SCIENCE",
+    "degree": "BACHELOR OF SCIENCE",
+    "minor": null,
+    "pdp": false,
+    "pdp_degree": null,
+    "pdp_reflected_in_stars": false,
+    "units_earned": 74.0,
+    "units_in_process": 36.0,
+    "units_needed": 18.0,
+    "units_transfer": 20.0,
+    "residency_units_earned": 54.0,
+    "residency_units_in_process": 10.0,
+    "residency_satisfied": true,
+    "upper_division_units_earned": 8.0,
+    "upper_division_units_in_process": 20.0,
+    "upper_division_units_needed": 4.0,
+    "remaining_semesters_estimate": 4,
+    "free_elective_units": 2.0,
+    "ge_completion": {
+      "GE-A": {
+        "status": "met",
+        "courses_taken": [
+          "GESM-110"
+        ],
+        "courses_needed": 0
+      },
+      "GE-B": {
+        "status": "in_progress",
+        "courses_taken": [
+          "REL-125",
+          "EALC-145"
+        ],
+        "courses_needed": 0
+      },
+      "GE-C": {
+        "status": "in_progress",
+        "courses_taken": [
+          "SOCI-235"
+        ],
+        "courses_needed": 1
+      },
+      "GE-D": {
+        "status": "in_progress",
+        "courses_taken": [
+          "GEOL-126"
+        ],
+        "courses_needed": 0
+      },
+      "GE-E": {
+        "status": "met",
+        "courses_taken": [
+          "PHYSICS"
+        ],
+        "courses_needed": 0
+      },
+      "GE-F": {
+        "status": "met",
+        "courses_taken": [
+          "MATH/ANALYSIS"
+        ],
+        "courses_needed": 0
+      },
+      "GE-G": {
+        "status": "unmet",
+        "courses_taken": [],
+        "courses_needed": 1
+      },
+      "GE-H": {
+        "status": "met",
+        "courses_taken": [
+          "REL-125"
+        ],
+        "courses_needed": 0
+      }
+    },
+    "major_requirements_status": {
+      "core_courses": {
+        "status": "met",
+        "courses_taken": [
+          "CSCI-103",
+          "CSCI-170",
+          "CSCI-104",
+          "CSCI-201"
+        ],
+        "units_earned": 0.0,
+        "units_needed": 0.0,
+        "courses_needed": 0
+      },
+      "additional_required": {
+        "status": "in_progress",
+        "courses_taken": [
+          "CSCI-270",
+          "CSCI-356",
+          "CSCI-350",
+          "CSCI-360"
+        ],
+        "units_earned": 0.0,
+        "units_needed": 0.0,
+        "courses_needed": 3
+      },
+      "capstone": {
+        "status": "unmet",
+        "courses_taken": [],
+        "units_earned": 0.0,
+        "units_needed": 0.0,
+        "courses_needed": 1
+      },
+      "technical_electives": {
+        "status": "in_progress",
+        "courses_taken": [
+          "ITP-342",
+          "ENGR-395A"
+        ],
+        "units_earned": 4.0,
+        "units_needed": 6.0,
+        "courses_needed": 0
+      },
+      "engr102": {
+        "status": "met",
+        "courses_taken": [
+          "ENGR-102"
+        ],
+        "units_earned": 0.0,
+        "units_needed": 0.0,
+        "courses_needed": 0
+      },
+      "math": {
+        "status": "in_progress",
+        "courses_taken": [
+          "MATH-126",
+          "MATH-226",
+          "MATH-225",
+          "MATH-407"
+        ],
+        "units_earned": 0.0,
+        "units_needed": 0.0,
+        "courses_needed": 0
+      },
+      "science": {
+        "status": "met",
+        "courses_taken": [
+          "PHYSICS"
+        ],
+        "units_earned": 0.0,
+        "units_needed": 0.0,
+        "courses_needed": 0
+      }
+    },
+    "writing_requirement_satisfied": false,
+    "ge_seminar_satisfied": true,
+    "courses_taken": [
+      {
+        "semester_label": "Fall 2024",
+        "course_code": "CSCI-103",
+        "units": 4.0,
+        "name": "Introduction to Programming",
+        "course_flags": [
+          "L"
+        ]
+      },
+      {
+        "semester_label": "Fall 2024",
+        "course_code": "CSCI-170",
+        "units": 4.0,
+        "name": "Discrete Methods in Computer",
+        "course_flags": []
+      },
+      {
+        "semester_label": "Fall 2024",
+        "course_code": "ENGR-102",
+        "units": 2.0,
+        "name": "Engineering Freshman Academy",
+        "course_flags": []
+      },
+      {
+        "semester_label": "Fall 2024",
+        "course_code": "GESM-110",
+        "units": 4.0,
+        "name": "Seminar in the Arts",
+        "course_flags": [
+          "G"
+        ]
+      },
+      {
+        "semester_label": "Fall 2024",
+        "course_code": "MATH-126",
+        "units": 4.0,
+        "name": "Calculus II",
+        "course_flags": [
+          "G"
+        ]
+      },
+      {
+        "semester_label": "Spring 2025",
+        "course_code": "CSCI-104",
+        "units": 4.0,
+        "name": "Data Structures and Object Or",
+        "course_flags": [
+          "L"
+        ]
+      },
+      {
+        "semester_label": "Spring 2025",
+        "course_code": "ITP-342",
+        "units": 4.0,
+        "name": "iOS App Development",
+        "course_flags": []
+      },
+      {
+        "semester_label": "Spring 2025",
+        "course_code": "MATH-226",
+        "units": 4.0,
+        "name": "Calculus III",
+        "course_flags": [
+          "G"
+        ]
+      },
+      {
+        "semester_label": "Spring 2025",
+        "course_code": "MPGU-120A",
+        "units": 2.0,
+        "name": "Beginning Pop/Rock Guitar",
+        "course_flags": []
+      },
+      {
+        "semester_label": "Spring 2025",
+        "course_code": "WRIT-150",
+        "units": 4.0,
+        "name": "Writing and Critical Reasonin",
+        "course_flags": []
+      },
+      {
+        "semester_label": "Fall 2025",
+        "course_code": "CSCI-201",
+        "units": 4.0,
+        "name": "Principles of Software Develo",
+        "course_flags": []
+      },
+      {
+        "semester_label": "Fall 2025",
+        "course_code": "CSCI-270",
+        "units": 4.0,
+        "name": "Introduction to Algorithms an",
+        "course_flags": []
+      },
+      {
+        "semester_label": "Fall 2025",
+        "course_code": "CSCI-356",
+        "units": 4.0,
+        "name": "Computer Systems",
+        "course_flags": []
+      },
+      {
+        "semester_label": "Fall 2025",
+        "course_code": "REL-125",
+        "units": 4.0,
+        "name": "Introduction to Christianity:",
+        "course_flags": [
+          "G",
+          "P"
+        ]
+      },
+      {
+        "semester_label": "Fall 2025",
+        "course_code": "TAC-116",
+        "units": 2.0,
+        "name": "Accelerated Programming in Py",
+        "course_flags": []
+      },
+      {
+        "semester_label": "Spring 2026",
+        "course_code": "CSCI-350",
+        "units": 4.0,
+        "name": "Fundamentals of Operating Sys",
+        "course_flags": [
+          ">IP"
+        ]
+      },
+      {
+        "semester_label": "Spring 2026",
+        "course_code": "ENGR-395A",
+        "units": 2.0,
+        "name": "Cooperative Education Work Ex",
+        "course_flags": [
+          "X",
+          ">IP"
+        ]
+      },
+      {
+        "semester_label": "Spring 2026",
+        "course_code": "GEOL-126",
+        "units": 4.0,
+        "name": "The History of Life on Earth:",
+        "course_flags": [
+          "L",
+          "G",
+          ">IP"
+        ]
+      },
+      {
+        "semester_label": "Spring 2026",
+        "course_code": "MATH-225",
+        "units": 4.0,
+        "name": "Linear Algebra and Linear Dif",
+        "course_flags": [
+          ">IP"
+        ]
+      },
+      {
+        "semester_label": "Spring 2026",
+        "course_code": "TAC-499",
+        "units": 4.0,
+        "name": "Special Topics",
+        "course_flags": [
+          ">IP"
+        ]
+      },
+      {
+        "semester_label": "Fall 2026",
+        "course_code": "CSCI-360",
+        "units": 4.0,
+        "name": "Artificial Intelligence: Prin",
+        "course_flags": [
+          ">IP"
+        ]
+      },
+      {
+        "semester_label": "Fall 2026",
+        "course_code": "EALC-145",
+        "units": 4.0,
+        "name": "Introduction to Chinese Cultu",
+        "course_flags": [
+          "G",
+          ">IP"
+        ]
+      },
+      {
+        "semester_label": "Fall 2026",
+        "course_code": "MATH-407",
+        "units": 4.0,
+        "name": "Probability Theory",
+        "course_flags": [
+          ">IP"
+        ]
+      },
+      {
+        "semester_label": "Fall 2026",
+        "course_code": "SOCI-235",
+        "units": 4.0,
+        "name": "Migration, Law and Society",
+        "course_flags": [
+          "G",
+          ">IP"
+        ]
+      },
+      {
+        "semester_label": "Fall 2026",
+        "course_code": "THTR-318",
+        "units": 2.0,
+        "name": "Creating the Hit Podcast",
+        "course_flags": [
+          ">IP"
+        ]
+      },
+      {
+        "semester_label": "Spring 2024",
+        "course_code": "PHYSICS",
+        "units": 6.0,
+        "name": "IBTEST: PHYSICS",
+        "course_flags": []
+      }
+    ],
+    "current_registration": [
+      "CSCI-350",
+      "ENGR-395A",
+      "GEOL-126",
+      "MATH-225",
+      "TAC-499",
+      "CSCI-360",
+      "EALC-145",
+      "MATH-407",
+      "SOCI-235",
+      "THTR-318"
+    ],
+    "exception_codes": [
+      {
+        "code": "CW",
+        "course_code": "PHYS-151",
+        "note": "COURSE WAIVED PHYS151"
+      },
+      {
+        "code": "RE",
+        "course_code": "PHYS-152",
+        "note": "SUB PHYSICS FOR PHYS152"
+      },
+      {
+        "code": "CW",
+        "course_code": "CSCI-102",
+        "note": "COURSE WAIVED CSCI102"
+      },
+      {
+        "code": "RA",
+        "course_code": "ITP-342",
+        "note": "ADDED COURSE ITP-342"
+      }
+    ]
+  },
+  "requirements_map": {
+    "major": "Computer Science",
+    "degree": "Bachelor of Science",
+    "program_code": "365",
+    "catalog_year": "20243",
+    "minor": null,
+    "requirement_groups": [
+      {
+        "label": "COMPOSITION/WRITING REQUIREMENT",
+        "completion_measure": "subgroups",
+        "required_count": 2.0,
+        "notes": [
+          "COURSE WORK MUST BE TAKEN FOR A LETTER GRADE"
+        ],
+        "sub_requirements": [
+          {
+            "index": 1,
+            "label": "FIRST YEAR WRITING REQUIREMENT",
+            "completion_type": "fixed",
+            "required_courses": [
+              "WRIT-150"
+            ],
+            "select_from": [],
+            "select_from_is_category": false,
+            "select_from_category": null,
+            "courses_required": 1,
+            "units_required": 0.0,
+            "grade_minimum": null,
+            "notes": []
+          },
+          {
+            "index": 2,
+            "label": "UPPER DIVISION WRITING REQUIREMENT",
+            "completion_type": "fixed",
+            "required_courses": [
+              "WRIT-340"
+            ],
+            "select_from": [],
+            "select_from_is_category": false,
+            "select_from_category": null,
+            "courses_required": 1,
+            "units_required": 0.0,
+            "grade_minimum": null,
+            "notes": [
+              "must be taken at USC"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "GENERAL EDUCATION CORE LITERACIES REQUIREMENTS",
+        "completion_measure": "courses",
+        "required_count": 8.0,
+        "notes": [
+          "FIRST YEAR FRESHMAN AT USC MUST TAKE ONE GE SEMINAR (GESM) AS ONE OF THE EIGHT COURSES.",
+          "TRANSFER STUDENTS AND FRESHMAN ADMITTED FOR THE SPRING MUST COMPLETE AT LEAST TWO OF THEIR EIGHT CORE LITERACY COURSES AT USC, WITH A MINIMUM OF TWO COURSES OFFERED IN DORNSIFE COLLEGE DEPARTMENTS.",
+          "NO MORE THAN ONE COURSE TAKEN P/NP (AT USC OR IN TRANSFER) MAY APPLY TO THE CORE LITERACIES."
+        ],
+        "sub_requirements": [
+          {
+            "index": 1,
+            "label": "CATEGORY A: THE ARTS",
+            "completion_type": "select_category",
+            "required_courses": [],
+            "select_from": [],
+            "select_from_is_category": true,
+            "select_from_category": "GE-A",
+            "courses_required": 1,
+            "units_required": 0.0,
+            "grade_minimum": null,
+            "notes": []
+          },
+          {
+            "index": 2,
+            "label": "CATEGORY B: HUMANISTIC INQUIRY",
+            "completion_type": "select_category",
+            "required_courses": [],
+            "select_from": [],
+            "select_from_is_category": true,
+            "select_from_category": "GE-B",
+            "courses_required": 1,
+            "units_required": 0.0,
+            "grade_minimum": null,
+            "notes": []
+          },
+          {
+            "index": 3,
+            "label": "CATEGORY C: SOCIAL ANALYSIS",
+            "completion_type": "select_category",
+            "required_courses": [],
+            "select_from": [],
+            "select_from_is_category": true,
+            "select_from_category": "GE-C",
+            "courses_required": 2,
+            "units_required": 0.0,
+            "grade_minimum": null,
+            "notes": []
+          },
+          {
+            "index": 4,
+            "label": "CATEGORY D: LIFE SCIENCES",
+            "completion_type": "select_category",
+            "required_courses": [],
+            "select_from": [],
+            "select_from_is_category": true,
+            "select_from_category": "GE-D",
+            "courses_required": 1,
+            "units_required": 0.0,
+            "grade_minimum": null,
+            "notes": []
+          },
+          {
+            "index": 5,
+            "label": "CATEGORY E: PHYSICAL SCIENCES",
+            "completion_type": "select_category",
+            "required_courses": [],
+            "select_from": [],
+            "select_from_is_category": true,
+            "select_from_category": "GE-E",
+            "courses_required": 1,
+            "units_required": 0.0,
+            "grade_minimum": null,
+            "notes": []
+          },
+          {
+            "index": 6,
+            "label": "CATEGORY F: QUANTITATIVE REASONING",
+            "completion_type": "select_category",
+            "required_courses": [],
+            "select_from": [],
+            "select_from_is_category": true,
+            "select_from_category": "GE-F",
+            "courses_required": 1,
+            "units_required": 0.0,
+            "grade_minimum": null,
+            "notes": []
+          },
+          {
+            "index": 7,
+            "label": "FIRST YEAR GE SEMINAR REQUIREMENT",
+            "completion_type": "fixed",
+            "required_courses": [],
+            "select_from": [],
+            "select_from_is_category": false,
+            "select_from_category": null,
+            "courses_required": 1,
+            "units_required": 0.0,
+            "grade_minimum": null,
+            "notes": [
+              "FRESHMAN REQUIREMENT"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "GENERAL EDUCATION GLOBAL PERSPECTIVES REQUIREMENT",
+        "completion_measure": "subgroups",
+        "required_count": 2.0,
+        "notes": [
+          "A COURSE MAY APPLY TO BOTH A CORE LITERACY REQUIREMENT AND A GLOBAL PERSPECTIVES REQUIREMENT"
+        ],
+        "sub_requirements": [
+          {
+            "index": 1,
+            "label": "CATEGORY G - GLOBAL PERSPECTIVES I",
+            "completion_type": "select_category",
+            "required_courses": [],
+            "select_from": [],
+            "select_from_is_category": true,
+            "select_from_category": "GE-G",
+            "courses_required": 1,
+            "units_required": 0.0,
+            "grade_minimum": null,
+            "notes": []
+          },
+          {
+            "index": 2,
+            "label": "CATEGORY H - GLOBAL PERSPECTIVES II",
+            "completion_type": "select_category",
+            "required_courses": [],
+            "select_from": [],
+            "select_from_is_category": true,
+            "select_from_category": "GE-H",
+            "courses_required": 1,
+            "units_required": 0.0,
+            "grade_minimum": null,
+            "notes": []
+          }
+        ]
+      },
+      {
+        "label": "COMPUTER SCIENCE MATH REQUIREMENT",
+        "completion_measure": "subgroups",
+        "required_count": 3.0,
+        "notes": [],
+        "sub_requirements": [
+          {
+            "index": 1,
+            "label": "MATH126 REQUIREMENT",
+            "completion_type": "fixed",
+            "required_courses": [
+              "MATH-126"
+            ],
+            "select_from": [],
+            "select_from_is_category": false,
+            "select_from_category": null,
+            "courses_required": 1,
+            "units_required": 0.0,
+            "grade_minimum": null,
+            "notes": []
+          },
+          {
+            "index": 2,
+            "label": "MATH226 REQUIREMENT",
+            "completion_type": "fixed",
+            "required_courses": [
+              "MATH-226"
+            ],
+            "select_from": [],
+            "select_from_is_category": false,
+            "select_from_category": null,
+            "courses_required": 1,
+            "units_required": 0.0,
+            "grade_minimum": null,
+            "notes": []
+          },
+          {
+            "index": 3,
+            "label": null,
+            "completion_type": "select_n",
+            "required_courses": [],
+            "select_from": [
+              "MATH-225",
+              "MATH-407"
+            ],
+            "select_from_is_category": false,
+            "select_from_category": null,
+            "courses_required": 2,
+            "units_required": 0.0,
+            "grade_minimum": null,
+            "notes": []
+          }
+        ]
+      },
+      {
+        "label": "BASIC SCIENCE MAJOR REQUIREMENTS FOR COMPUTER SCIENCE",
+        "completion_measure": "subgroups",
+        "required_count": 1.0,
+        "notes": [
+          "COMPLETE ONE OF THE FOLLOWING SCIENCE OPTIONS"
+        ],
+        "sub_requirements": [
+          {
+            "index": 1,
+            "label": "SCIENCE REQUIREMENT FOR COMPUTER SCIENCE MAJORS (PHYS)",
+            "completion_type": "fixed",
+            "required_courses": [
+              "PHYS-151",
+              "PHYS-152"
+            ],
+            "select_from": [],
+            "select_from_is_category": false,
+            "select_from_category": null,
+            "courses_required": 2,
+            "units_required": 0.0,
+            "grade_minimum": null,
+            "notes": []
+          }
+        ]
+      },
+      {
+        "label": "MAJOR REQUIREMENTS FOR COMPUTER SCIENCE",
+        "completion_measure": "subgroups",
+        "required_count": 5.0,
+        "notes": [],
+        "sub_requirements": [
+          {
+            "index": 1,
+            "label": "COMPLETE THE FOLLOWING CORE COURSES",
+            "completion_type": "fixed",
+            "required_courses": [
+              "CSCI-102",
+              "CSCI-103",
+              "CSCI-104",
+              "CSCI-170",
+              "CSCI-201"
+            ],
+            "select_from": [],
+            "select_from_is_category": false,
+            "select_from_category": null,
+            "courses_required": 5,
+            "units_required": 0.0,
+            "grade_minimum": "C",
+            "notes": [
+              "A GRADE OF 'C' OR BETTER IS REQUIRED"
+            ]
+          },
+          {
+            "index": 2,
+            "label": "ADDITIONAL REQUIRED COURSE WORK",
+            "completion_type": "select_n",
+            "required_courses": [
+              "CSCI-270",
+              "CSCI-356",
+              "CSCI-350",
+              "CSCI-360"
+            ],
+            "select_from": [
+              "CSCI-310",
+              "CSCI-353",
+              "EE-109"
+            ],
+            "select_from_is_category": false,
+            "select_from_category": null,
+            "courses_required": 7,
+            "units_required": 0.0,
+            "grade_minimum": null,
+            "notes": []
+          },
+          {
+            "index": 3,
+            "label": "CAPSTONE REQUIREMENT",
+            "completion_type": "select_n",
+            "required_courses": [],
+            "select_from": [
+              "CSCI-401",
+              "CSCI-404"
+            ],
+            "select_from_is_category": false,
+            "select_from_category": null,
+            "courses_required": 1,
+            "units_required": 0.0,
+            "grade_minimum": null,
+            "notes": []
+          },
+          {
+            "index": 4,
+            "label": "TECHNICAL ELECTIVE REQUIREMENT",
+            "completion_type": "select_units",
+            "required_courses": [],
+            "select_from": [
+              "CSCI-401",
+              "CSCI-404",
+              "CSCI-420",
+              "CSCI-423",
+              "CSCI-426",
+              "CSCI-430",
+              "CSCI-445",
+              "CSCI-461",
+              "CSCI-467",
+              "CSCI-475",
+              "CSCI-476",
+              "CSCI-485",
+              "CSCI-490",
+              "CSCI-491A",
+              "CSCI-491B",
+              "CSCI-499",
+              "EE-354",
+              "EE-451",
+              "EE-454",
+              "EE-457",
+              "EE-459",
+              "EE-477",
+              "EE-490",
+              "EE-499",
+              "ENGR-395B",
+              "ENGR-395C",
+              "MATH-458",
+              "TAC-368",
+              "TAC-380",
+              "TAC-435",
+              "TAC-439",
+              "TAC-485"
+            ],
+            "select_from_is_category": false,
+            "select_from_category": null,
+            "courses_required": 0,
+            "units_required": 12.0,
+            "grade_minimum": null,
+            "notes": [
+              "OR CHOSEN IN CONSULTATION WITH YOUR ACADEMIC ADVISOR"
+            ]
+          },
+          {
+            "index": 5,
+            "label": "COMPLETE ENGR102",
+            "completion_type": "fixed",
+            "required_courses": [
+              "ENGR-102"
+            ],
+            "select_from": [],
+            "select_from_is_category": false,
+            "select_from_category": null,
+            "courses_required": 1,
+            "units_required": 0.0,
+            "grade_minimum": null,
+            "notes": []
+          }
+        ]
+      }
+    ]
+  }
+}

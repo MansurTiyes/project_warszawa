@@ -26,7 +26,7 @@ CHROMA_DB_PATH=./data/chroma_db
 MAX_PIPELINE_ITERATIONS=3
 ```
 
-The ChromaDB course catalog is committed under `backend/data/chroma_db/`. To rebuild it from scratch (scrapes `catalogue.usc.edu`):
+The ChromaDB course catalog is **not committed** (~53 MB). Build it once before first run — this scrapes `catalogue.usc.edu`:
 
 ```sh
 .venv/bin/python -m services.chromadb_client
@@ -47,7 +47,9 @@ echo 'VITE_API_URL=http://localhost:8000' > .env.local
 npm run dev
 ```
 
-Open http://localhost:3000 — upload `backend/evals/fixtures/stars.pdf` to walk the demo flow end-to-end.
+Open http://localhost:3000 — upload `backend/evals/fixtures/sample_stars.pdf` to walk the demo flow end-to-end.
+
+That sample is a **de-identified** STARS report: name, student ID, mailing address, GPA, and letter grades are all replaced with synthetic values. The real transcript it was derived from is not in this repository.
 
 ### Tests
 
@@ -60,7 +62,7 @@ cd frontend && npx tsc -b && npm run build                 # type-check + produc
 
 ## Evaluation Report
 
-Five eval suites cover the system end-to-end. Frozen artifacts live under `backend/evals/results/` runners under `backend/evals/runners/`.
+Five eval suites cover the system end-to-end. Frozen result artifacts live under `backend/evals/results/`, runners under `backend/evals/runners/`.
 
 ### 1. Validator hard-check unit tests — 66 / 66 pass
 
@@ -91,7 +93,7 @@ Six intent categories: catalog tools called, prompt injection refused, USC polic
 
 ### 3. STARS parser — 29 fields, 7 mismatch clusters (`student_state_20260501_201557.json`)
 
-Run against `evals/fixtures/stars.pdf` (Mansur Tiyes, Junior, Spring 2028 graduation). The structural majority of `StudentState` matches the expected fixture exactly. Disagreements cluster into three categories:
+Run against a real STARS report (Junior standing, Spring 2028 graduation); the committed `evals/fixtures/sample_stars.pdf` is the de-identified equivalent. The structural majority of `StudentState` matches the expected fixture exactly. Disagreements cluster into three categories:
 
 - **Course-name truncation.** STARS pads display names to 30 chars in the rendered PDF: `"Introduction to Algorithms an"` vs canonical `"Introduction to Algorithms"`. Cosmetic — downstream code keys on `course_code`, never the display name.
 - **Transfer-credit code normalization.** `PHYSICS_TR` vs `PHYSICS`, `MATH_TR` vs `MATH/ANALYSIS` in GE-E/GE-F satisfaction. STARS encodes IB transfer credits with custom tokens; the parser standardizes them.

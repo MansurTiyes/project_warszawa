@@ -1,0 +1,578 @@
+{
+  "source_stars": "/Users/mansurtiyes/projects/project_warszawa/backend/evals/results/stars_parser_graph_20260503_025450.json",
+  "source_hard": "/Users/mansurtiyes/projects/project_warszawa/backend/evals/results/hard_requirements_20260503_065058.json",
+  "student_name": "Alex Trojan",
+  "career_goal": "backend engineering",
+  "scored_electives": [
+    {
+      "course": {
+        "course_code": "CSCI-485",
+        "name": "File and Database Management",
+        "units": 4.0,
+        "prereqs": [
+          "CSCI-170",
+          "CSCI-201"
+        ],
+        "prereqs_satisfied": true,
+        "description": "File input/output techniques, basic methods for file organization, file managers, principles of databases, conceptual data models, and query languages."
+      },
+      "score": 1.0
+    },
+    {
+      "course": {
+        "course_code": "CSCI-430",
+        "name": "Computer and Network Security",
+        "units": 4.0,
+        "prereqs": [
+          "CSCI-104"
+        ],
+        "prereqs_satisfied": true,
+        "description": "A broad overview of security threats and defenses, security systems and functionalities. Includes homeworks and in-class exercises to provide practical experience working with such systems."
+      },
+      "score": 0.9
+    },
+    {
+      "course": {
+        "course_code": "EE-451",
+        "name": "Parallel and Distributed Computation",
+        "units": 4.0,
+        "prereqs": [
+          [
+            "EE-355",
+            "CSCI-104",
+            "CSCI-114"
+          ]
+        ],
+        "prereqs_satisfied": true,
+        "description": "Introduction to parallel programming techniques, models and optimization strategies; Application mapping to multi-core, accelerator, GPU and cloud platforms; High Performance Computing and Data Science applications. Crosslisted as CSCI 452"
+      },
+      "score": 0.9
+    },
+    {
+      "course": {
+        "course_code": "TAC-435",
+        "name": "Professional C++",
+        "units": 4.0,
+        "prereqs": [
+          [
+            "CSCI-104",
+            "TAC-365",
+            "ITP-365"
+          ]
+        ],
+        "prereqs_satisfied": true,
+        "description": "Applications of advanced concepts in C++ including lambda expressions, templates, secure coding, parallel programming, writing performant code, CMake and continuous integration. Crosslisted as CSCI 435"
+      },
+      "score": 0.9
+    },
+    {
+      "course": {
+        "course_code": "CSCI-476",
+        "name": "Cryptography: Secure Communication and Computation",
+        "units": 4.0,
+        "prereqs": [
+          "CSCI-270"
+        ],
+        "prereqs_satisfied": true,
+        "description": "Introduction to modern Cryptography; mathematical/algorithmic studies of methods for protecting information in computer and communication systems: Public-Key Cryptosystems, zero-knowledge proofs, data privacy."
+      },
+      "score": 0.7
+    },
+    {
+      "course": {
+        "course_code": "CSCI-467",
+        "name": "Foundations of Machine Learning",
+        "units": 4.0,
+        "prereqs": [
+          "CSCI-170",
+          [
+            "CSCI-104",
+            "CSCI-114"
+          ],
+          [
+            "MATH-225",
+            "EE-141"
+          ],
+          [
+            "EE-364",
+            "MATH-407",
+            "BUAD-310",
+            "ISE-225"
+          ]
+        ],
+        "prereqs_satisfied": true,
+        "description": "Algorithms for learning behavior from data, including both mathematical underpinnings and practical techniques. Covers supervised learning, deep learning, unsupervised learning and reinforcement learning. EE 460"
+      },
+      "score": 0.5
+    },
+    {
+      "course": {
+        "course_code": "CSCI-499",
+        "name": "Special Topics",
+        "units": 2.0,
+        "prereqs": [],
+        "prereqs_satisfied": true,
+        "description": "Selected topics in computer science."
+      },
+      "score": 0.5
+    },
+    {
+      "course": {
+        "course_code": "EE-457",
+        "name": "Computer Systems Organization",
+        "units": 4.0,
+        "prereqs": [
+          "EE-354"
+        ],
+        "prereqs_satisfied": false,
+        "description": "Register Transfer level machine organization; performance; arithmetic; pipelined processors; exceptions, out-of-order and speculative execution, cache, virtual memory, multi-core multi-threaded processors, cache coherence. Crosslisted as CSCI 457"
+      },
+      "score": 0.5
+    },
+    {
+      "course": {
+        "course_code": "EE-499",
+        "name": "Special Topics",
+        "units": 2.0,
+        "prereqs": [],
+        "prereqs_satisfied": true,
+        "description": "Course content will be selected each semester from current developments in the field of electrical engineering."
+      },
+      "score": 0.5
+    },
+    {
+      "course": {
+        "course_code": "CSCI-423",
+        "name": "Native Console Multiplayer Game Development",
+        "units": 4.0,
+        "prereqs": [
+          [
+            "CSCI-522",
+            "TAC-380"
+          ]
+        ],
+        "prereqs_satisfied": false,
+        "description": "Implementation of AAA style multiplayer game running on consoles and DX11. Console development in native C++, console SDKs, engine components, gameplay, networking, data prediction/replication."
+      },
+      "score": 0.4
+    },
+    {
+      "course": {
+        "course_code": "CSCI-461",
+        "name": "Artificial Intelligence for Sustainable Development",
+        "units": 4.0,
+        "prereqs": [
+          [
+            "CSCI-104",
+            "CSCI-114"
+          ],
+          "CSCI-170"
+        ],
+        "prereqs_satisfied": true,
+        "description": "Hands-on AI: data mining, machine learning, optimization and fairness in the context of applications with environmental and societal benefit."
+      },
+      "score": 0.4
+    },
+    {
+      "course": {
+        "course_code": "EE-454",
+        "name": "Introduction to System-on-Chip",
+        "units": 4.0,
+        "prereqs": [
+          "EE-354"
+        ],
+        "prereqs_satisfied": false,
+        "description": "Design flow, tools, and issues related to System/Network-on-Chip (S/Noc) design for real-time embedded systems with applications in mobile, cloud, aerospace, and medical electronics. Crosslisted as CSCI 454"
+      },
+      "score": 0.4
+    },
+    {
+      "course": {
+        "course_code": "TAC-439",
+        "name": "Compiler Development",
+        "units": 4.0,
+        "prereqs": [
+          [
+            "TAC-365",
+            "ITP-365",
+            "CSCI-104"
+          ]
+        ],
+        "prereqs_satisfied": true,
+        "description": "Practical applications of techniques used to develop a programming language compiler. Crosslisted as CSCI 439"
+      },
+      "score": 0.4
+    },
+    {
+      "course": {
+        "course_code": "CSCI-475",
+        "name": "Theory of Computation",
+        "units": 4.0,
+        "prereqs": [
+          "CSCI-270"
+        ],
+        "prereqs_satisfied": true,
+        "description": "History of the theory of computing, foundational theorems and theoretical frameworks of computer science, solvable and unsolvable problems."
+      },
+      "score": 0.3
+    },
+    {
+      "course": {
+        "course_code": "CSCI-490",
+        "name": "Directed Research",
+        "units": 1.0,
+        "prereqs": [],
+        "prereqs_satisfied": true,
+        "description": "Individual research and readings. Credit Restriction: Not available for graduate credit."
+      },
+      "score": 0.3
+    },
+    {
+      "course": {
+        "course_code": "EE-490",
+        "name": "Directed Research",
+        "units": 1.0,
+        "prereqs": [],
+        "prereqs_satisfied": true,
+        "description": "Individual research and readings. Credit Restriction: Not available for graduate credit."
+      },
+      "score": 0.3
+    },
+    {
+      "course": {
+        "course_code": "MATH-458",
+        "name": "Numerical Methods",
+        "units": 4.0,
+        "prereqs": [
+          [
+            "MATH-225",
+            "MATH-235",
+            "MATH-245"
+          ]
+        ],
+        "prereqs_satisfied": true,
+        "description": "Rounding errors in digital computation; solution of linear algebraic systems; Newton’s method for nonlinear systems; matrix eigenvalues; polynomial approximation; numerical integration; numerical solution of ordinary differential equations. Crosslisted as CSCI 458"
+      },
+      "score": 0.3
+    },
+    {
+      "course": {
+        "course_code": "TAC-368",
+        "name": "Cross-Platform App Development",
+        "units": 4.0,
+        "prereqs": [
+          [
+            "TAC-265",
+            "ITP-265",
+            "CSCI-103"
+          ]
+        ],
+        "prereqs_satisfied": true,
+        "description": "Programming applications with dynamic graphical user interfaces. Topics include events, controls, resources, data bindings, styles and user experience. Crosslisted as CSCI 368"
+      },
+      "score": 0.3
+    },
+    {
+      "course": {
+        "course_code": "TAC-485",
+        "name": "Programming Game Engines",
+        "units": 4.0,
+        "prereqs": [
+          [
+            "TAC-380",
+            "ITP-380"
+          ]
+        ],
+        "prereqs_satisfied": false,
+        "description": "Techniques for building the core components of a game engine; 2-D/3-D graphics, collision detection, artificial intelligence algorithms, shading, programming input devices. Crosslisted as CSCI 487"
+      },
+      "score": 0.3
+    },
+    {
+      "course": {
+        "course_code": "CSCI-426",
+        "name": "Game Prototyping",
+        "units": 4.0,
+        "prereqs": [],
+        "prereqs_satisfied": true,
+        "description": "Developing games or technology based on current and relevant special topics."
+      },
+      "score": 0.2
+    },
+    {
+      "course": {
+        "course_code": "CSCI-445",
+        "name": "Foundations of Robotics",
+        "units": 4.0,
+        "prereqs": [
+          [
+            "CSCI-104",
+            "CSCI-114",
+            "EE-355"
+          ]
+        ],
+        "prereqs_satisfied": true,
+        "description": "Designing and programming mobile robots; sensors, effectors, basic control theory, control architectures, planning, some advanced topics, illustrations of state-of-the-art. Weekly robot programming labs; final project. Crosslisted as EE 445"
+      },
+      "score": 0.2
+    },
+    {
+      "course": {
+        "course_code": "EE-354",
+        "name": "Introduction to Digital Circuits",
+        "units": 4.0,
+        "prereqs": [
+          "EE-109"
+        ],
+        "prereqs_satisfied": false,
+        "description": "Digital system design and implementation; synchronous design of datapath and control; schematic/Verilog-based design, simulation, and implementation in Field Programmable Gate Arrays; timing analysis; semester-end project."
+      },
+      "score": 0.2
+    },
+    {
+      "course": {
+        "course_code": "EE-459",
+        "name": "Embedded Systems Design Laboratory",
+        "units": 4.0,
+        "prereqs": [
+          "EE-354"
+        ],
+        "prereqs_satisfied": false,
+        "description": "Specification, design, implementation, testing and documentation of a digital system project using embedded processors, programmable logic, analog I/O interfaces and application specific hardware. Capstone design experience. Credit Restriction: Not available for graduate credit"
+      },
+      "score": 0.2
+    },
+    {
+      "course": {
+        "course_code": "TAC-380",
+        "name": "Video Game Programming",
+        "units": 4.0,
+        "prereqs": [
+          [
+            "CSCI-104",
+            "TAC-365",
+            "ITP-365"
+          ]
+        ],
+        "prereqs_satisfied": true,
+        "description": "Underlying concepts and principles required for programming video games (topics include vectors, transformations, 3-D math, geometric primitives, matrices). Crosslisted as CSCI 380"
+      },
+      "score": 0.2
+    },
+    {
+      "course": {
+        "course_code": "CSCI-420",
+        "name": "Computer Graphics",
+        "units": 4.0,
+        "prereqs": [
+          "CSCI-104",
+          [
+            "MATH-225",
+            "EE-141"
+          ],
+          [
+            "MATH-126",
+            "MATH-127",
+            "MATH-129"
+          ]
+        ],
+        "prereqs_satisfied": true,
+        "description": "Computer graphics, OpenGL, 2D and 3D transformations, Bézier splines, computer animation, rendering including ray tracing, shading and lighting, artistic rendering, virtual reality, visualization."
+      },
+      "score": 0.1
+    },
+    {
+      "course": {
+        "course_code": "EE-477",
+        "name": "MOS VLSI Circuit Design",
+        "units": 4.0,
+        "prereqs": [
+          [
+            "EE-338",
+            "EE-354"
+          ]
+        ],
+        "prereqs_satisfied": false,
+        "description": "Analysis and design of digital MOS VLSI circuits including area, delay and power minimization. Laboratory assignments including design, layout, extraction, simulation and automatic synthesis."
+      },
+      "score": 0.1
+    }
+  ],
+  "scored_enrichment": [
+    [
+      {
+        "course": {
+          "course_code": "TAC-303",
+          "name": "Full-Stack Web Development",
+          "units": 4.0,
+          "prereqs": [
+            [
+              "TAC-265",
+              "ITP-265",
+              "CSCI-103"
+            ]
+          ],
+          "prereqs_satisfied": false,
+          "description": "Modern web development techniques and technologies used to create web applications from ground up. Topics include front-end, back-end and web servers."
+        },
+        "score": 1.0
+      },
+      {
+        "course": {
+          "course_code": "TAC-405",
+          "name": "Advanced Back-End Web Development",
+          "units": 4.0,
+          "prereqs": [
+            [
+              "TAC-303",
+              "ITP-303",
+              "TAC-304",
+              "ITP-304",
+              "ACAD-276"
+            ]
+          ],
+          "prereqs_satisfied": false,
+          "description": "Topics include Model-View-Controller (MVC) pattern, RESTful APIs, Object Relational Mapping (ORM), testing and Node.js, an asynchronous server-side alternative using JavaScript. Crosslisted as ACAD 405"
+        },
+        "score": 1.0
+      }
+    ],
+    [
+      {
+        "course": {
+          "course_code": "TAC-303",
+          "name": "Full-Stack Web Development",
+          "units": 4.0,
+          "prereqs": [
+            [
+              "TAC-265",
+              "ITP-265",
+              "CSCI-103"
+            ]
+          ],
+          "prereqs_satisfied": false,
+          "description": "Modern web development techniques and technologies used to create web applications from ground up. Topics include front-end, back-end and web servers."
+        },
+        "score": 0.95
+      }
+    ],
+    [
+      {
+        "course": {
+          "course_code": "CSCI-450",
+          "name": "Introduction to Computer Networks",
+          "units": 4.0,
+          "prereqs": [],
+          "prereqs_satisfied": false,
+          "description": "(Enroll in EE 450"
+        },
+        "score": 0.9
+      }
+    ],
+    [
+      {
+        "course": {
+          "course_code": "TAC-460",
+          "name": "Web Application Project",
+          "units": 4.0,
+          "prereqs": [
+            [
+              "ITP-303",
+              "TAC-303",
+              "ITP-304",
+              "TAC-304",
+              "ACAD-276"
+            ]
+          ],
+          "prereqs_satisfied": false,
+          "description": "Skills to plan, analyze, build and launch professional Web sites with actual clients. Includes project management, documentation, technology assessment, security, UI, Q/A and various methodologies. Crosslisted as ACAD 460"
+        },
+        "score": 0.9
+      }
+    ],
+    [
+      {
+        "course": {
+          "course_code": "TAC-480",
+          "name": "Technology and Applied Computing Internship",
+          "units": 1.0,
+          "prereqs": [],
+          "prereqs_satisfied": false,
+          "description": "Practical experience in applying information technology skills in real-world settings. Supervised internship at companies and start-ups. Balancing academic rigor with corporate challenges and deadlines."
+        },
+        "score": 0.8
+      }
+    ],
+    [
+      {
+        "course": {
+          "course_code": "TAC-483",
+          "name": "Communication for Software Engineers",
+          "units": 2.0,
+          "prereqs": [
+            [
+              "CSCI-104",
+              "TAC-365",
+              "ITP-365"
+            ]
+          ],
+          "prereqs_satisfied": false,
+          "description": "User-focused design, problem space vs solution space, data structures, algorithms, live coding challenges, engineering demonstrations and presentations."
+        },
+        "score": 0.8
+      }
+    ],
+    [
+      {
+        "course": {
+          "course_code": "CSCI-457",
+          "name": "Computer Systems Organization",
+          "units": 3.0,
+          "prereqs": [],
+          "prereqs_satisfied": false,
+          "description": "(Enroll in EE 457"
+        },
+        "score": 0.7
+      }
+    ],
+    [
+      {
+        "course": {
+          "course_code": "CSCI-439",
+          "name": "Compiler Development",
+          "units": 4.0,
+          "prereqs": [],
+          "prereqs_satisfied": false,
+          "description": "(Enroll in TAC 439"
+        },
+        "score": 0.7
+      }
+    ],
+    [
+      {
+        "course": {
+          "course_code": "TAC-470",
+          "name": "Technology and Applied Computing Practicum",
+          "units": 1.0,
+          "prereqs": [],
+          "prereqs_satisfied": false,
+          "description": "Independent technology project related to specific topics under the direction of a faculty member."
+        },
+        "score": 0.6
+      }
+    ],
+    [
+      {
+        "course": {
+          "course_code": "CSCI-571",
+          "name": "Web Technologies",
+          "units": 4.0,
+          "prereqs": [],
+          "prereqs_satisfied": false,
+          "description": "Advanced study of programming languages with application to the Web. Languages for client-side and server-side processing. Examples taken from: HTML, Java, JavaScript, Python, JSON, NodeJS and others."
+        },
+        "score": 0.6
+      }
+    ]
+  ]
+}

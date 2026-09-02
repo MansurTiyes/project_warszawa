@@ -1,0 +1,131 @@
+{
+  "major": "COMPUTER SCIENCE",
+  "degree": "BACHELOR OF SCIENCE",
+  "program_code": "365",
+  "catalog_year": "20243",
+  "writing": [
+    "WRIT-150",
+    "WRIT-340"
+  ],
+  "general_education": [
+    "GE-A",
+    "GE-B",
+    "GE-B",
+    "GE-C",
+    "GE-C",
+    "GE-D",
+    "GE-E",
+    "GE-F",
+    "GE-G",
+    "GE-H"
+  ],
+  "pre_major_engineering": [
+    "ENGR-102"
+  ],
+  "pre_major_math": [
+    "MATH-125",
+    [
+      "MATH-126",
+      "MATH-129"
+    ],
+    [
+      "MATH-225",
+      "MATH-235"
+    ],
+    [
+      "MATH-226",
+      "MATH-229"
+    ]
+  ],
+  "pre_major_stats": [
+    [
+      "EE-364",
+      "MATH-407"
+    ]
+  ],
+  "pre_major_science": [
+    [
+      "BISC-120",
+      "BISC-220"
+    ],
+    [
+      "BISC-121",
+      "BISC-221"
+    ],
+    [
+      "CHEM-105A",
+      "CHEM-105B"
+    ],
+    [
+      "CHEM-115A",
+      "CHEM-115B"
+    ],
+    [
+      "PHYS-151",
+      "PHYS-152"
+    ],
+    [
+      "PHYS-161",
+      "PHYS-162"
+    ]
+  ],
+  "major_cs_core": [
+    "CSCI-102",
+    "CSCI-103",
+    "CSCI-104",
+    "CSCI-170",
+    "CSCI-201",
+    "CSCI-270",
+    "CSCI-310",
+    "CSCI-350",
+    "CSCI-353",
+    "CSCI-356",
+    "CSCI-360",
+    [
+      "CSCI-401",
+      "CSCI-404"
+    ]
+  ],
+  "major_ee": [
+    "EE-109"
+  ],
+  "major_technical_electives": {
+    "min_units": 12,
+    "min_courses": 3,
+    "level_minimum": 300,
+    "dept_primary": "CSCI",
+    "note": "At least three 4-unit 300- or 400-level CSCI courses. One non-CSCI substitution may be permitted with adviser approval."
+  },
+  "electives_options": [
+    "CSCI-420",
+    "CSCI-423",
+    "CSCI-426",
+    "CSCI-430",
+    "CSCI-445",
+    "CSCI-461",
+    "CSCI-467",
+    "CSCI-475",
+    "CSCI-476",
+    "CSCI-485",
+    "CSCI-490",
+    "CSCI-491A",
+    "CSCI-491B",
+    "CSCI-499",
+    "EE-354",
+    "EE-451",
+    "EE-454",
+    "EE-457",
+    "EE-459",
+    "EE-477",
+    "EE-490",
+    "EE-499",
+    "ENGR-395B",
+    "ENGR-395C",
+    "MATH-458",
+    "TAC-368",
+    "TAC-380",
+    "TAC-435",
+    "TAC-439",
+    "TAC-485"
+  ]
+}
