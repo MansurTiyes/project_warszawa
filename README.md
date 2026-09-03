@@ -95,7 +95,7 @@ The pipeline runs once per plan; the chat agent runs per message. Both are LangG
 - **Schedule.** The scheduler assigns courses to semesters, then a Python validator checks five hard invariants and feeds any violations back for regeneration, up to three passes.
 - **Converse.** A ReAct agent with seven tools answers questions from the plan and the catalog, and can propose changes — but never applies them itself.
 
-## Design decisions that mattered
+## Design decisions 
 
 **LLM only when judgment is required.** Unit arithmetic, prerequisite graph construction, set differences, and invariant checking are all plain Python. The model decides *which* courses and *what order*; it never counts, and it is never trusted to confirm its own output is legal.
 
@@ -199,7 +199,7 @@ The structural majority of `StudentState` matches the expected fixture exactly. 
 The chat agent compensates by post-filtering against the student's completed courses and demoting prerequisite-unsatisfied results. A dedicated re-ranker is the correct fix and is not yet built.
 </details>
 
-## Security posture
+## Security 
 
 The chat agent is the largest attack surface: it holds tool-calling power, sees student data inlined in its system prompt, and is the primary user-facing model.
 
