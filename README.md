@@ -216,7 +216,6 @@ Honest accounting of what isn't covered:
 - **Adversarial testing was single-turn.** A patient attacker probing the system prompt across many turns is untested, as is injection embedded in pasted content (a code snippet containing "ignore previous instructions").
 - **Retrieval rank-1 accuracy is 64%** on the deterministic set. Mitigated by post-filtering, properly fixed by a re-ranker.
 - **The chat agent over-fetches** before proposing schedule changes — a latency cost, documented above.
-- **`OPENAI_API_KEY` is required to boot but unused** by any code path; a leftover from an earlier design.
 - **Scope is single-major USC CS.** No minors, double majors, or progressive-degree support. The requirements map is structural and general, but only this program has been exercised.
 
 ## Project layout
